@@ -1,0 +1,12 @@
+{
+  "name": "Checklist",
+  "displayName": "Checklist",
+  "expo": {
+    "name": "Checklist",
+    "slug": "Checklist",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
