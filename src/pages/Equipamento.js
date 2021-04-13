@@ -79,8 +79,17 @@ export default function Equipamento(props) {
 				<Image style={styles.img} source={require('../assets/logo_sol.png')} />
 			</View>
 			<Text h5 style={{textAlign: 'center', marginBottom: 10}}>{'Operador: '+codMotorista+ ' - '+ nomeMotorista}</Text>
-			<Text style={styles.textoEquipamento}>{qrCodeEquipamento}</Text>
-        	<Text style={styles.textoEquipamento}>{nomeEquipamento}</Text>
+			{
+				qrCodeEquipamento != '' && qrCodeEquipamento != undefined
+				?
+				<>
+				<Text style={styles.textoEquipamento}>{qrCodeEquipamento}</Text>
+        		<Text style={styles.textoEquipamento}>{nomeEquipamento}</Text>
+				</>
+				:
+				<Text></Text>
+			}
+			
 			<Button
 				buttonStyle={styles.botaoEquipamento}
 				title="EQUIPAMENTO"

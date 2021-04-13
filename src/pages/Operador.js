@@ -77,8 +77,17 @@ export default function Login(props) {
             <Image style={styles.img} source={require('../assets/logo_sol.png')} />
         </View >  
       	<View style={styles.containerBotao}>
+		{
+			qrCodeMotorista != '' && qrCodeMotorista != undefined
+			?
+			<>
 			<Text style={styles.textoOperador}>{qrCodeMotorista}</Text>
-        	<Text style={styles.textoOperador}>{nomeMotorista}</Text>
+			<Text style={styles.textoOperador}>{nomeMotorista}</Text>
+			</>
+			:
+			<Text></Text>
+		}
+			
 		<Button
 			buttonStyle={styles.botaoOperador}
 			title="OPERADOR"
@@ -137,8 +146,8 @@ const styles = StyleSheet.create({
 	resizeMode: 'stretch',
   },
   img:{
-    height: 200,
-    width: 200,
+    height: 230,
+    width: 230,
     resizeMode: 'cover',
   },
 });
