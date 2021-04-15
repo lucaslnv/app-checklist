@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, View, ScrollView, Image, Alert } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import LoadingItem from '../components/LoadingItem';
 import {buscarEquipamentos} from '../services/api';
@@ -24,10 +24,10 @@ export default function Equipamento(props) {
 	//CARREGAR EQUIPAMENTOS
 	useEffect(() => { 
 
-		async function carregarEquipamentos(){
+		async function carregarEquipamentos(dominio){
 			setloading(true);
 			//BUSCA EQUIPAMENTOS
-			let respostaEquipamentos = await buscarEquipamentos();
+			let respostaEquipamentos = await buscarEquipamentos(dominio);
 			if(respostaEquipamentos.status){
 				if(respostaEquipamentos.resultado == "Chave invalida."){
 					setloading(false);
@@ -43,8 +43,17 @@ export default function Equipamento(props) {
 
 		//VERIFICA CONEXAO COM A INTERNET
 		NetInfo.fetch().then(state => {
+			var dominio = 'web';
+			if( state.details.ipAddress != undefined ){
+				var ip = state.details.ipAddress;
+				var ws = ip.indexOf("192.168.2");
+				if( ws != -1 ){
+					dominio = 'intranet';
+				}
+			}
+			
 			if(state.isConnected){
-				carregarEquipamentos();
+				carregarEquipamentos(dominio);
 			}else{
 			  setloading(false);
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');

@@ -24,10 +24,10 @@ export default function Login(props) {
 
 		console.log('rodando...');
 
-		async function carregarMotoristas(){
+		async function carregarMotoristas(dominio){
 			setloading(true);
 			//BUSCA MOTORISTAS
-			let respostaMotoristas = await buscarMotoristas();
+			let respostaMotoristas = await buscarMotoristas(dominio);
 			if(respostaMotoristas.status){
 				if(respostaMotoristas.resultado == "Chave invalida."){
 				setloading(false);
@@ -41,10 +41,20 @@ export default function Login(props) {
 			}
 		}
 
+		
 		//VERIFICA CONEXAO COM A INTERNET
 		NetInfo.fetch().then(state => {
+			var dominio = 'web';
+			if( state.details.ipAddress != undefined ){
+				var ip = state.details.ipAddress;
+				var ws = ip.indexOf("192.168.2");
+				if( ws != -1 ){
+					dominio = 'intranet';
+				}
+			}
+
 			if(state.isConnected){
-				carregarMotoristas();
+				carregarMotoristas(dominio);
 			}else{
 			  setloading(false);
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
