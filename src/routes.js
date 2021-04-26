@@ -29,7 +29,7 @@ const Routes = createAppContainer(
                 backgroundColor: '#DDDDDD',
             },
         },
-        initialRouteName: 'Operador'
+        initialRouteName: 'Checklist'
     },
     ));
 

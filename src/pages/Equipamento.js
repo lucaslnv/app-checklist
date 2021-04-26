@@ -69,11 +69,11 @@ export default function Equipamento(props) {
 		if(props.navigation.getParam('operacao') == 'equipamento'){
 			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode'));
 			if(resposta != undefined){
-				setQrCodeEquipamento('QR Code: '+props.navigation.getParam('qrCode'));
+				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento(resposta.EQUIPAMENTO);
 				setEquipamentoValido(true);
 			}else{
-				setQrCodeEquipamento('QR Code: '+props.navigation.getParam('qrCode'));
+				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento('Equipamento não encontrado');
 				setEquipamentoValido(false);
 			}

@@ -7,8 +7,10 @@ const url = axios.create({
 
 export const buscarMotoristas = async function(dominio) {
     
-    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' } ;
+    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' };
+
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/buscarMotoristasOrm';
+    
     if( dominio == 'intranet'){
         endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/buscarMotoristasOrm';
     }
@@ -19,13 +21,14 @@ export const buscarMotoristas = async function(dominio) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Erro ao carregar os motoristas.', erro: error});
+        return({status: false, mensagem: 'Não foi possível carregar os motoristas.', erro: error});
     });
 }
 
 export const buscarEquipamentos = async function(dominio) {
     
-    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' } ;
+    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' };
+
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/buscarEquipamentosOrm';
     if( dominio == 'intranet'){
         endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/buscarEquipamentosOrm';
@@ -37,20 +40,28 @@ export const buscarEquipamentos = async function(dominio) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Erro ao carregar os equipamentos.', erro: error});
+        return({status: false, mensagem: 'Não foi possível carregar os equipamentos.', erro: error});
     });
 }
 
-export const buscarQuesitos = async function() {
-    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' } ;
+export const buscarQuesitos = async function(dominio, qrCode) {
+
+    var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/getQuesitos';
+    if( dominio == 'intranet'){
+        endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/getQuesitos';
+    }
     
-    return await axios.get('https://ec2.gruposol.com.br/embarques/api/getQuesitos?QrCode=2432', dados)
+    return await axios.get(endPoint, {
+        params: {
+            QrCode: qrCode
+        }
+      })
     .then(function (response) {
-        return({status: true, resultado: response.data.response});
+        return({status: true, resultado: response});
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Erro ao carregar os equipamentos.', erro: error});
+        return({status: false, mensagem: 'Não foi possível carregar os quesitos.', erro: error});
     });
 }
 

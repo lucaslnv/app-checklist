@@ -22,7 +22,7 @@ export default function Login(props) {
 	//CARREGAR MOTORISTAS
 	useEffect(() => { 
 
-		console.log('rodando...');
+		console.log('Checklist rodando...');
 
 		async function carregarMotoristas(dominio){
 			setloading(true);
