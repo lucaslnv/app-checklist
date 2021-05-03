@@ -72,6 +72,7 @@ export default function Equipamento(props) {
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento(resposta.EQUIPAMENTO);
 				setEquipamentoValido(true);
+				props.navigation.navigate('Checklist', { qrCodeEquipamento: props.navigation.getParam('qrCode'), nomeEquipamento: resposta.EQUIPAMENTO})
 			}else{
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento('Equipamento não encontrado');

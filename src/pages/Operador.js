@@ -65,7 +65,6 @@ export default function Login(props) {
 	
 	//BUSCA OPERADOR NO ARRAY MOTORISTAS
 	useEffect(() => { 
-		
 		if(props.navigation.getParam('operacao') == 'operador'){
 			let resposta = motoristas.find( motorista => motorista.codMotorista == props.navigation.getParam('qrCode'));
 			if(resposta != undefined){
@@ -73,6 +72,7 @@ export default function Login(props) {
 			  setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
 			  setNomeMotorista(resposta.desMotorista);
 			  setOperadorValido(true);
+			  props.navigation.navigate('Equipamento', { codMotorista: resposta.codMotorista, nomeMotorista: resposta.desMotorista})
 			}else{
 			  setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
 			  setNomeMotorista('Operador não encontrado');
@@ -109,7 +109,7 @@ export default function Login(props) {
 			<Button
 				buttonStyle={styles.botaoAvancar}
 				title="AVANÇAR"
-				onPress={ ()=> props.navigation.navigate('Equipamento', { codMotorista: codMotorista, nomeMotorista: nomeMotorista})}
+				onPress={ ()=> props.navigation.navigate('Equipamento', { codMotorista: codMotorista, nomeMotorista: nomeMotorista}) }
 			/>
             : 
             <Text></Text>
