@@ -888,8 +888,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 				if(respostaQuesitos.resultado == "Chave invalida."){
@@ -974,6 +974,54 @@ export default function Checklist(props) {
 											
 											{ 
 												/* ITEM 1 */
+											}
+											{ /* LISTBOX PNEU ITEM 1 */ }
+											{
+												quesito.IND_PNEU == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
+												(
+													
+													<Picker
+														selectedValue={lbItem1}
+														style={{ height: 50, margin:5, width: '100%'}}
+														onValueChange={(itemValue, itemIndex) => setLbItem1(itemValue)}
+													>
+													{
+														quesitos.LISTA_PNEUS.map((listbox, i) => {
+															return (
+																<Picker.Item 
+																	key={listbox.DES_OPCAO}
+																	label={listbox.DES_OPCAO} 
+																	value={listbox.COD_OPCAO} 
+																/>
+															);
+														})
+													}
+													</Picker>
+												)
+											}
+											{ /* LISTBOX LATARIA ITEM 1 */ }
+											{
+												quesito.IND_LATARIA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
+												(
+													
+													<Picker
+														selectedValue={lbItem1}
+														style={{ height: 50, margin: 5, width: '100%'}}
+														onValueChange={(itemValue, itemIndex) => setLbItem1(itemValue)}
+													>
+													{
+														quesitos.LISTA_LATARIA.map((listbox, i) => {
+															return (
+																<Picker.Item 
+																	key={listbox.DES_OPCAO}
+																	label={listbox.DES_OPCAO} 
+																	value={listbox.COD_OPCAO} 
+																/>
+															);
+														})
+													}
+													</Picker>
+												)
 											}
 											{ /* CHECKBOX ITEM 1 */ }
 											{
