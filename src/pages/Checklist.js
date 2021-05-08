@@ -961,6 +961,9 @@ export default function Checklist(props) {
 								</Separator>
 							</CollapseHeader>
 							<CollapseBody>
+							{
+								grupo.DES_GRUPO == 'Pneus' ? <Text>PNEU</Text> : <Text>NAO PNEU</Text>
+							}
 
 							{ /* QUESITOS */ }
 							{
@@ -970,59 +973,16 @@ export default function Checklist(props) {
 											<View key={quesito.QUESITO}>
 
 											{ /* DESCRICAO QUESITO */ }
-											<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
-											
+											{
+												quesito.IND_PNEU == false && (
+													<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+												)
+											}
 											{ 
 												/* ITEM 1 */
 											}
-											{ /* LISTBOX PNEU ITEM 1 */ }
-											{
-												quesito.IND_PNEU == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
-												(
-													
-													<Picker
-														selectedValue={lbItem1}
-														style={{ height: 50, margin:5, width: '100%'}}
-														onValueChange={(itemValue, itemIndex) => setLbItem1(itemValue)}
-													>
-													{
-														quesitos.LISTA_PNEUS.map((listbox, i) => {
-															return (
-																<Picker.Item 
-																	key={listbox.DES_OPCAO}
-																	label={listbox.DES_OPCAO} 
-																	value={listbox.COD_OPCAO} 
-																/>
-															);
-														})
-													}
-													</Picker>
-												)
-											}
-											{ /* LISTBOX LATARIA ITEM 1 */ }
-											{
-												quesito.IND_LATARIA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
-												(
-													
-													<Picker
-														selectedValue={lbItem1}
-														style={{ height: 50, margin: 5, width: '100%'}}
-														onValueChange={(itemValue, itemIndex) => setLbItem1(itemValue)}
-													>
-													{
-														quesitos.LISTA_LATARIA.map((listbox, i) => {
-															return (
-																<Picker.Item 
-																	key={listbox.DES_OPCAO}
-																	label={listbox.DES_OPCAO} 
-																	value={listbox.COD_OPCAO} 
-																/>
-															);
-														})
-													}
-													</Picker>
-												)
-											}
+											
+											
 											{ /* CHECKBOX ITEM 1 */ }
 											{
 												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 1 && 
@@ -2861,7 +2821,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 19 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
 												(
 													<ListItem >
 														<Switch
@@ -2876,7 +2836,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 19 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -2902,7 +2862,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 19 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19  &&
 												(
 													
 														<Picker
@@ -2926,7 +2886,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 19 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
 												(
 													<Input 
 														value={inputInteiroItem19}
@@ -2937,7 +2897,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 19 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
 												(
 													<Input 
 														value={inputTextoItem19}
@@ -2948,7 +2908,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT DECIMAL ITEM 19 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 19 && 
 												(
 													<Input 
 														value={inputDecimalItem19}
@@ -2963,7 +2923,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 20 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
 												(
 													<ListItem >
 														<Switch
@@ -2978,7 +2938,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 20 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -3004,7 +2964,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 20 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20  &&
 												(
 													
 														<Picker
@@ -3028,7 +2988,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 20 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
 												(
 													<Input 
 														value={inputInteiroItem20}
@@ -3039,7 +2999,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 20 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
 												(
 													<Input 
 														value={inputTextoItem20}
@@ -3050,7 +3010,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT TEXTO ITEM 20 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 20 && 
 												(
 													<Input 
 														value={inputDecimalItem20}
@@ -3065,7 +3025,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 21 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
 												(
 													<ListItem >
 														<Switch
@@ -3080,7 +3040,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 21 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -3106,7 +3066,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 21 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21  &&
 												(
 													
 														<Picker
@@ -3130,7 +3090,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 21 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
 												(
 													<Input 
 														value={inputInteiroItem21}
@@ -3141,7 +3101,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 21 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
 												(
 													<Input 
 														value={inputTextoItem21}
@@ -3152,7 +3112,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT TEXTO ITEM 21 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 21 && 
 												(
 													<Input 
 														value={inputDecimalItem21}
@@ -3167,7 +3127,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 22 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
 												(
 													<ListItem >
 														<Switch
@@ -3182,7 +3142,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 22 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -3208,7 +3168,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 22 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22  &&
 												(
 													
 														<Picker
@@ -3232,7 +3192,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 22 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
 												(
 													<Input 
 														value={inputInteiroItem22}
@@ -3243,7 +3203,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 22 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
 												(
 													<Input 
 														value={inputTextoItem22}
@@ -3254,7 +3214,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT TEXTO ITEM 22 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 22 && 
 												(
 													<Input 
 														value={inputDecimalItem22}
@@ -3269,7 +3229,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 23 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
 												(
 													<ListItem >
 														<Switch
@@ -3284,7 +3244,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 23 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -3310,7 +3270,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 23 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23  &&
 												(
 													
 														<Picker
@@ -3334,7 +3294,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 23 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
 												(
 													<Input 
 														value={inputInteiroItem23}
@@ -3345,7 +3305,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 23 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
 												(
 													<Input 
 														value={inputTextoItem23}
@@ -3356,7 +3316,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT TEXTO ITEM 23 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 23 && 
 												(
 													<Input 
 														value={inputDecimalItem23}
@@ -3371,7 +3331,7 @@ export default function Checklist(props) {
 											}
 											{ /* CHECKBOX ITEM 24 */ }
 											{
-												quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
+												quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
 												(
 													<ListItem >
 														<Switch
@@ -3386,7 +3346,7 @@ export default function Checklist(props) {
 											}
 											{ /* RADIO BUTTON ITEM 24 */ }
 											{
-												quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24  &&
+												quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24  &&
 												(
 													quesito.componentes.radio.OPCOES.map((radio, i) => {
 														return (
@@ -3412,7 +3372,7 @@ export default function Checklist(props) {
 											}
 											{ /* LIST BOX ITEM 24 */ }
 											{
-												quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24  &&
+												quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24  &&
 												(
 													
 														<Picker
@@ -3436,7 +3396,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT INTEIRO ITEM 24 */ }
 											{
-												quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
+												quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
 												(
 													<Input 
 														value={inputInteiroItem24}
@@ -3447,7 +3407,7 @@ export default function Checklist(props) {
 											}
 											{ /* INPUT TEXTO ITEM 24 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
 												(
 													<Input 
 														value={inputTextoItem24}
@@ -3458,7 +3418,7 @@ export default function Checklist(props) {
 											}
 											{/* INPUT TEXTO ITEM 24 */ }
 											{
-												quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
+												quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && quesito.COD_ITEM == 24 && 
 												(
 													<Input 
 														value={inputDecimalItem24}
