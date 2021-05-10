@@ -21,7 +21,7 @@ export const buscarMotoristas = async function(dominio) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Não foi possível carregar os motoristas.', erro: error});
+        return({status: false, mensagem: 'NÃ£o foi possÃ­vel carregar os motoristas.', erro: error});
     });
 }
 
@@ -40,7 +40,7 @@ export const buscarEquipamentos = async function(dominio) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Não foi possível carregar os equipamentos.', erro: error});
+        return({status: false, mensagem: 'NÃ£o foi possÃ­vel carregar os equipamentos.', erro: error});
     });
 }
 
@@ -61,7 +61,7 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Não foi possível carregar os quesitos.', erro: error});
+        return({status: false, mensagem: 'NÃ£o foi possÃ­vel carregar os quesitos.', erro: error});
     });
 }
 

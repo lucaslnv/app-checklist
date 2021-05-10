@@ -75,7 +75,7 @@ export default function Login(props) {
 			  props.navigation.navigate('Equipamento', { codMotorista: resposta.codMotorista, nomeMotorista: resposta.desMotorista})
 			}else{
 			  setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
-			  setNomeMotorista('Operador não encontrado');
+			  setNomeMotorista('OPERADOR NÃO ENCONTRADO');
 			  setOperadorValido(false);
 			}
 		  }
@@ -108,7 +108,7 @@ export default function Login(props) {
 			? 
 			<Button
 				buttonStyle={styles.botaoAvancar}
-				title="AVANÇAR"
+				title="AVANÃAR"
 				onPress={ ()=> props.navigation.navigate('Equipamento', { codMotorista: codMotorista, nomeMotorista: nomeMotorista}) }
 			/>
             : 

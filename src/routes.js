@@ -1,7 +1,6 @@
 import Operador from './pages/Operador';
 import Equipamento from './pages/Equipamento';
 import Checklist from './pages/Checklist';
-import Teste from './pages/Teste';
 import Camera from './components/Camera';
 
 import { createAppContainer } from 'react-navigation';
@@ -21,9 +20,6 @@ const Routes = createAppContainer(
         Equipamento: {
             screen: Equipamento
         },
-        Teste: {
-            screen: Teste
-        }
     },
     {   
         defaultNavigationOptions: {
@@ -33,7 +29,7 @@ const Routes = createAppContainer(
                 backgroundColor: '#DDDDDD',
             },
         },
-        initialRouteName: 'Teste'
+        initialRouteName: 'Operador'
     },
     ));
 

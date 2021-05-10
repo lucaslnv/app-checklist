@@ -75,7 +75,7 @@ export default function Equipamento(props) {
 				props.navigation.navigate('Checklist', { qrCodeEquipamento: props.navigation.getParam('qrCode'), nomeEquipamento: resposta.EQUIPAMENTO})
 			}else{
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
-				setNomeEquipamento('Equipamento não encontrado');
+				setNomeEquipamento('EQUIPAMENTO NÃO ENCONTRADO');
 				setEquipamentoValido(false);
 			}
 			
@@ -110,7 +110,7 @@ export default function Equipamento(props) {
 				? 
 				<Button
 					buttonStyle={styles.botaoAvancar}
-					title="AVANÇAR"
+					title="AVANÃAR"
 					onPress={ ()=> props.navigation.navigate('Checklist', { qrCodeEquipamento: qrCodeEquipamento, nomeEquipamento: nomeEquipamento})}
 				/>
 				: 
