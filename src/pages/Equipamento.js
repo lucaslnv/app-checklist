@@ -110,7 +110,7 @@ export default function Equipamento(props) {
 				? 
 				<Button
 					buttonStyle={styles.botaoAvancar}
-					title="AVANÃAR"
+					title="AVANÇAR"
 					onPress={ ()=> props.navigation.navigate('Checklist', { qrCodeEquipamento: qrCodeEquipamento, nomeEquipamento: nomeEquipamento})}
 				/>
 				: 

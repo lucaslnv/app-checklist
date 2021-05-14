@@ -34,8 +34,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 				if(respostaQuesitos.resultado == "Chave invalida."){
@@ -109,7 +109,7 @@ export default function Checklist(props) {
 										</CollapseHeader>
 										<CollapseBody>
 										{
-											//PNEU TRUE - LATARIA TRUE - VIDRO TRUE
+											//PNEU TRUE
 											grupo.IND_PNEUS == true && (
 												quesitos.LISTA_PNEUS.map((listbox, i) => {
 													return ( 
@@ -285,7 +285,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Pneu_4_cbQuesito_10 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Pneu_4_cbQuesito_11 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Pneu_4_cbQuesito_12 :
-																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_cbQuesito_14 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Pneu_4_cbQuesito_13 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_cbQuesito_14 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Pneu_4_cbQuesito_15 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Pneu_4_cbQuesito_16 :
@@ -314,6 +314,93 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Pneu_4_cbQuesito_39 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_cbQuesito_40 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_cbQuesito_41 :
+																									
+																									//PNEU 5
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_cbQuesito_1 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_cbQuesito_2 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_cbQuesito_3 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_cbQuesito_4 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_cbQuesito_5 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_cbQuesito_6 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_cbQuesito_7 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_cbQuesito_8 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_cbQuesito_9 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_cbQuesito_10 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_cbQuesito_11 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_cbQuesito_12 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_cbQuesito_13 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_cbQuesito_14 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_cbQuesito_15 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_cbQuesito_16 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_cbQuesito_17 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_cbQuesito_18 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_cbQuesito_19 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_cbQuesito_20 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_cbQuesito_21 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_cbQuesito_22 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_cbQuesito_23 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_cbQuesito_24 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_cbQuesito_25 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_cbQuesito_26 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_cbQuesito_27 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_cbQuesito_28 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_cbQuesito_29 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_cbQuesito_30 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_cbQuesito_31 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_cbQuesito_32 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_cbQuesito_33 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_cbQuesito_34 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_cbQuesito_35 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_cbQuesito_36 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_cbQuesito_37 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_cbQuesito_38 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_cbQuesito_39 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_cbQuesito_50 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_cbQuesito_51 :
+
+																									//PNEU 6
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_cbQuesito_1 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_cbQuesito_2 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_cbQuesito_3 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_cbQuesito_4 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_cbQuesito_5 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_cbQuesito_6 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_cbQuesito_7 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_cbQuesito_8 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_cbQuesito_9 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_cbQuesito_10 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_cbQuesito_11 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_cbQuesito_12 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_cbQuesito_13 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_cbQuesito_14 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_cbQuesito_15 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_cbQuesito_16 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_cbQuesito_17 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_cbQuesito_18 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_cbQuesito_19 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_cbQuesito_20 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_cbQuesito_21 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_cbQuesito_22 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_cbQuesito_23 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_cbQuesito_24 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_cbQuesito_25 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_cbQuesito_26 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_cbQuesito_27 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_cbQuesito_28 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_cbQuesito_29 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_cbQuesito_30 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_cbQuesito_31 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_cbQuesito_32 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_cbQuesito_33 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_cbQuesito_34 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_cbQuesito_35 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_cbQuesito_36 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_cbQuesito_37 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_cbQuesito_38 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_cbQuesito_39 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_cbQuesito_40 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_cbQuesito_41 :
+
 																									false
 																								}
 																							/>
@@ -472,7 +559,7 @@ export default function Checklist(props) {
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Pneu_4_inputTextoQuesito_10 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Pneu_4_inputTextoQuesito_11 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Pneu_4_inputTextoQuesito_12 :
-																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Pneu_4_inputTextoQuesito_13 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_inputTextoQuesito_14 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Pneu_4_inputTextoQuesito_15 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Pneu_4_inputTextoQuesito_16 :
@@ -501,6 +588,93 @@ export default function Checklist(props) {
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Pneu_4_inputTextoQuesito_39 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_inputTextoQuesito_40 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_inputTextoQuesito_41 :
+
+																								//PNEU 5
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_inputTextoQuesito_41 :
+
+																								//PNEU 6
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_inputTextoQuesito_41 :
+
 																								false
 																							}
 																						/>
@@ -515,7 +689,7 @@ export default function Checklist(props) {
 																						<Input 
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQuesito_'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQuesito_'+quesito.COD_ITEM)}
-																							placeholder='Observação'
+																							placeholder='Decimal'
 																							value={
 																								//PNEU 1
 																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Pneu_1_inputDecimalQuesito_1 :
@@ -688,6 +862,93 @@ export default function Checklist(props) {
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Pneu_4_inputDecimalQuesito_39 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_inputDecimalQuesito_40 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_inputDecimalQuesito_41 :
+																								
+																								//PNEU 5
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_inputDecimalQuesito_41 :
+
+																								//PNEU 6
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_inputDecimalQuesito_41 :
+
 																								false
 																							}
 																						/>
@@ -702,7 +963,7 @@ export default function Checklist(props) {
 																						<Input 
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQuesito_'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQuesito_'+quesito.COD_ITEM)}
-																							placeholder='Observação'
+																							placeholder='Inteiro'
 																							value={
 																								//PNEU 1
 																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Pneu_1_inputInteiroQuesito_1 :
@@ -875,6 +1136,93 @@ export default function Checklist(props) {
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Pneu_4_inputInteiroQuesito_39 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_inputInteiroQuesito_40 :
 																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_inputInteiroQuesito_41 :
+
+																								//PNEU 5
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_inputInteiroQuesito_13 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_inputInteiroQuesito_23 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_inputInteiroQuesito_41 :
+
+																								//PNEU 6
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_inputInteiroQuesito_13 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_inputInteiroQuesito_23 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_inputInteiroQuesito_41 :
+
 																								false
 																							}
 																						/>
@@ -891,10 +1239,6 @@ export default function Checklist(props) {
 																									key={radio.DES_OPCAO}
 																									onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																									>
-																									<Left>
-																									<Text>{radio.DES_OPCAO}</Text>
-																									</Left>
-																									<Right>
 																									<Radio
 																										onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
@@ -1043,7 +1387,7 @@ export default function Checklist(props) {
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Pneu_4_rbQuesito_10 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Pneu_4_rbQuesito_11 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Pneu_4_rbQuesito_12 == radio.COD_OPCAO ? true : false :
-																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Pneu_4_rbQuesito_13 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_rbQuesito_14 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Pneu_4_rbQuesito_15 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Pneu_4_rbQuesito_16 == radio.COD_OPCAO ? true : false :
@@ -1073,11 +1417,96 @@ export default function Checklist(props) {
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_rbQuesito_40 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_rbQuesito_41 == radio.COD_OPCAO ? true : false :
 																											
+																											//PNEU 5
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+
+																											//PNEU 6
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+
 																											false
 																										}
 																									/>
-																									
-																									</Right>
+																									<Text>{radio.DES_OPCAO}</Text>
 																								</ListItem>
 																							);
 																						})
@@ -1231,7 +1660,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Pneu_4_lbQuesito_10 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Pneu_4_lbQuesito_11 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Pneu_4_lbQuesito_12 :
-																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_lbQuesito_14 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Pneu_4_lbQuesito_13 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Pneu_4_lbQuesito_14 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Pneu_4_lbQuesito_15 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Pneu_4_lbQuesito_16 :
@@ -1260,24 +1689,110 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Pneu_4_lbQuesito_39 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Pneu_4_lbQuesito_40 :
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Pneu_4_lbQuesito_41 :
-																									false
 
+																									//PNEU 5
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Pneu_5_lbQuesito_1 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Pneu_5_lbQuesito_2 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Pneu_5_lbQuesito_3 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Pneu_5_lbQuesito_4 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Pneu_5_lbQuesito_5 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Pneu_5_lbQuesito_6 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Pneu_5_lbQuesito_7 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Pneu_5_lbQuesito_8 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Pneu_5_lbQuesito_9 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Pneu_5_lbQuesito_10 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Pneu_5_lbQuesito_11 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Pneu_5_lbQuesito_12 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Pneu_5_lbQuesito_13 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Pneu_5_lbQuesito_14 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Pneu_5_lbQuesito_15 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Pneu_5_lbQuesito_16 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Pneu_5_lbQuesito_17 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Pneu_5_lbQuesito_18 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Pneu_5_lbQuesito_19 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Pneu_5_lbQuesito_20 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Pneu_5_lbQuesito_21 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Pneu_5_lbQuesito_22 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Pneu_5_lbQuesito_23 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Pneu_5_lbQuesito_24 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Pneu_5_lbQuesito_25 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Pneu_5_lbQuesito_26 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Pneu_5_lbQuesito_27 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Pneu_5_lbQuesito_28 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Pneu_5_lbQuesito_29 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Pneu_5_lbQuesito_30 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Pneu_5_lbQuesito_31 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Pneu_5_lbQuesito_32 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Pneu_5_lbQuesito_33 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Pneu_5_lbQuesito_34 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Pneu_5_lbQuesito_35 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Pneu_5_lbQuesito_36 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Pneu_5_lbQuesito_37 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Pneu_5_lbQuesito_38 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Pneu_5_lbQuesito_39 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Pneu_5_lbQuesito_40 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Pneu_5_lbQuesito_41 :
+
+																									//PNEU 6
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 1 ? values.Pneu_6_lbQuesito_1 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 2 ? values.Pneu_6_lbQuesito_2 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 3 ? values.Pneu_6_lbQuesito_3 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 4 ? values.Pneu_6_lbQuesito_4 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 5 ? values.Pneu_6_lbQuesito_5 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 6 ? values.Pneu_6_lbQuesito_6 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 7 ? values.Pneu_6_lbQuesito_7 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 8 ? values.Pneu_6_lbQuesito_8 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 9 ? values.Pneu_6_lbQuesito_9 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 10  ? values.Pneu_6_lbQuesito_10 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 11  ? values.Pneu_6_lbQuesito_11 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 12  ? values.Pneu_6_lbQuesito_12 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 13  ? values.Pneu_6_lbQuesito_13 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 14  ? values.Pneu_6_lbQuesito_14 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 15  ? values.Pneu_6_lbQuesito_15 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 16  ? values.Pneu_6_lbQuesito_16 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 17  ? values.Pneu_6_lbQuesito_17 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 18  ? values.Pneu_6_lbQuesito_18 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 19  ? values.Pneu_6_lbQuesito_19 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 20  ? values.Pneu_6_lbQuesito_20 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 21  ? values.Pneu_6_lbQuesito_21 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 22  ? values.Pneu_6_lbQuesito_22 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 23  ? values.Pneu_6_lbQuesito_23 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 24  ? values.Pneu_6_lbQuesito_24 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 25  ? values.Pneu_6_lbQuesito_25 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 26  ? values.Pneu_6_lbQuesito_26 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 27  ? values.Pneu_6_lbQuesito_27 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 28  ? values.Pneu_6_lbQuesito_28 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 29  ? values.Pneu_6_lbQuesito_29 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 30  ? values.Pneu_6_lbQuesito_30 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 31  ? values.Pneu_6_lbQuesito_31 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 32  ? values.Pneu_6_lbQuesito_32 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 33  ? values.Pneu_6_lbQuesito_33 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 34  ? values.Pneu_6_lbQuesito_34 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 35  ? values.Pneu_6_lbQuesito_35 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 36  ? values.Pneu_6_lbQuesito_36 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 37  ? values.Pneu_6_lbQuesito_37 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 38  ? values.Pneu_6_lbQuesito_38 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 39  ? values.Pneu_6_lbQuesito_39 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 40  ? values.Pneu_6_lbQuesito_40 :
+																									listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 41  ? values.Pneu_6_lbQuesito_41 :
+
+																									false
 																								}
 																								style={{ height: 50, margin:5, width: '100%'}}
 																								onValueChange={(itemValue, itemIndex) => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_lbQuesito_'+quesito.COD_ITEM, itemValue )}
-																							>
-																							{
-																								quesito.componentes.listbox.OPCOES.map((listbox, i) => {
-																									return (
-																										<Picker.Item 
-																											key={listbox.DES_OPCAO}
-																											label={listbox.DES_OPCAO} 
-																											value={listbox.COD_OPCAO} 
-																										/>
-																									);
-																								})
-																							}
-																							</Picker>
+																						>
+																						{
+																							quesito.componentes.listbox.OPCOES.map((listbox, i) => {
+																								return (
+																									<Picker.Item 
+																										key={listbox.DES_OPCAO}
+																										label={listbox.DES_OPCAO} 
+																										value={listbox.COD_OPCAO} 
+																									/>
+																								);
+																							})
+																						}
+																						</Picker>
 																					)
 																				}
 																				</View>
@@ -1292,6 +1807,1406 @@ export default function Checklist(props) {
 												})
 											)
 										}
+
+										{
+											//LATARIA TRUE
+											grupo.IND_LATARIA == true && (
+												quesitos.LISTA_LATARIA.map((listbox, i) => {
+													return ( 
+														<Collapse 
+																key={listbox.DES_OPCAO}
+																isExpanded={false}
+																>
+																<CollapseHeader>
+																	<Separator style={{ backgroundColor: 'rgb(200, 251, 88)', height: 45, marginTop: 3, marginLeft: 20, marginRight: 20  }} bordered >
+																	<Text > 
+																	&nbsp;&nbsp;{listbox.DES_OPCAO}
+																	</Text>
+																	</Separator>
+																</CollapseHeader>
+																<CollapseBody style={{ marginLeft: 10 }} >
+																{
+																	grupo.QUESITOS != undefined &&(
+																		grupo.QUESITOS.map((quesito, q) => {
+																			return(
+																				<View key={quesito.QUESITO}>
+																				
+																				<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																				{
+																					//CHECKBOX
+																					quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && 
+																					(
+																						<ListItem>
+																							<Switch
+																								trackColor={{ false: "red", true: "#C5DB5F" }}
+																								thumbColor={ "#fff"}
+																								ios_backgroundColor="#fff"
+																								onValueChange={ (previousState) => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_cbQuesito_'+quesito.COD_ITEM, previousState ) }
+																								value={
+																									//Lataria 1
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_cbQuesito_1 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_cbQuesito_2 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_cbQuesito_3 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_cbQuesito_4 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_cbQuesito_5 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_cbQuesito_6 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_cbQuesito_7 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_cbQuesito_8 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_cbQuesito_9 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_cbQuesito_10 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_cbQuesito_11 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_cbQuesito_12 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_cbQuesito_13 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_cbQuesito_14 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_cbQuesito_15 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_cbQuesito_16 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_cbQuesito_17 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_cbQuesito_18 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_cbQuesito_19 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_cbQuesito_20 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_cbQuesito_21 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_cbQuesito_22 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_cbQuesito_23 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_cbQuesito_24 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_cbQuesito_25 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_cbQuesito_26 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_cbQuesito_27 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_cbQuesito_28 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_cbQuesito_29 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_cbQuesito_30 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_cbQuesito_31 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_cbQuesito_32 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_cbQuesito_33 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_cbQuesito_34 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_cbQuesito_35 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_cbQuesito_36 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_cbQuesito_37 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_cbQuesito_38 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_cbQuesito_39 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_cbQuesito_40 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_cbQuesito_41 :
+
+																									//Lataria 2
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_cbQuesito_1 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_cbQuesito_2 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_cbQuesito_3 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_cbQuesito_4 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_cbQuesito_5 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_cbQuesito_6 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_cbQuesito_7 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_cbQuesito_8 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_cbQuesito_9 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_cbQuesito_10 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_cbQuesito_11 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_cbQuesito_12 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_cbQuesito_13 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_cbQuesito_14 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_cbQuesito_15 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_cbQuesito_16 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_cbQuesito_17 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_cbQuesito_18 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_cbQuesito_19 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_cbQuesito_20 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_cbQuesito_21 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_cbQuesito_22 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_cbQuesito_23 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_cbQuesito_24 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_cbQuesito_25 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_cbQuesito_26 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_cbQuesito_27 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_cbQuesito_28 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_cbQuesito_29 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_cbQuesito_30 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_cbQuesito_31 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_cbQuesito_32 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_cbQuesito_33 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_cbQuesito_34 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_cbQuesito_35 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_cbQuesito_36 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_cbQuesito_37 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_cbQuesito_38 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_cbQuesito_39 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_cbQuesito_40 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_cbQuesito_41 :
+
+																									//Lataria 3
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_cbQuesito_1 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_cbQuesito_2 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_cbQuesito_3 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_cbQuesito_4 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_cbQuesito_5 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_cbQuesito_6 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_cbQuesito_7 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_cbQuesito_8 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_cbQuesito_9 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_cbQuesito_10 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_cbQuesito_11 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_cbQuesito_12 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_cbQuesito_13 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_cbQuesito_14 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_cbQuesito_15 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_cbQuesito_16 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_cbQuesito_17 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_cbQuesito_18 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_cbQuesito_19 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_cbQuesito_20 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_cbQuesito_21 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_cbQuesito_22 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_cbQuesito_23 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_cbQuesito_24 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_cbQuesito_25 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_cbQuesito_26 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_cbQuesito_27 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_cbQuesito_28 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_cbQuesito_29 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_cbQuesito_30 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_cbQuesito_31 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_cbQuesito_32 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_cbQuesito_33 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_cbQuesito_34 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_cbQuesito_35 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_cbQuesito_36 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_cbQuesito_37 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_cbQuesito_38 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_cbQuesito_39 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_cbQuesito_40 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_cbQuesito_41 :
+
+																									//Lataria 4
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_cbQuesito_1 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_cbQuesito_2 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_cbQuesito_3 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_cbQuesito_4 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_cbQuesito_5 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_cbQuesito_6 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_cbQuesito_7 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_cbQuesito_8 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_cbQuesito_9 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_cbQuesito_10 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_cbQuesito_11 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_cbQuesito_12 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Lataria_4_cbQuesito_13 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_cbQuesito_14 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_cbQuesito_15 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_cbQuesito_16 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_cbQuesito_17 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_cbQuesito_18 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_cbQuesito_19 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_cbQuesito_20 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_cbQuesito_21 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_cbQuesito_22 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_cbQuesito_23 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_cbQuesito_24 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_cbQuesito_25 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_cbQuesito_26 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_cbQuesito_27 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_cbQuesito_28 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_cbQuesito_29 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_cbQuesito_30 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_cbQuesito_31 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_cbQuesito_32 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_cbQuesito_33 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_cbQuesito_34 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_cbQuesito_35 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_cbQuesito_36 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_cbQuesito_37 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_cbQuesito_38 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_cbQuesito_39 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_cbQuesito_40 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_cbQuesito_41 :
+																									
+																									//Lataria 5
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Lataria_5_cbQuesito_1 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Lataria_5_cbQuesito_2 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Lataria_5_cbQuesito_3 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Lataria_5_cbQuesito_4 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Lataria_5_cbQuesito_5 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Lataria_5_cbQuesito_6 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Lataria_5_cbQuesito_7 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Lataria_5_cbQuesito_8 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Lataria_5_cbQuesito_9 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Lataria_5_cbQuesito_10 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Lataria_5_cbQuesito_11 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Lataria_5_cbQuesito_12 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Lataria_5_cbQuesito_13 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Lataria_5_cbQuesito_14 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Lataria_5_cbQuesito_15 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Lataria_5_cbQuesito_16 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Lataria_5_cbQuesito_17 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Lataria_5_cbQuesito_18 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Lataria_5_cbQuesito_19 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Lataria_5_cbQuesito_20 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Lataria_5_cbQuesito_21 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Lataria_5_cbQuesito_22 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Lataria_5_cbQuesito_23 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Lataria_5_cbQuesito_24 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Lataria_5_cbQuesito_25 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Lataria_5_cbQuesito_26 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Lataria_5_cbQuesito_27 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Lataria_5_cbQuesito_28 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Lataria_5_cbQuesito_29 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Lataria_5_cbQuesito_30 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Lataria_5_cbQuesito_31 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Lataria_5_cbQuesito_32 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Lataria_5_cbQuesito_33 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Lataria_5_cbQuesito_34 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Lataria_5_cbQuesito_35 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Lataria_5_cbQuesito_36 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Lataria_5_cbQuesito_37 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Lataria_5_cbQuesito_38 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Lataria_5_cbQuesito_39 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Lataria_5_cbQuesito_50 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Lataria_5_cbQuesito_51 :
+
+																									false
+																								}
+																							/>
+																						</ListItem>	
+																					)
+																				}
+																				{
+																					//INPUT TEXTO Lataria
+																					quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && 
+																					(	
+																						<>
+																						<Input 
+																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputTextoQuesito_'+quesito.COD_ITEM)}
+																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputTextoQuesito_'+quesito.COD_ITEM)}
+																							placeholder='Observação'
+																							value={
+																								//Lataria 1
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_inputTextoQuesito_41 :
+
+																								//Lataria 2
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_inputTextoQuesito_41 :
+
+																								//Lataria 3
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_inputTextoQuesito_41 :
+
+																								//Lataria 4
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Lataria_4_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_inputTextoQuesito_41 :
+
+																								//Lataria 5
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Lataria_5_inputTextoQuesito_1 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Lataria_5_inputTextoQuesito_2 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Lataria_5_inputTextoQuesito_3 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Lataria_5_inputTextoQuesito_4 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Lataria_5_inputTextoQuesito_5 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Lataria_5_inputTextoQuesito_6 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Lataria_5_inputTextoQuesito_7 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Lataria_5_inputTextoQuesito_8 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Lataria_5_inputTextoQuesito_9 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Lataria_5_inputTextoQuesito_10 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Lataria_5_inputTextoQuesito_11 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Lataria_5_inputTextoQuesito_12 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Lataria_5_inputTextoQuesito_13 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Lataria_5_inputTextoQuesito_14 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Lataria_5_inputTextoQuesito_15 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Lataria_5_inputTextoQuesito_16 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Lataria_5_inputTextoQuesito_17 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Lataria_5_inputTextoQuesito_18 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Lataria_5_inputTextoQuesito_19 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Lataria_5_inputTextoQuesito_20 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Lataria_5_inputTextoQuesito_21 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Lataria_5_inputTextoQuesito_22 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Lataria_5_inputTextoQuesito_23 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Lataria_5_inputTextoQuesito_24 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Lataria_5_inputTextoQuesito_25 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Lataria_5_inputTextoQuesito_26 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Lataria_5_inputTextoQuesito_27 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Lataria_5_inputTextoQuesito_28 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Lataria_5_inputTextoQuesito_29 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Lataria_5_inputTextoQuesito_30 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Lataria_5_inputTextoQuesito_31 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Lataria_5_inputTextoQuesito_32 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Lataria_5_inputTextoQuesito_33 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Lataria_5_inputTextoQuesito_34 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Lataria_5_inputTextoQuesito_35 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Lataria_5_inputTextoQuesito_36 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Lataria_5_inputTextoQuesito_37 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Lataria_5_inputTextoQuesito_38 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Lataria_5_inputTextoQuesito_39 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Lataria_5_inputTextoQuesito_40 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Lataria_5_inputTextoQuesito_41 :
+
+																								false
+																							}
+																						/>
+																						</>
+																					)
+																				}
+																				{
+																					//INPUT DECIMAL Lataria
+																					quesito.IND_DECIMAL == true && quesito.IND_ATIVO == true && 
+																					(	
+																						<>
+																						<Input 
+																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQuesito_'+quesito.COD_ITEM)}
+																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQuesito_'+quesito.COD_ITEM)}
+																							placeholder='Decimal'
+																							value={
+																								//Lataria 1
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_inputDecimalQuesito_41 :
+
+																								//Lataria 2
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_inputDecimalQuesito_41 :
+
+																								//Lataria 3
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_inputDecimalQuesito_41 :
+
+																								//Lataria 4
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_inputDecimalQuesito_41 :
+																								
+																								//Lataria 5
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Lataria_5_inputDecimalQuesito_1 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Lataria_5_inputDecimalQuesito_2 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Lataria_5_inputDecimalQuesito_3 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Lataria_5_inputDecimalQuesito_4 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Lataria_5_inputDecimalQuesito_5 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Lataria_5_inputDecimalQuesito_6 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Lataria_5_inputDecimalQuesito_7 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Lataria_5_inputDecimalQuesito_8 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Lataria_5_inputDecimalQuesito_9 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Lataria_5_inputDecimalQuesito_10 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Lataria_5_inputDecimalQuesito_11 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Lataria_5_inputDecimalQuesito_12 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Lataria_5_inputDecimalQuesito_13 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Lataria_5_inputDecimalQuesito_14 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Lataria_5_inputDecimalQuesito_15 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Lataria_5_inputDecimalQuesito_16 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Lataria_5_inputDecimalQuesito_17 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Lataria_5_inputDecimalQuesito_18 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Lataria_5_inputDecimalQuesito_19 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Lataria_5_inputDecimalQuesito_20 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Lataria_5_inputDecimalQuesito_21 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Lataria_5_inputDecimalQuesito_22 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Lataria_5_inputDecimalQuesito_23 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Lataria_5_inputDecimalQuesito_24 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Lataria_5_inputDecimalQuesito_25 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Lataria_5_inputDecimalQuesito_26 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Lataria_5_inputDecimalQuesito_27 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Lataria_5_inputDecimalQuesito_28 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Lataria_5_inputDecimalQuesito_29 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Lataria_5_inputDecimalQuesito_30 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Lataria_5_inputDecimalQuesito_31 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Lataria_5_inputDecimalQuesito_32 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Lataria_5_inputDecimalQuesito_33 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Lataria_5_inputDecimalQuesito_34 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Lataria_5_inputDecimalQuesito_35 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Lataria_5_inputDecimalQuesito_36 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Lataria_5_inputDecimalQuesito_37 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Lataria_5_inputDecimalQuesito_38 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Lataria_5_inputDecimalQuesito_39 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Lataria_5_inputDecimalQuesito_40 :
+																								listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Lataria_5_inputDecimalQuesito_41 :
+
+																								false
+																							}
+																						/>
+																						</>
+																					)
+																				}
+																				{
+																					//INPUT INTEIRO Lataria
+																					quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && 
+																					(	
+																						<>
+																						<Input 
+																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQuesito_'+quesito.COD_ITEM)}
+																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQuesito_'+quesito.COD_ITEM)}
+																							placeholder='Inteiro'
+																							value={
+																								//Lataria 1
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_inputInteiroQuesito_13 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_inputInteiroQuesito_23 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_inputInteiroQuesito_41 :
+
+																								//Lataria 2
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_inputInteiroQuesito_13 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_inputInteiroQuesito_23 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_inputInteiroQuesito_41 :
+
+																								//Lataria 3
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_inputInteiroQuesito_13 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_inputInteiroQuesito_23 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_inputInteiroQuesito_41 :
+
+																								//Lataria 4
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_inputInteiroQuesito_1 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_inputInteiroQuesito_2 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_inputInteiroQuesito_3 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_inputInteiroQuesito_4 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_inputInteiroQuesito_5 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_inputInteiroQuesito_6 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_inputInteiroQuesito_7 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_inputInteiroQuesito_8 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_inputInteiroQuesito_9 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_inputInteiroQuesito_10 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_inputInteiroQuesito_11 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_inputInteiroQuesito_12 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_inputInteiroQuesito_14 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_inputInteiroQuesito_15 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_inputInteiroQuesito_16 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_inputInteiroQuesito_17 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_inputInteiroQuesito_18 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_inputInteiroQuesito_19 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_inputInteiroQuesito_20 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_inputInteiroQuesito_21 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_inputInteiroQuesito_22 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_inputInteiroQuesito_24 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_inputInteiroQuesito_25 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_inputInteiroQuesito_26 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_inputInteiroQuesito_27 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_inputInteiroQuesito_28 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_inputInteiroQuesito_29 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_inputInteiroQuesito_30 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_inputInteiroQuesito_31 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_inputInteiroQuesito_32 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_inputInteiroQuesito_33 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_inputInteiroQuesito_34 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_inputInteiroQuesito_35 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_inputInteiroQuesito_36 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_inputInteiroQuesito_37 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_inputInteiroQuesito_38 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_inputInteiroQuesito_39 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_inputInteiroQuesito_40 :
+																								listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_inputInteiroQuesito_41 :
+
+																								false
+																							}
+																						/>
+																						</>
+																					)
+																				}
+																				{
+																					//RADIO BUTTON Lataria
+																					quesito.IND_RADIO == true && quesito.IND_ATIVO == true &&
+																					(
+																						quesito.componentes.radio.OPCOES.map((radio, i) => {
+																							return (
+																								<ListItem 
+																									key={radio.DES_OPCAO}
+																									onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO) }
+																									>
+																									<Radio
+																										onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO) }
+																										color={"#f0ad4e"}
+																										selectedColor={"#5cb85c"}
+																										selected={ 
+																											
+																											//Lataria 1
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+																											
+																											//Lataria 2
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+																											
+																											//Lataria 3
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+
+																											//Lataria 4
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Lataria_4_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+																											
+																											//Lataria 5
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Lataria_5_rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Lataria_5_rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Lataria_5_rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Lataria_5_rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Lataria_5_rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Lataria_5_rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Lataria_5_rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Lataria_5_rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Lataria_5_rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Lataria_5_rbQuesito_10 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Lataria_5_rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Lataria_5_rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Lataria_5_rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Lataria_5_rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Lataria_5_rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Lataria_5_rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Lataria_5_rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Lataria_5_rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Lataria_5_rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Lataria_5_rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Lataria_5_rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Lataria_5_rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Lataria_5_rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Lataria_5_rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Lataria_5_rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Lataria_5_rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Lataria_5_rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Lataria_5_rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Lataria_5_rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Lataria_5_rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Lataria_5_rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Lataria_5_rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Lataria_5_rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Lataria_5_rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Lataria_5_rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Lataria_5_rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Lataria_5_rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Lataria_5_rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Lataria_5_rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Lataria_5_rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Lataria_5_rbQuesito_41 == radio.COD_OPCAO ? true : false :
+
+																											false
+																										}
+																									/>
+																									<Text>{radio.DES_OPCAO}</Text>
+																								</ListItem>
+																							);
+																						})
+																					)
+																				}
+																				{
+																					//LIST BOX
+																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
+																					(
+																						<Picker
+																								selectedValue={
+																									//Lataria 1
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_lbQuesito_1 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_lbQuesito_2 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 3 ? values.Lataria_1_lbQuesito_3 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 4 ? values.Lataria_1_lbQuesito_4 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 5 ? values.Lataria_1_lbQuesito_5 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 6 ? values.Lataria_1_lbQuesito_6 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 7 ? values.Lataria_1_lbQuesito_7 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 8 ? values.Lataria_1_lbQuesito_8 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 9 ? values.Lataria_1_lbQuesito_9 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 10  ? values.Lataria_1_lbQuesito_10 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 11  ? values.Lataria_1_lbQuesito_11 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 12  ? values.Lataria_1_lbQuesito_12 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 13  ? values.Lataria_1_lbQuesito_13 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 14  ? values.Lataria_1_lbQuesito_14 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 15  ? values.Lataria_1_lbQuesito_15 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 16  ? values.Lataria_1_lbQuesito_16 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 17  ? values.Lataria_1_lbQuesito_17 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 18  ? values.Lataria_1_lbQuesito_18 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 19  ? values.Lataria_1_lbQuesito_19 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 20  ? values.Lataria_1_lbQuesito_20 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 21  ? values.Lataria_1_lbQuesito_21 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 22  ? values.Lataria_1_lbQuesito_22 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 23  ? values.Lataria_1_lbQuesito_23 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 24  ? values.Lataria_1_lbQuesito_24 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 25  ? values.Lataria_1_lbQuesito_25 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 26  ? values.Lataria_1_lbQuesito_26 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 27  ? values.Lataria_1_lbQuesito_27 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 28  ? values.Lataria_1_lbQuesito_28 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 29  ? values.Lataria_1_lbQuesito_29 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 30  ? values.Lataria_1_lbQuesito_30 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 31  ? values.Lataria_1_lbQuesito_31 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 32  ? values.Lataria_1_lbQuesito_32 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 33  ? values.Lataria_1_lbQuesito_33 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 34  ? values.Lataria_1_lbQuesito_34 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 35  ? values.Lataria_1_lbQuesito_35 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 36  ? values.Lataria_1_lbQuesito_36 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 37  ? values.Lataria_1_lbQuesito_37 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 38  ? values.Lataria_1_lbQuesito_38 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 39  ? values.Lataria_1_lbQuesito_39 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 40  ? values.Lataria_1_lbQuesito_40 :
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 41  ? values.Lataria_1_lbQuesito_41 :
+
+																									//Lataria 2
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 1 ? values.Lataria_2_lbQuesito_1 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 2 ? values.Lataria_2_lbQuesito_2 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 3 ? values.Lataria_2_lbQuesito_3 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 4 ? values.Lataria_2_lbQuesito_4 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 5 ? values.Lataria_2_lbQuesito_5 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 6 ? values.Lataria_2_lbQuesito_6 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 7 ? values.Lataria_2_lbQuesito_7 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 8 ? values.Lataria_2_lbQuesito_8 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 9 ? values.Lataria_2_lbQuesito_9 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 10  ? values.Lataria_2_lbQuesito_10 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 11  ? values.Lataria_2_lbQuesito_11 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 12  ? values.Lataria_2_lbQuesito_12 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 13  ? values.Lataria_2_lbQuesito_13 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 14  ? values.Lataria_2_lbQuesito_14 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 15  ? values.Lataria_2_lbQuesito_15 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 16  ? values.Lataria_2_lbQuesito_16 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 17  ? values.Lataria_2_lbQuesito_17 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 18  ? values.Lataria_2_lbQuesito_18 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 19  ? values.Lataria_2_lbQuesito_19 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 20  ? values.Lataria_2_lbQuesito_20 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 21  ? values.Lataria_2_lbQuesito_21 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 22  ? values.Lataria_2_lbQuesito_22 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 23  ? values.Lataria_2_lbQuesito_23 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 24  ? values.Lataria_2_lbQuesito_24 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 25  ? values.Lataria_2_lbQuesito_25 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 26  ? values.Lataria_2_lbQuesito_26 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 27  ? values.Lataria_2_lbQuesito_27 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 28  ? values.Lataria_2_lbQuesito_28 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 29  ? values.Lataria_2_lbQuesito_29 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 30  ? values.Lataria_2_lbQuesito_30 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 31  ? values.Lataria_2_lbQuesito_31 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 32  ? values.Lataria_2_lbQuesito_32 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 33  ? values.Lataria_2_lbQuesito_33 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 34  ? values.Lataria_2_lbQuesito_34 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 35  ? values.Lataria_2_lbQuesito_35 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 36  ? values.Lataria_2_lbQuesito_36 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 37  ? values.Lataria_2_lbQuesito_37 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 38  ? values.Lataria_2_lbQuesito_38 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 39  ? values.Lataria_2_lbQuesito_39 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 40  ? values.Lataria_2_lbQuesito_40 :
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == 41  ? values.Lataria_2_lbQuesito_41 :
+
+																									//Lataria 3
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 1 ? values.Lataria_3_lbQuesito_1 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 2 ? values.Lataria_3_lbQuesito_2 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 3 ? values.Lataria_3_lbQuesito_3 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 4 ? values.Lataria_3_lbQuesito_4 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 5 ? values.Lataria_3_lbQuesito_5 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 6 ? values.Lataria_3_lbQuesito_6 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 7 ? values.Lataria_3_lbQuesito_7 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 8 ? values.Lataria_3_lbQuesito_8 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 9 ? values.Lataria_3_lbQuesito_9 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 10  ? values.Lataria_3_lbQuesito_10 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 11  ? values.Lataria_3_lbQuesito_11 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 12  ? values.Lataria_3_lbQuesito_12 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 13  ? values.Lataria_3_lbQuesito_13 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 14  ? values.Lataria_3_lbQuesito_14 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 15  ? values.Lataria_3_lbQuesito_15 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 16  ? values.Lataria_3_lbQuesito_16 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 17  ? values.Lataria_3_lbQuesito_17 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 18  ? values.Lataria_3_lbQuesito_18 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 19  ? values.Lataria_3_lbQuesito_19 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 20  ? values.Lataria_3_lbQuesito_20 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 21  ? values.Lataria_3_lbQuesito_21 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 22  ? values.Lataria_3_lbQuesito_22 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 23  ? values.Lataria_3_lbQuesito_23 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 24  ? values.Lataria_3_lbQuesito_24 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 25  ? values.Lataria_3_lbQuesito_25 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 26  ? values.Lataria_3_lbQuesito_26 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 27  ? values.Lataria_3_lbQuesito_27 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 28  ? values.Lataria_3_lbQuesito_28 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 29  ? values.Lataria_3_lbQuesito_29 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 30  ? values.Lataria_3_lbQuesito_30 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 31  ? values.Lataria_3_lbQuesito_31 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 32  ? values.Lataria_3_lbQuesito_32 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 33  ? values.Lataria_3_lbQuesito_33 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 34  ? values.Lataria_3_lbQuesito_34 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 35  ? values.Lataria_3_lbQuesito_35 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 36  ? values.Lataria_3_lbQuesito_36 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 37  ? values.Lataria_3_lbQuesito_37 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 38  ? values.Lataria_3_lbQuesito_38 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 39  ? values.Lataria_3_lbQuesito_39 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 40  ? values.Lataria_3_lbQuesito_40 :
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == 41  ? values.Lataria_3_lbQuesito_41 :
+
+																									//Lataria 4
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 1 ? values.Lataria_4_lbQuesito_1 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 2 ? values.Lataria_4_lbQuesito_2 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 3 ? values.Lataria_4_lbQuesito_3 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 4 ? values.Lataria_4_lbQuesito_4 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 5 ? values.Lataria_4_lbQuesito_5 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 6 ? values.Lataria_4_lbQuesito_6 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 7 ? values.Lataria_4_lbQuesito_7 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 8 ? values.Lataria_4_lbQuesito_8 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 9 ? values.Lataria_4_lbQuesito_9 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 10  ? values.Lataria_4_lbQuesito_10 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 11  ? values.Lataria_4_lbQuesito_11 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 12  ? values.Lataria_4_lbQuesito_12 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 13  ? values.Lataria_4_lbQuesito_13 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 14  ? values.Lataria_4_lbQuesito_14 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 15  ? values.Lataria_4_lbQuesito_15 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 16  ? values.Lataria_4_lbQuesito_16 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 17  ? values.Lataria_4_lbQuesito_17 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 18  ? values.Lataria_4_lbQuesito_18 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 19  ? values.Lataria_4_lbQuesito_19 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Lataria_4_lbQuesito_20 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Lataria_4_lbQuesito_21 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Lataria_4_lbQuesito_22 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Lataria_4_lbQuesito_23 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Lataria_4_lbQuesito_24 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Lataria_4_lbQuesito_25 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Lataria_4_lbQuesito_26 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 27  ? values.Lataria_4_lbQuesito_27 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 28  ? values.Lataria_4_lbQuesito_28 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 29  ? values.Lataria_4_lbQuesito_29 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 30  ? values.Lataria_4_lbQuesito_30 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 31  ? values.Lataria_4_lbQuesito_31 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 32  ? values.Lataria_4_lbQuesito_32 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 33  ? values.Lataria_4_lbQuesito_33 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 34  ? values.Lataria_4_lbQuesito_34 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 35  ? values.Lataria_4_lbQuesito_35 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 36  ? values.Lataria_4_lbQuesito_36 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 37  ? values.Lataria_4_lbQuesito_37 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 38  ? values.Lataria_4_lbQuesito_38 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 39  ? values.Lataria_4_lbQuesito_39 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 40  ? values.Lataria_4_lbQuesito_40 :
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 41  ? values.Lataria_4_lbQuesito_41 :
+
+																									//Lataria 5
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 1 ? values.Lataria_5_lbQuesito_1 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 2 ? values.Lataria_5_lbQuesito_2 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 3 ? values.Lataria_5_lbQuesito_3 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 4 ? values.Lataria_5_lbQuesito_4 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 5 ? values.Lataria_5_lbQuesito_5 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 6 ? values.Lataria_5_lbQuesito_6 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 7 ? values.Lataria_5_lbQuesito_7 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 8 ? values.Lataria_5_lbQuesito_8 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 9 ? values.Lataria_5_lbQuesito_9 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 10  ? values.Lataria_5_lbQuesito_10 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 11  ? values.Lataria_5_lbQuesito_11 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 12  ? values.Lataria_5_lbQuesito_12 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 13  ? values.Lataria_5_lbQuesito_13 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 14  ? values.Lataria_5_lbQuesito_14 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 15  ? values.Lataria_5_lbQuesito_15 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 16  ? values.Lataria_5_lbQuesito_16 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 17  ? values.Lataria_5_lbQuesito_17 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 18  ? values.Lataria_5_lbQuesito_18 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 19  ? values.Lataria_5_lbQuesito_19 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 20  ? values.Lataria_5_lbQuesito_20 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 21  ? values.Lataria_5_lbQuesito_21 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 22  ? values.Lataria_5_lbQuesito_22 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 23  ? values.Lataria_5_lbQuesito_23 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 24  ? values.Lataria_5_lbQuesito_24 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 25  ? values.Lataria_5_lbQuesito_25 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 26  ? values.Lataria_5_lbQuesito_26 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 27  ? values.Lataria_5_lbQuesito_27 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 28  ? values.Lataria_5_lbQuesito_28 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 29  ? values.Lataria_5_lbQuesito_29 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 30  ? values.Lataria_5_lbQuesito_30 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 31  ? values.Lataria_5_lbQuesito_31 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 32  ? values.Lataria_5_lbQuesito_32 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 33  ? values.Lataria_5_lbQuesito_33 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 34  ? values.Lataria_5_lbQuesito_34 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 35  ? values.Lataria_5_lbQuesito_35 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 36  ? values.Lataria_5_lbQuesito_36 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 37  ? values.Lataria_5_lbQuesito_37 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 38  ? values.Lataria_5_lbQuesito_38 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 39  ? values.Lataria_5_lbQuesito_39 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 40  ? values.Lataria_5_lbQuesito_40 :
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 41  ? values.Lataria_5_lbQuesito_41 :
+
+																									false
+																								}
+																								style={{ height: 50, margin:5, width: '100%'}}
+																								onValueChange={(itemValue, itemIndex) => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_lbQuesito_'+quesito.COD_ITEM, itemValue )}
+																						>
+																						{
+																							quesito.componentes.listbox.OPCOES.map((listbox, i) => {
+																								return (
+																									<Picker.Item 
+																										key={listbox.DES_OPCAO}
+																										label={listbox.DES_OPCAO} 
+																										value={listbox.COD_OPCAO} 
+																									/>
+																								);
+																							})
+																						}
+																						</Picker>
+																					)
+																				}
+																				</View>
+																			)
+																			
+																		})
+																	)
+																}
+															</CollapseBody>
+														</Collapse>
+													);
+												})
+											)
+										}
+
 										{
 											//PNEU FALSE - LATARIA FALSE - VIDRO FALSE
 											grupo.IND_PNEUS == false && (
@@ -1301,13 +3216,13 @@ export default function Checklist(props) {
 															<View key={quesito.QUESITO}>
 															{	
 																//NOME QUESITO
-																quesito.IND_PNEU == false && (
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && (
 																	<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
 																)
 															}
 															{ /* CHECKBOX */ }
 															{
-																quesito.IND_PNEU == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && 
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_CHECKBOX == true && quesito.IND_ATIVO == true && 
 																(
 																	<ListItem>
 																		<Switch
@@ -1407,7 +3322,7 @@ export default function Checklist(props) {
 
 															{ 	
 																//INPUT TEXTO
-																quesito.IND_PNEU == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && 
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
 																		onChangeText={handleChange('inputTextoQuesito_'+quesito.COD_ITEM)}
@@ -1503,7 +3418,7 @@ export default function Checklist(props) {
 															}
 															{ 	
 																//INPUT DECIMAL
-																quesito.IND_PNEU == false && quesito.IND_DECIMAL == true && quesito.IND_ATIVO == true && 
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_DECIMAL == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
 																		onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
@@ -1599,7 +3514,7 @@ export default function Checklist(props) {
 															}
 															{ 	
 																//INPUT INTEIRO
-																quesito.IND_PNEU == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && 
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
 																		onChangeText={handleChange('inputInteiroQuesito_'+quesito.COD_ITEM)}
@@ -1695,7 +3610,7 @@ export default function Checklist(props) {
 															}
 															{
 																//RADIO BUTTON 
-																quesito.IND_PNEU == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true &&
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_RADIO == true && quesito.IND_ATIVO == true &&
 																(
 																	quesito.componentes.radio.OPCOES.map((radio, i) => {
 																		return (
@@ -1703,10 +3618,6 @@ export default function Checklist(props) {
 																				key={radio.DES_OPCAO}
 																				onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																				>
-																				<Left>
-																					<Text>{radio.DES_OPCAO}</Text>
-																				</Left>
-																				<Right>
 																					<Radio
 																						onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																						color={"#f0ad4e"}
@@ -1797,7 +3708,7 @@ export default function Checklist(props) {
 																							false
 																						}
 																					/>
-																				</Right>
+																				<Text>{'  '+radio.DES_OPCAO}</Text>
 																			</ListItem>
 																		);
 																	})
@@ -1805,7 +3716,7 @@ export default function Checklist(props) {
 															}
 															{
 																//LIST BOX
-																quesito.IND_PNEU == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																(
 																	
 																		<Picker
@@ -1926,8 +3837,11 @@ export default function Checklist(props) {
 							})
 					)
 				}
-				<Text></Text>
-				<Button onPress={handleSubmit} title="Submit" />
+				<Button
+					buttonStyle={styles.botao}
+					title="REGISTRAR"
+					onPress={handleSubmit}
+				/>
 				<Text></Text>
 				<Text></Text>
 			</View>
@@ -1936,6 +3850,10 @@ export default function Checklist(props) {
 		<LoadingItem visible={loading} />
 		</ScrollView>
   );
+}
+
+Checklist.navigationOptions = {
+	title: 'Checklist'
 }
 
 const styles = StyleSheet.create({

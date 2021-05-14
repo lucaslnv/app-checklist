@@ -108,7 +108,7 @@ export default function Login(props) {
 			? 
 			<Button
 				buttonStyle={styles.botaoAvancar}
-				title="AVANÃAR"
+				title="AVANÇAR"
 				onPress={ ()=> props.navigation.navigate('Equipamento', { codMotorista: codMotorista, nomeMotorista: nomeMotorista}) }
 			/>
             : 
