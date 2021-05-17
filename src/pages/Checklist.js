@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, ScrollView, Switch, Alert, Picker } from 'react-native';
+import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker } from 'react-native';
 import {buscarQuesitos} from '../services/api';
 import { Separator, Radio, Right, Left, Center, ListItem } from 'native-base';
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
@@ -20,6 +20,8 @@ export default function Checklist(props) {
 	const [loading, setloading] = useState(false);
 	const [ultimoCheckup, setUltimoCheckup] = useState('');
 	const [ultimoHorimetro, setUltimoHorimetro] = useState('');
+	const [tipoEquipamento, setTipoEquipamento] = useState('');
+	const [cliente, setCliente] = useState('');
 	const [quesitos, setQuesitos] = useState([]);
 	
 	//EQUIPAMENTO
@@ -44,8 +46,13 @@ export default function Checklist(props) {
 				}
 				setloading(false);
 				setQuesitos(respostaQuesitos.resultado.data.draw);
-				setUltimoCheckup(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
-				setUltimoHorimetro(respostaQuesitos.resultado.data.draw.ULT_HORIMETRO);
+				let data = new Date(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
+				let dataFormatada = data.toLocaleString();
+				setUltimoCheckup(dataFormatada);
+				let ultHorimetro = respostaQuesitos.resultado.data.draw.ULT_HORIMETRO;
+				setUltimoHorimetro( parseFloat(ultHorimetro).toFixed(1) );
+				setTipoEquipamento(respostaQuesitos.resultado.data.draw.TIPO_EQUIPAMENTO);
+				setCliente(respostaQuesitos.resultado.data.draw.CLIENTE);
 			}else{
 				setloading(false);
 				Alert.alert('Aviso', respostaQuesitos.mensagem);
@@ -77,12 +84,22 @@ export default function Checklist(props) {
 	
   return (
     	<ScrollView style={styles.container}>
-
-		<Text style={styles.textoEquipamento}>{'QR Code: '+qrCodeEquipamento }</Text>
-		<Text style={styles.textoEquipamento}>{'Equipamento: '+nomeEquipamento}</Text>
-		<Text style={{ padding: 5}}>{'Último checkup: '+ultimoCheckup}</Text>
-		<Text style={{ padding: 5}}>{'Último horí­metro: '+ultimoHorimetro}</Text>
 		
+		<View style={{flex: 1, flexDirection: 'row'}}>
+			<View style={{ width: '70%'}}>
+				<Text style={styles.textoEquipamento}>{nomeEquipamento}</Text>
+				<Text style={styles.textoTipoEquipamento}>{tipoEquipamento}</Text>
+				<Text style={styles.textoCliente}>{cliente}</Text>
+				<Text style={styles.textoCliente}>{'Último checkup: '+ultimoCheckup}</Text>
+				<Text style={styles.textoCliente}>{'Último horí­metro: '+ultimoHorimetro}</Text>
+			</View>
+			<View style={{ width: '30%'}}>
+				<View style={styles.containerImg}>
+				<Image style={styles.img} source={require('../assets/foto.png')} />
+			</View >
+			</View>
+		</View>
+
 		<Formik
 			initialValues={{}}
 			onSubmit={values => console.log(values)}
@@ -3868,15 +3885,31 @@ const styles = StyleSheet.create({
 	},
 	textoEquipamento: {
 		textAlign: "left",
-		marginBottom: 10,
-		fontSize: 18,
+		fontSize: 26,
+		fontWeight: 'bold',
+		paddingLeft:5
+	},
+	textoTipoEquipamento: {
+		textAlign: "left",
+		fontSize: 16,
+		fontWeight: 'bold',
+		paddingLeft:5
+	},
+	textoCliente: {
+		textAlign: "left",
+		fontSize: 14,
+		fontWeight: 'bold',
 		paddingLeft:5
 	},
 	containerImg: {
-		marginTop: 20,
+		padding: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginBottom: 10,
+	},
+	img:{
+		height: 80,
+		width: 80,
+		resizeMode: 'cover',
 	},
 	botao: {
 		marginTop: 20,
