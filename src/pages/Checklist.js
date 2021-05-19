@@ -80,6 +80,21 @@ export default function Checklist(props) {
 		
 		
 	}, []);
+
+	function registrar(values){
+		var quesitos = [];
+		var indice = 0;
+		Object.keys(values).forEach(function(item){
+			if( item.indexOf("icon") == -1 ){
+				let quesito = item.substring(item.indexOf("_") + 1)
+				quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA":"", "DES_RESPOSTA": values[item] });
+				indice++;
+			}
+		});
+
+		console.log(values);
+		console.log(quesitos);
+	}
 	
   return (
     	<ScrollView style={styles.container}>
@@ -101,9 +116,8 @@ export default function Checklist(props) {
 
 		<Formik
 			initialValues={{}}
-			onSubmit={values => console.log(values)}
 		>
-			{({ handleChange, handleBlur, handleSubmit, setFieldValue, values }) => (
+			{({ handleChange, handleBlur, setFieldValue, values }) => (
 			<View>
 				{
 					quesitos.GRUPO != undefined && (
@@ -3255,102 +3269,75 @@ export default function Checklist(props) {
 																	
 																		<Picker
 																			selectedValue={
-																				quesito.COD_ITEM == 1 ? values.lbQuesito_1 
-																				:
-																				quesito.COD_ITEM == 2 ? values.lbQuesito_2 
-																				:
-																				quesito.COD_ITEM == 3 ? values.lbQuesito_3 
-																				:
-																				quesito.COD_ITEM == 4 ? values.lbQuesito_4 
-																				:
-																				quesito.COD_ITEM == 5 ? values.lbQuesito_5 
-																				:
-																				quesito.COD_ITEM == 6 ? values.lbQuesito_6 
-																				:
-																				quesito.COD_ITEM == 7 ? values.lbQuesito_7
-																				:
-																				quesito.COD_ITEM == 8 ? values.lbQuesito_8 
-																				:
-																				quesito.COD_ITEM == 9 ? values.lbQuesito_9 
-																				:
-																				quesito.COD_ITEM == 10 ? values.lbQuesito_10   
-																				:
-																				quesito.COD_ITEM == 11 ? values.lbQuesito_11
-																				:
-																				quesito.COD_ITEM == 12 ? values.lbQuesito_12 
-																				:
-																				quesito.COD_ITEM == 13 ? values.lbQuesito_13  
-																				:
-																				quesito.COD_ITEM == 14 ? values.lbQuesito_14 
-																				:
-																				quesito.COD_ITEM == 15 ? values.lbQuesito_15
-																				:
-																				quesito.COD_ITEM == 16 ? values.lbQuesito_16 
-																				:
-																				quesito.COD_ITEM == 17 ? values.lbQuesito_17 
-																				:
-																				quesito.COD_ITEM == 18 ? values.lbQuesito_18 
-																				:
-																				quesito.COD_ITEM == 19 ? values.lbQuesito_19 
-																				:
-																				quesito.COD_ITEM == 20 ? values.lbQuesito_20
-																				:
-																				quesito.COD_ITEM == 21 ? values.lbQuesito_21
-																				:
-																				quesito.COD_ITEM == 22 ? values.lbQuesito_22 
-																				:
-																				quesito.COD_ITEM == 23 ? values.lbQuesito_23
-																				:
-																				quesito.COD_ITEM == 24 ? values.lbQuesito_24 
-																				:
-																				quesito.COD_ITEM == 25 ? values.lbQuesito_25 
-																				:
-																				quesito.COD_ITEM == 26 ? values.lbQuesito_26 
-																				:
-																				quesito.COD_ITEM == 27 ? values.lbQuesito_27 
-																				:
-																				quesito.COD_ITEM == 28 ? values.lbQuesito_28 
-																				:
-																				quesito.COD_ITEM == 29 ? values.lbQuesito_29 
-																				:
-																				quesito.COD_ITEM == 30 ? values.lbQuesito_30 
-																				:
-																				quesito.COD_ITEM == 31 ? values.lbQuesito_31 
-																				:
-																				quesito.COD_ITEM == 32 ? values.lbQuesito_32 
-																				:
-																				quesito.COD_ITEM == 33 ? values.lbQuesito_33 
-																				:
-																				quesito.COD_ITEM == 34 ? values.lbQuesito_34 
-																				:
-																				quesito.COD_ITEM == 35 ? values.lbQuesito_35 
-																				:
-																				quesito.COD_ITEM == 36 ? values.lbQuesito_36 
-																				:
-																				quesito.COD_ITEM == 37 ? values.lbQuesito_37 
-																				:
-																				quesito.COD_ITEM == 38 ? values.lbQuesito_38
-																				:
-																				quesito.COD_ITEM == 39 ? values.lbQuesito_39
-																				:
-																				quesito.COD_ITEM == 40 ? values.lbQuesito_40 
-																				:
-																				quesito.COD_ITEM == 41 ? values.lbQuesito_41  
-																				: 
+																				quesito.COD_ITEM == 1 ? values.lbQuesito_1 :
+																				quesito.COD_ITEM == 2 ? values.lbQuesito_2 :
+																				quesito.COD_ITEM == 3 ? values.lbQuesito_3 :
+																				quesito.COD_ITEM == 4 ? values.lbQuesito_4 :
+																				quesito.COD_ITEM == 5 ? values.lbQuesito_5 :
+																				quesito.COD_ITEM == 6 ? values.lbQuesito_6 :
+																				quesito.COD_ITEM == 7 ? values.lbQuesito_7 :
+																				quesito.COD_ITEM == 8 ? values.lbQuesito_8 :
+																				quesito.COD_ITEM == 9 ? values.lbQuesito_9 :
+																				quesito.COD_ITEM == 10 ? values.lbQuesito_10 : 
+																				quesito.COD_ITEM == 11 ? values.lbQuesito_11 :
+																				quesito.COD_ITEM == 12 ? values.lbQuesito_12 :
+																				quesito.COD_ITEM == 13 ? values.lbQuesito_13 :
+																				quesito.COD_ITEM == 14 ? values.lbQuesito_14 :
+																				quesito.COD_ITEM == 15 ? values.lbQuesito_15 :
+																				quesito.COD_ITEM == 16 ? values.lbQuesito_16 :
+																				quesito.COD_ITEM == 17 ? values.lbQuesito_17 :
+																				quesito.COD_ITEM == 18 ? values.lbQuesito_18 :
+																				quesito.COD_ITEM == 19 ? values.lbQuesito_19 :
+																				quesito.COD_ITEM == 20 ? values.lbQuesito_20 :
+																				quesito.COD_ITEM == 21 ? values.lbQuesito_21 :
+																				quesito.COD_ITEM == 22 ? values.lbQuesito_22 :
+																				quesito.COD_ITEM == 23 ? values.lbQuesito_23 :
+																				quesito.COD_ITEM == 24 ? values.lbQuesito_24 :
+																				quesito.COD_ITEM == 25 ? values.lbQuesito_25 :
+																				quesito.COD_ITEM == 26 ? values.lbQuesito_26 :
+																				quesito.COD_ITEM == 27 ? values.lbQuesito_27 :
+																				quesito.COD_ITEM == 28 ? values.lbQuesito_28 :
+																				quesito.COD_ITEM == 29 ? values.lbQuesito_29 :
+																				quesito.COD_ITEM == 30 ? values.lbQuesito_30 :
+																				quesito.COD_ITEM == 31 ? values.lbQuesito_31 :
+																				quesito.COD_ITEM == 32 ? values.lbQuesito_32 :
+																				quesito.COD_ITEM == 33 ? values.lbQuesito_33 :
+																				quesito.COD_ITEM == 34 ? values.lbQuesito_34 :
+																				quesito.COD_ITEM == 35 ? values.lbQuesito_35 :
+																				quesito.COD_ITEM == 36 ? values.lbQuesito_36 :
+																				quesito.COD_ITEM == 37 ? values.lbQuesito_37 :
+																				quesito.COD_ITEM == 38 ? values.lbQuesito_38 :
+																				quesito.COD_ITEM == 39 ? values.lbQuesito_39 :
+																				quesito.COD_ITEM == 40 ? values.lbQuesito_40 :
+																				quesito.COD_ITEM == 41 ? values.lbQuesito_41 : 
+																				quesito.COD_ITEM == 42 ? values.lbQuesito_42 : 
+																				quesito.COD_ITEM == 43 ? values.lbQuesito_43 : 
+																				quesito.COD_ITEM == 44 ? values.lbQuesito_44 : 
+																				quesito.COD_ITEM == 45 ? values.lbQuesito_45 : 
+																				quesito.COD_ITEM == 46 ? values.lbQuesito_46 : 
+																				quesito.COD_ITEM == 47 ? values.lbQuesito_47 : 
+																				quesito.COD_ITEM == 48 ? values.lbQuesito_48 : 
+																				quesito.COD_ITEM == 49 ? values.lbQuesito_49 : 
+																				quesito.COD_ITEM == 50 ? values.lbQuesito_50 : 
 																				false
-
 																			}
 																			style={{ height: 50, margin:5, width: '100%'}}
 																			onValueChange={(itemValue, itemIndex) => setFieldValue('lbQuesito_'+quesito.COD_ITEM, itemValue )}
 																		>
+																			<Picker.Item 
+																				label={'Selecione um item'} 
+																				value={0} 
+																			/>
 																		{
 																			quesito.componentes.listbox.OPCOES.map((listbox, i) => {
 																				return (
-																					<Picker.Item 
-																						key={listbox.DES_OPCAO}
-																						label={listbox.DES_OPCAO} 
-																						value={listbox.COD_OPCAO} 
-																					/>
+																					
+																						<Picker.Item 
+																							key={listbox.DES_OPCAO}
+																							label={listbox.DES_OPCAO} 
+																							value={listbox.COD_OPCAO} 
+																						/>
+																					
 																				);
 																			})
 																		}
@@ -3372,88 +3359,56 @@ export default function Checklist(props) {
 																						color={"#f0ad4e"}
 																						selectedColor={"#5cb85c"}
 																						selected={ 
-																							quesito.COD_ITEM == 1 ? values.rbQuesito_1 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 2 ? values.rbQuesito_2 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 3 ? values.rbQuesito_3 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 4 ? values.rbQuesito_4 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 5 ? values.rbQuesito_5 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 6 ? values.rbQuesito_6 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 7 ? values.rbQuesito_7 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 8 ? values.rbQuesito_8 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 9 ? values.rbQuesito_9 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 10 ? values.rbQuesito_10 == radio.COD_OPCAO ? true : false  
-																							:
-																							quesito.COD_ITEM == 11 ? values.rbQuesito_11 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 12 ? values.rbQuesito_12 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 13 ? values.rbQuesito_13 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 14 ? values.rbQuesito_14 == radio.COD_OPCAO ? true : false 
-																							:
-																							quesito.COD_ITEM == 15 ? values.rbQuesito_15 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 16 ? values.rbQuesito_16 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 17 ? values.rbQuesito_17 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 18 ? values.rbQuesito_18 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 19 ? values.rbQuesito_19 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 20 ? values.rbQuesito_20 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 21 ? values.rbQuesito_21 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 22 ? values.rbQuesito_22 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 23 ? values.rbQuesito_23 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 24 ? values.rbQuesito_24 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 25 ? values.rbQuesito_25 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 26 ? values.rbQuesito_26 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 27 ? values.rbQuesito_27 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 28 ? values.rbQuesito_28 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 29 ? values.rbQuesito_29 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 30 ? values.rbQuesito_30 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 31 ? values.rbQuesito_31 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 32 ? values.rbQuesito_32 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 33 ? values.rbQuesito_33 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 34 ? values.rbQuesito_34 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 35 ? values.rbQuesito_35 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 36 ? values.rbQuesito_36 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 37 ? values.rbQuesito_37 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 38 ? values.rbQuesito_38 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 39 ? values.rbQuesito_39 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 40 ? values.rbQuesito_40 == radio.COD_OPCAO ? true : false
-																							:
-																							quesito.COD_ITEM == 41 ? values.rbQuesito_41 == radio.COD_OPCAO ? true : false
-																							: 
+																							quesito.COD_ITEM == 1 ? values.rbQuesito_1 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 2 ? values.rbQuesito_2 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 3 ? values.rbQuesito_3 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 4 ? values.rbQuesito_4 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 5 ? values.rbQuesito_5 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 6 ? values.rbQuesito_6 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 7 ? values.rbQuesito_7 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 8 ? values.rbQuesito_8 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 9 ? values.rbQuesito_9 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 10 ? values.rbQuesito_10 == radio.COD_OPCAO ? true : false : 
+																							quesito.COD_ITEM == 11 ? values.rbQuesito_11 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 12 ? values.rbQuesito_12 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 13 ? values.rbQuesito_13 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 14 ? values.rbQuesito_14 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 15 ? values.rbQuesito_15 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 16 ? values.rbQuesito_16 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 17 ? values.rbQuesito_17 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 18 ? values.rbQuesito_18 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 19 ? values.rbQuesito_19 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 20 ? values.rbQuesito_20 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 21 ? values.rbQuesito_21 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 22 ? values.rbQuesito_22 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 23 ? values.rbQuesito_23 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 24 ? values.rbQuesito_24 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 25 ? values.rbQuesito_25 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 26 ? values.rbQuesito_26 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 27 ? values.rbQuesito_27 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 28 ? values.rbQuesito_28 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 29 ? values.rbQuesito_29 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 30 ? values.rbQuesito_30 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 31 ? values.rbQuesito_31 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 32 ? values.rbQuesito_32 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 33 ? values.rbQuesito_33 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 34 ? values.rbQuesito_34 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 35 ? values.rbQuesito_35 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 36 ? values.rbQuesito_36 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 37 ? values.rbQuesito_37 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 38 ? values.rbQuesito_38 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 39 ? values.rbQuesito_39 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 40 ? values.rbQuesito_40 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 41 ? values.rbQuesito_41 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 42 ? values.rbQuesito_42 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 43 ? values.rbQuesito_43 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 44 ? values.rbQuesito_44 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 45 ? values.rbQuesito_45 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 46 ? values.rbQuesito_46 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 47 ? values.rbQuesito_47 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 48 ? values.rbQuesito_48 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 49 ? values.rbQuesito_49 == radio.COD_OPCAO ? true : false :
+																							quesito.COD_ITEM == 50 ? values.rbQuesito_50 == radio.COD_OPCAO ? true : false :
 																							false
 																						}
 																					/>
@@ -3474,96 +3429,112 @@ export default function Checklist(props) {
 																			ios_backgroundColor="#fff"
 																			onValueChange={ (previousState) => setFieldValue('cbQuesito_'+quesito.COD_ITEM, previousState ) }
 																			value={
-																				quesito.COD_ITEM == 1 ? values.cbQuesito_1 
-																				:
-																				quesito.COD_ITEM == 2 ? values.cbQuesito_2 
-																				:
-																				quesito.COD_ITEM == 3 ? values.cbQuesito_3 
-																				:
-																				quesito.COD_ITEM == 4 ? values.cbQuesito_4 
-																				:
-																				quesito.COD_ITEM == 5 ? values.cbQuesito_5 
-																				:
-																				quesito.COD_ITEM == 6 ? values.cbQuesito_6 
-																				:
-																				quesito.COD_ITEM == 7 ? values.cbQuesito_7
-																				:
-																				quesito.COD_ITEM == 8 ? values.cbQuesito_8 
-																				:
-																				quesito.COD_ITEM == 9 ? values.cbQuesito_9 
-																				:
-																				quesito.COD_ITEM == 10 ? values.cbQuesito_10   
-																				:
-																				quesito.COD_ITEM == 11 ? values.cbQuesito_11
-																				:
-																				quesito.COD_ITEM == 12 ? values.cbQuesito_12 
-																				:
-																				quesito.COD_ITEM == 13 ? values.cbQuesito_13  
-																				:
-																				quesito.COD_ITEM == 14 ? values.cbQuesito_14 
-																				:
-																				quesito.COD_ITEM == 15 ? values.cbQuesito_15
-																				:
-																				quesito.COD_ITEM == 16 ? values.cbQuesito_16 
-																				:
-																				quesito.COD_ITEM == 17 ? values.cbQuesito_17 
-																				:
-																				quesito.COD_ITEM == 18 ? values.cbQuesito_18 
-																				:
-																				quesito.COD_ITEM == 19 ? values.cbQuesito_19 
-																				:
-																				quesito.COD_ITEM == 20 ? values.cbQuesito_20
-																				:
-																				quesito.COD_ITEM == 21 ? values.cbQuesito_21
-																				:
-																				quesito.COD_ITEM == 22 ? values.cbQuesito_22 
-																				:
-																				quesito.COD_ITEM == 23 ? values.cbQuesito_23
-																				:
-																				quesito.COD_ITEM == 24 ? values.cbQuesito_24 
-																				:
-																				quesito.COD_ITEM == 25 ? values.cbQuesito_25 
-																				:
-																				quesito.COD_ITEM == 26 ? values.cbQuesito_26 
-																				:
-																				quesito.COD_ITEM == 27 ? values.cbQuesito_27 
-																				:
-																				quesito.COD_ITEM == 28 ? values.cbQuesito_28 
-																				:
-																				quesito.COD_ITEM == 29 ? values.cbQuesito_29 
-																				:
-																				quesito.COD_ITEM == 30 ? values.cbQuesito_30 
-																				:
-																				quesito.COD_ITEM == 31 ? values.cbQuesito_31 
-																				:
-																				quesito.COD_ITEM == 32 ? values.cbQuesito_32 
-																				:
-																				quesito.COD_ITEM == 33 ? values.cbQuesito_33 
-																				:
-																				quesito.COD_ITEM == 34 ? values.cbQuesito_34 
-																				:
-																				quesito.COD_ITEM == 35 ? values.cbQuesito_35 
-																				:
-																				quesito.COD_ITEM == 36 ? values.cbQuesito_36 
-																				:
-																				quesito.COD_ITEM == 37 ? values.cbQuesito_37 
-																				:
-																				quesito.COD_ITEM == 38 ? values.cbQuesito_38
-																				:
-																				quesito.COD_ITEM == 39 ? values.cbQuesito_39
-																				:
-																				quesito.COD_ITEM == 40 ? values.cbQuesito_40 
-																				:
-																				quesito.COD_ITEM == 41 ? values.cbQuesito_41  
-																				: 
+																				quesito.COD_ITEM == 1 ? values.cbQuesito_1 :
+																				quesito.COD_ITEM == 2 ? values.cbQuesito_2 :
+																				quesito.COD_ITEM == 3 ? values.cbQuesito_3 :
+																				quesito.COD_ITEM == 4 ? values.cbQuesito_4 :
+																				quesito.COD_ITEM == 5 ? values.cbQuesito_5 :
+																				quesito.COD_ITEM == 6 ? values.cbQuesito_6 :
+																				quesito.COD_ITEM == 7 ? values.cbQuesito_7 :
+																				quesito.COD_ITEM == 8 ? values.cbQuesito_8 :
+																				quesito.COD_ITEM == 9 ? values.cbQuesito_9 :
+																				quesito.COD_ITEM == 10 ? values.cbQuesito_10 :
+																				quesito.COD_ITEM == 11 ? values.cbQuesito_11 :
+																				quesito.COD_ITEM == 12 ? values.cbQuesito_12 :
+																				quesito.COD_ITEM == 13 ? values.cbQuesito_13 :
+																				quesito.COD_ITEM == 14 ? values.cbQuesito_14 :
+																				quesito.COD_ITEM == 15 ? values.cbQuesito_15 :
+																				quesito.COD_ITEM == 16 ? values.cbQuesito_16 :
+																				quesito.COD_ITEM == 17 ? values.cbQuesito_17 :
+																				quesito.COD_ITEM == 18 ? values.cbQuesito_18 :
+																				quesito.COD_ITEM == 19 ? values.cbQuesito_19 :
+																				quesito.COD_ITEM == 20 ? values.cbQuesito_20 :
+																				quesito.COD_ITEM == 21 ? values.cbQuesito_21 :
+																				quesito.COD_ITEM == 22 ? values.cbQuesito_22 :
+																				quesito.COD_ITEM == 23 ? values.cbQuesito_23 :
+																				quesito.COD_ITEM == 24 ? values.cbQuesito_24 :
+																				quesito.COD_ITEM == 25 ? values.cbQuesito_25 :
+																				quesito.COD_ITEM == 26 ? values.cbQuesito_26 :
+																				quesito.COD_ITEM == 27 ? values.cbQuesito_27 :
+																				quesito.COD_ITEM == 28 ? values.cbQuesito_28 :
+																				quesito.COD_ITEM == 29 ? values.cbQuesito_29 :
+																				quesito.COD_ITEM == 30 ? values.cbQuesito_30 :
+																				quesito.COD_ITEM == 31 ? values.cbQuesito_31 :
+																				quesito.COD_ITEM == 32 ? values.cbQuesito_32 :
+																				quesito.COD_ITEM == 33 ? values.cbQuesito_33 :
+																				quesito.COD_ITEM == 34 ? values.cbQuesito_34 :
+																				quesito.COD_ITEM == 35 ? values.cbQuesito_35 :
+																				quesito.COD_ITEM == 36 ? values.cbQuesito_36 :
+																				quesito.COD_ITEM == 37 ? values.cbQuesito_37 :
+																				quesito.COD_ITEM == 38 ? values.cbQuesito_38 :
+																				quesito.COD_ITEM == 39 ? values.cbQuesito_39 :
+																				quesito.COD_ITEM == 40 ? values.cbQuesito_40 :
+																				quesito.COD_ITEM == 41 ? values.cbQuesito_41 :
+																				quesito.COD_ITEM == 42 ? values.cbQuesito_42 :
+																				quesito.COD_ITEM == 43 ? values.cbQuesito_43 :
+																				quesito.COD_ITEM == 44 ? values.cbQuesito_44 :
+																				quesito.COD_ITEM == 45 ? values.cbQuesito_45 :
+																				quesito.COD_ITEM == 46 ? values.cbQuesito_46 :
+																				quesito.COD_ITEM == 47 ? values.cbQuesito_47 :
+																				quesito.COD_ITEM == 48 ? values.cbQuesito_48 :
+																				quesito.COD_ITEM == 49 ? values.cbQuesito_49 :
+																				quesito.COD_ITEM == 50 ? values.cbQuesito_50 :
 																				false
 																			}
 																		/>
 																		<Text style={{fontWeight: 'bold'}}>
 																		{
+																			/*quesito.COD_ITEM == 1 ? values.cbQuesito_1 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 2 ? values.cbQuesito_2 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 3 ? values.cbQuesito_3 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 4 ? values.cbQuesito_4 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 5 ? values.cbQuesito_5 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 6 ? values.cbQuesito_6 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 7 ? values.cbQuesito_7 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 8 ? values.cbQuesito_8 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 9 ? values.cbQuesito_9 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 10 ? values.cbQuesito_10 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 11 ? values.cbQuesito_11 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 12 ? values.cbQuesito_12 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 13 ? values.cbQuesito_13 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 14 ? values.cbQuesito_14 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 15 ? values.cbQuesito_15 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 16 ? values.cbQuesito_16 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 17 ? values.cbQuesito_17 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 18 ? values.cbQuesito_18 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 19 ? values.cbQuesito_19 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 20 ? values.cbQuesito_20 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 21 ? values.cbQuesito_21 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 22 ? values.cbQuesito_22 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 23 ? values.cbQuesito_23 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 24 ? values.cbQuesito_24 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 25 ? values.cbQuesito_25 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 26 ? values.cbQuesito_26 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 27 ? values.cbQuesito_27 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 28 ? values.cbQuesito_28 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 29 ? values.cbQuesito_29 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 30 ? values.cbQuesito_30 == true ? 'Sim' : 'Não' :
 																			quesito.COD_ITEM == 31 ? values.cbQuesito_31 == true ? 'Sim' : 'Não' :
 																			quesito.COD_ITEM == 32 ? values.cbQuesito_32 == true ? 'Sim' : 'Não' :
-																			false
+																			quesito.COD_ITEM == 33 ? values.cbQuesito_33 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 34 ? values.cbQuesito_34 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 35 ? values.cbQuesito_35 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 36 ? values.cbQuesito_36 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 37 ? values.cbQuesito_37 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 38 ? values.cbQuesito_38 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 39 ? values.cbQuesito_39 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 40 ? values.cbQuesito_40 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 41 ? values.cbQuesito_41 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 42 ? values.cbQuesito_42 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 43 ? values.cbQuesito_43 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 44 ? values.cbQuesito_44 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 45 ? values.cbQuesito_45 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 46 ? values.cbQuesito_46 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 47 ? values.cbQuesito_47 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 48 ? values.cbQuesito_48 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 49 ? values.cbQuesito_49 == true ? 'Sim' : 'Não' :
+																			quesito.COD_ITEM == 50 ? values.cbQuesito_50 == true ? 'Sim' : 'Não' :
+																			false*/
 																		}
 																		</Text>
 																	</ListItem>	
@@ -3578,88 +3549,56 @@ export default function Checklist(props) {
 																		onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
 																		value={
-																			quesito.COD_ITEM == 1 ? values.inputInteiroQuesito_1 
-																			:
-																			quesito.COD_ITEM == 2 ? values.inputInteiroQuesito_2 
-																			:
-																			quesito.COD_ITEM == 3 ? values.inputInteiroQuesito_3 
-																			:
-																			quesito.COD_ITEM == 4 ? values.inputInteiroQuesito_4 
-																			:
-																			quesito.COD_ITEM == 5 ? values.inputInteiroQuesito_5 
-																			:
-																			quesito.COD_ITEM == 6 ? values.inputInteiroQuesito_6 
-																			:
-																			quesito.COD_ITEM == 7 ? values.inputInteiroQuesito_7
-																			:
-																			quesito.COD_ITEM == 8 ? values.inputInteiroQuesito_8 
-																			:
-																			quesito.COD_ITEM == 9 ? values.inputInteiroQuesito_9 
-																			:
-																			quesito.COD_ITEM == 10 ? values.inputInteiroQuesito_10   
-																			:
-																			quesito.COD_ITEM == 11 ? values.inputInteiroQuesito_11
-																			:
-																			quesito.COD_ITEM == 12 ? values.inputInteiroQuesito_12 
-																			:
-																			quesito.COD_ITEM == 13 ? values.inputInteiroQuesito_13  
-																			:
-																			quesito.COD_ITEM == 14 ? values.inputInteiroQuesito_14 
-																			:
-																			quesito.COD_ITEM == 15 ? values.inputInteiroQuesito_15
-																			:
-																			quesito.COD_ITEM == 16 ? values.inputInteiroQuesito_16 
-																			:
-																			quesito.COD_ITEM == 17 ? values.inputInteiroQuesito_17 
-																			:
-																			quesito.COD_ITEM == 18 ? values.inputInteiroQuesito_18 
-																			:
-																			quesito.COD_ITEM == 19 ? values.inputInteiroQuesito_19 
-																			:
-																			quesito.COD_ITEM == 20 ? values.inputInteiroQuesito_20
-																			:
-																			quesito.COD_ITEM == 21 ? values.inputInteiroQuesito_21
-																			:
-																			quesito.COD_ITEM == 22 ? values.inputInteiroQuesito_22 
-																			:
-																			quesito.COD_ITEM == 23 ? values.inputInteiroQuesito_23
-																			:
-																			quesito.COD_ITEM == 24 ? values.inputInteiroQuesito_24 
-																			:
-																			quesito.COD_ITEM == 25 ? values.inputInteiroQuesito_25 
-																			:
-																			quesito.COD_ITEM == 26 ? values.inputInteiroQuesito_26 
-																			:
-																			quesito.COD_ITEM == 27 ? values.inputInteiroQuesito_27 
-																			:
-																			quesito.COD_ITEM == 28 ? values.inputInteiroQuesito_28 
-																			:
-																			quesito.COD_ITEM == 29 ? values.inputInteiroQuesito_29 
-																			:
-																			quesito.COD_ITEM == 30 ? values.inputInteiroQuesito_30 
-																			:
-																			quesito.COD_ITEM == 31 ? values.inputInteiroQuesito_31 
-																			:
-																			quesito.COD_ITEM == 32 ? values.inputInteiroQuesito_32 
-																			:
-																			quesito.COD_ITEM == 33 ? values.inputInteiroQuesito_33 
-																			:
-																			quesito.COD_ITEM == 34 ? values.inputInteiroQuesito_34 
-																			:
-																			quesito.COD_ITEM == 35 ? values.inputInteiroQuesito_35 
-																			:
-																			quesito.COD_ITEM == 36 ? values.inputInteiroQuesito_36 
-																			:
-																			quesito.COD_ITEM == 37 ? values.inputInteiroQuesito_37 
-																			:
-																			quesito.COD_ITEM == 38 ? values.inputInteiroQuesito_38
-																			:
-																			quesito.COD_ITEM == 39 ? values.inputInteiroQuesito_39
-																			:
-																			quesito.COD_ITEM == 40 ? values.inputInteiroQuesito_40 
-																			:
-																			quesito.COD_ITEM == 41 ? values.inputInteiroQuesito_41  
-																			: 
+																			quesito.COD_ITEM == 1 ? values.inputInteiroQuesito_1 :
+																			quesito.COD_ITEM == 2 ? values.inputInteiroQuesito_2 :
+																			quesito.COD_ITEM == 3 ? values.inputInteiroQuesito_3 :
+																			quesito.COD_ITEM == 4 ? values.inputInteiroQuesito_4 :
+																			quesito.COD_ITEM == 5 ? values.inputInteiroQuesito_5 :
+																			quesito.COD_ITEM == 6 ? values.inputInteiroQuesito_6 :
+																			quesito.COD_ITEM == 7 ? values.inputInteiroQuesito_7 :
+																			quesito.COD_ITEM == 8 ? values.inputInteiroQuesito_8 :
+																			quesito.COD_ITEM == 9 ? values.inputInteiroQuesito_9 :
+																			quesito.COD_ITEM == 10 ? values.inputInteiroQuesito_10 :
+																			quesito.COD_ITEM == 11 ? values.inputInteiroQuesito_11 :
+																			quesito.COD_ITEM == 12 ? values.inputInteiroQuesito_12 :
+																			quesito.COD_ITEM == 13 ? values.inputInteiroQuesito_13 :
+																			quesito.COD_ITEM == 14 ? values.inputInteiroQuesito_14 :
+																			quesito.COD_ITEM == 15 ? values.inputInteiroQuesito_15 :
+																			quesito.COD_ITEM == 16 ? values.inputInteiroQuesito_16 :
+																			quesito.COD_ITEM == 17 ? values.inputInteiroQuesito_17 :
+																			quesito.COD_ITEM == 18 ? values.inputInteiroQuesito_18 :
+																			quesito.COD_ITEM == 19 ? values.inputInteiroQuesito_19 :
+																			quesito.COD_ITEM == 20 ? values.inputInteiroQuesito_20 :
+																			quesito.COD_ITEM == 21 ? values.inputInteiroQuesito_21 :
+																			quesito.COD_ITEM == 22 ? values.inputInteiroQuesito_22 :
+																			quesito.COD_ITEM == 23 ? values.inputInteiroQuesito_23 :
+																			quesito.COD_ITEM == 24 ? values.inputInteiroQuesito_24 :
+																			quesito.COD_ITEM == 25 ? values.inputInteiroQuesito_25 :
+																			quesito.COD_ITEM == 26 ? values.inputInteiroQuesito_26 :
+																			quesito.COD_ITEM == 27 ? values.inputInteiroQuesito_27 :
+																			quesito.COD_ITEM == 28 ? values.inputInteiroQuesito_28 :
+																			quesito.COD_ITEM == 29 ? values.inputInteiroQuesito_29 :
+																			quesito.COD_ITEM == 30 ? values.inputInteiroQuesito_30 :
+																			quesito.COD_ITEM == 31 ? values.inputInteiroQuesito_31 :
+																			quesito.COD_ITEM == 32 ? values.inputInteiroQuesito_32 :
+																			quesito.COD_ITEM == 33 ? values.inputInteiroQuesito_33 :
+																			quesito.COD_ITEM == 34 ? values.inputInteiroQuesito_34 :
+																			quesito.COD_ITEM == 35 ? values.inputInteiroQuesito_35 :
+																			quesito.COD_ITEM == 36 ? values.inputInteiroQuesito_36 :
+																			quesito.COD_ITEM == 37 ? values.inputInteiroQuesito_37 :
+																			quesito.COD_ITEM == 38 ? values.inputInteiroQuesito_38 :
+																			quesito.COD_ITEM == 39 ? values.inputInteiroQuesito_39 :
+																			quesito.COD_ITEM == 40 ? values.inputInteiroQuesito_40 :
+																			quesito.COD_ITEM == 41 ? values.inputInteiroQuesito_41 :
+																			quesito.COD_ITEM == 42 ? values.inputInteiroQuesito_42 :
+																			quesito.COD_ITEM == 43 ? values.inputInteiroQuesito_43 :
+																			quesito.COD_ITEM == 44 ? values.inputInteiroQuesito_44 :
+																			quesito.COD_ITEM == 45 ? values.inputInteiroQuesito_45 :
+																			quesito.COD_ITEM == 46 ? values.inputInteiroQuesito_46 :
+																			quesito.COD_ITEM == 47 ? values.inputInteiroQuesito_47 :
+																			quesito.COD_ITEM == 48 ? values.inputInteiroQuesito_48 :
+																			quesito.COD_ITEM == 49 ? values.inputInteiroQuesito_49 :
+																			quesito.COD_ITEM == 50 ? values.inputInteiroQuesito_50 :
 																			false
 																		}
 																	/>
@@ -3674,88 +3613,56 @@ export default function Checklist(props) {
 																		onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
 																		value={
-																			quesito.COD_ITEM == 1 ? values.inputDecimalQuesito_1 
-																			:
-																			quesito.COD_ITEM == 2 ? values.inputDecimalQuesito_2 
-																			:
-																			quesito.COD_ITEM == 3 ? values.inputDecimalQuesito_3 
-																			:
-																			quesito.COD_ITEM == 4 ? values.inputDecimalQuesito_4 
-																			:
-																			quesito.COD_ITEM == 5 ? values.inputDecimalQuesito_5 
-																			:
-																			quesito.COD_ITEM == 6 ? values.inputDecimalQuesito_6 
-																			:
-																			quesito.COD_ITEM == 7 ? values.inputDecimalQuesito_7
-																			:
-																			quesito.COD_ITEM == 8 ? values.inputDecimalQuesito_8 
-																			:
-																			quesito.COD_ITEM == 9 ? values.inputDecimalQuesito_9 
-																			:
-																			quesito.COD_ITEM == 10 ? values.inputDecimalQuesito_10   
-																			:
-																			quesito.COD_ITEM == 11 ? values.inputDecimalQuesito_11
-																			:
-																			quesito.COD_ITEM == 12 ? values.inputDecimalQuesito_12 
-																			:
-																			quesito.COD_ITEM == 13 ? values.inputDecimalQuesito_13  
-																			:
-																			quesito.COD_ITEM == 14 ? values.inputDecimalQuesito_14 
-																			:
-																			quesito.COD_ITEM == 15 ? values.inputDecimalQuesito_15
-																			:
-																			quesito.COD_ITEM == 16 ? values.inputDecimalQuesito_16 
-																			:
-																			quesito.COD_ITEM == 17 ? values.inputDecimalQuesito_17 
-																			:
-																			quesito.COD_ITEM == 18 ? values.inputDecimalQuesito_18 
-																			:
-																			quesito.COD_ITEM == 19 ? values.inputDecimalQuesito_19 
-																			:
-																			quesito.COD_ITEM == 20 ? values.inputDecimalQuesito_20
-																			:
-																			quesito.COD_ITEM == 21 ? values.inputDecimalQuesito_21
-																			:
-																			quesito.COD_ITEM == 22 ? values.inputDecimalQuesito_22 
-																			:
-																			quesito.COD_ITEM == 23 ? values.inputDecimalQuesito_23
-																			:
-																			quesito.COD_ITEM == 24 ? values.inputDecimalQuesito_24 
-																			:
-																			quesito.COD_ITEM == 25 ? values.inputDecimalQuesito_25 
-																			:
-																			quesito.COD_ITEM == 26 ? values.inputDecimalQuesito_26 
-																			:
-																			quesito.COD_ITEM == 27 ? values.inputDecimalQuesito_27 
-																			:
-																			quesito.COD_ITEM == 28 ? values.inputDecimalQuesito_28 
-																			:
-																			quesito.COD_ITEM == 29 ? values.inputDecimalQuesito_29 
-																			:
-																			quesito.COD_ITEM == 30 ? values.inputDecimalQuesito_30 
-																			:
-																			quesito.COD_ITEM == 31 ? values.inputDecimalQuesito_31 
-																			:
-																			quesito.COD_ITEM == 32 ? values.inputDecimalQuesito_32 
-																			:
-																			quesito.COD_ITEM == 33 ? values.inputDecimalQuesito_33 
-																			:
-																			quesito.COD_ITEM == 34 ? values.inputDecimalQuesito_34 
-																			:
-																			quesito.COD_ITEM == 35 ? values.inputDecimalQuesito_35 
-																			:
-																			quesito.COD_ITEM == 36 ? values.inputDecimalQuesito_36 
-																			:
-																			quesito.COD_ITEM == 37 ? values.inputDecimalQuesito_37 
-																			:
-																			quesito.COD_ITEM == 38 ? values.inputDecimalQuesito_38
-																			:
-																			quesito.COD_ITEM == 39 ? values.inputDecimalQuesito_39
-																			:
-																			quesito.COD_ITEM == 40 ? values.inputDecimalQuesito_40 
-																			:
-																			quesito.COD_ITEM == 41 ? values.inputDecimalQuesito_41  
-																			: 
+																			quesito.COD_ITEM == 1 ? values.inputDecimalQuesito_1 :
+																			quesito.COD_ITEM == 2 ? values.inputDecimalQuesito_2 :
+																			quesito.COD_ITEM == 3 ? values.inputDecimalQuesito_3 :
+																			quesito.COD_ITEM == 4 ? values.inputDecimalQuesito_4 :
+																			quesito.COD_ITEM == 5 ? values.inputDecimalQuesito_5 :
+																			quesito.COD_ITEM == 6 ? values.inputDecimalQuesito_6 :
+																			quesito.COD_ITEM == 7 ? values.inputDecimalQuesito_7 :
+																			quesito.COD_ITEM == 8 ? values.inputDecimalQuesito_8 :
+																			quesito.COD_ITEM == 9 ? values.inputDecimalQuesito_9 :
+																			quesito.COD_ITEM == 10 ? values.inputDecimalQuesito_10 :
+																			quesito.COD_ITEM == 11 ? values.inputDecimalQuesito_11 :
+																			quesito.COD_ITEM == 12 ? values.inputDecimalQuesito_12 :
+																			quesito.COD_ITEM == 13 ? values.inputDecimalQuesito_13 :
+																			quesito.COD_ITEM == 14 ? values.inputDecimalQuesito_14 :
+																			quesito.COD_ITEM == 15 ? values.inputDecimalQuesito_15 :
+																			quesito.COD_ITEM == 16 ? values.inputDecimalQuesito_16 :
+																			quesito.COD_ITEM == 17 ? values.inputDecimalQuesito_17 :
+																			quesito.COD_ITEM == 18 ? values.inputDecimalQuesito_18 :
+																			quesito.COD_ITEM == 19 ? values.inputDecimalQuesito_19 :
+																			quesito.COD_ITEM == 20 ? values.inputDecimalQuesito_20 :
+																			quesito.COD_ITEM == 21 ? values.inputDecimalQuesito_21 :
+																			quesito.COD_ITEM == 22 ? values.inputDecimalQuesito_22 :
+																			quesito.COD_ITEM == 23 ? values.inputDecimalQuesito_23 :
+																			quesito.COD_ITEM == 24 ? values.inputDecimalQuesito_24 :
+																			quesito.COD_ITEM == 25 ? values.inputDecimalQuesito_25 :
+																			quesito.COD_ITEM == 26 ? values.inputDecimalQuesito_26 :
+																			quesito.COD_ITEM == 27 ? values.inputDecimalQuesito_27 :
+																			quesito.COD_ITEM == 28 ? values.inputDecimalQuesito_28 :
+																			quesito.COD_ITEM == 29 ? values.inputDecimalQuesito_29 :
+																			quesito.COD_ITEM == 30 ? values.inputDecimalQuesito_30 :
+																			quesito.COD_ITEM == 31 ? values.inputDecimalQuesito_31 :
+																			quesito.COD_ITEM == 32 ? values.inputDecimalQuesito_32 :
+																			quesito.COD_ITEM == 33 ? values.inputDecimalQuesito_33 :
+																			quesito.COD_ITEM == 34 ? values.inputDecimalQuesito_34 :
+																			quesito.COD_ITEM == 35 ? values.inputDecimalQuesito_35 :
+																			quesito.COD_ITEM == 36 ? values.inputDecimalQuesito_36 :
+																			quesito.COD_ITEM == 37 ? values.inputDecimalQuesito_37 :
+																			quesito.COD_ITEM == 38 ? values.inputDecimalQuesito_38 :
+																			quesito.COD_ITEM == 39 ? values.inputDecimalQuesito_39 :
+																			quesito.COD_ITEM == 40 ? values.inputDecimalQuesito_40 :
+																			quesito.COD_ITEM == 41 ? values.inputDecimalQuesito_41 :
+																			quesito.COD_ITEM == 42 ? values.inputDecimalQuesito_42 :
+																			quesito.COD_ITEM == 43 ? values.inputDecimalQuesito_43 :
+																			quesito.COD_ITEM == 44 ? values.inputDecimalQuesito_44 :
+																			quesito.COD_ITEM == 45 ? values.inputDecimalQuesito_45 :
+																			quesito.COD_ITEM == 46 ? values.inputDecimalQuesito_46 :
+																			quesito.COD_ITEM == 47 ? values.inputDecimalQuesito_47 :
+																			quesito.COD_ITEM == 48 ? values.inputDecimalQuesito_48 :
+																			quesito.COD_ITEM == 49 ? values.inputDecimalQuesito_49 :
+																			quesito.COD_ITEM == 50 ? values.inputDecimalQuesito_50 : 
 																			false
 																		}
 																	/>
@@ -3770,88 +3677,56 @@ export default function Checklist(props) {
 																		onBlur={handleBlur('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Observação'
 																		value={ 
-																			quesito.COD_ITEM == 1 ? values.inputTextoQuesito_1 
-																			:
-																			quesito.COD_ITEM == 2 ? values.inputTextoQuesito_2 
-																			:
-																			quesito.COD_ITEM == 3 ? values.inputTextoQuesito_3 
-																			:
-																			quesito.COD_ITEM == 4 ? values.inputTextoQuesito_4 
-																			:
-																			quesito.COD_ITEM == 5 ? values.inputTextoQuesito_5 
-																			:
-																			quesito.COD_ITEM == 6 ? values.inputTextoQuesito_6 
-																			:
-																			quesito.COD_ITEM == 7 ? values.inputTextoQuesito_7
-																			:
-																			quesito.COD_ITEM == 8 ? values.inputTextoQuesito_8 
-																			:
-																			quesito.COD_ITEM == 9 ? values.inputTextoQuesito_9 
-																			:
-																			quesito.COD_ITEM == 10 ? values.inputTextoQuesito_10   
-																			:
-																			quesito.COD_ITEM == 11 ? values.inputTextoQuesito_11
-																			:
-																			quesito.COD_ITEM == 12 ? values.inputTextoQuesito_12 
-																			:
-																			quesito.COD_ITEM == 13 ? values.inputTextoQuesito_13  
-																			:
-																			quesito.COD_ITEM == 14 ? values.inputTextoQuesito_14 
-																			:
-																			quesito.COD_ITEM == 15 ? values.inputTextoQuesito_15
-																			:
-																			quesito.COD_ITEM == 16 ? values.inputTextoQuesito_16 
-																			:
-																			quesito.COD_ITEM == 17 ? values.inputTextoQuesito_17 
-																			:
-																			quesito.COD_ITEM == 18 ? values.inputTextoQuesito_18 
-																			:
-																			quesito.COD_ITEM == 19 ? values.inputTextoQuesito_19 
-																			:
-																			quesito.COD_ITEM == 20 ? values.inputTextoQuesito_20
-																			:
-																			quesito.COD_ITEM == 21 ? values.inputTextoQuesito_21
-																			:
-																			quesito.COD_ITEM == 22 ? values.inputTextoQuesito_22 
-																			:
-																			quesito.COD_ITEM == 23 ? values.inputTextoQuesito_23
-																			:
-																			quesito.COD_ITEM == 24 ? values.inputTextoQuesito_24 
-																			:
-																			quesito.COD_ITEM == 25 ? values.inputTextoQuesito_25 
-																			:
-																			quesito.COD_ITEM == 26 ? values.inputTextoQuesito_26 
-																			:
-																			quesito.COD_ITEM == 27 ? values.inputTextoQuesito_27 
-																			:
-																			quesito.COD_ITEM == 28 ? values.inputTextoQuesito_28 
-																			:
-																			quesito.COD_ITEM == 29 ? values.inputTextoQuesito_29 
-																			:
-																			quesito.COD_ITEM == 30 ? values.inputTextoQuesito_30 
-																			:
-																			quesito.COD_ITEM == 31 ? values.inputTextoQuesito_31 
-																			:
-																			quesito.COD_ITEM == 32 ? values.inputTextoQuesito_32 
-																			:
-																			quesito.COD_ITEM == 33 ? values.inputTextoQuesito_33 
-																			:
-																			quesito.COD_ITEM == 34 ? values.inputTextoQuesito_34 
-																			:
-																			quesito.COD_ITEM == 35 ? values.inputTextoQuesito_35 
-																			:
-																			quesito.COD_ITEM == 36 ? values.inputTextoQuesito_36 
-																			:
-																			quesito.COD_ITEM == 37 ? values.inputTextoQuesito_37 
-																			:
-																			quesito.COD_ITEM == 38 ? values.inputTextoQuesito_38
-																			:
-																			quesito.COD_ITEM == 39 ? values.inputTextoQuesito_39
-																			:
-																			quesito.COD_ITEM == 40 ? values.inputTextoQuesito_40 
-																			:
-																			quesito.COD_ITEM == 41 ? values.inputTextoQuesito_41  
-																			: 
+																			quesito.COD_ITEM == 1 ? values.inputTextoQuesito_1 :
+																			quesito.COD_ITEM == 2 ? values.inputTextoQuesito_2 :
+																			quesito.COD_ITEM == 3 ? values.inputTextoQuesito_3 :
+																			quesito.COD_ITEM == 4 ? values.inputTextoQuesito_4 :
+																			quesito.COD_ITEM == 5 ? values.inputTextoQuesito_5 :
+																			quesito.COD_ITEM == 6 ? values.inputTextoQuesito_6 :
+																			quesito.COD_ITEM == 7 ? values.inputTextoQuesito_7 :
+																			quesito.COD_ITEM == 8 ? values.inputTextoQuesito_8 :
+																			quesito.COD_ITEM == 9 ? values.inputTextoQuesito_9 :
+																			quesito.COD_ITEM == 10 ? values.inputTextoQuesito_10 :
+																			quesito.COD_ITEM == 11 ? values.inputTextoQuesito_11 :
+																			quesito.COD_ITEM == 12 ? values.inputTextoQuesito_12 :
+																			quesito.COD_ITEM == 13 ? values.inputTextoQuesito_13 :
+																			quesito.COD_ITEM == 14 ? values.inputTextoQuesito_14 :
+																			quesito.COD_ITEM == 15 ? values.inputTextoQuesito_15 :
+																			quesito.COD_ITEM == 16 ? values.inputTextoQuesito_16 :
+																			quesito.COD_ITEM == 17 ? values.inputTextoQuesito_17 :
+																			quesito.COD_ITEM == 18 ? values.inputTextoQuesito_18 :
+																			quesito.COD_ITEM == 19 ? values.inputTextoQuesito_19 :
+																			quesito.COD_ITEM == 20 ? values.inputTextoQuesito_20 :
+																			quesito.COD_ITEM == 21 ? values.inputTextoQuesito_21 :
+																			quesito.COD_ITEM == 22 ? values.inputTextoQuesito_22 :
+																			quesito.COD_ITEM == 23 ? values.inputTextoQuesito_23 :
+																			quesito.COD_ITEM == 24 ? values.inputTextoQuesito_24 :
+																			quesito.COD_ITEM == 25 ? values.inputTextoQuesito_25 :
+																			quesito.COD_ITEM == 26 ? values.inputTextoQuesito_26 :
+																			quesito.COD_ITEM == 27 ? values.inputTextoQuesito_27 :
+																			quesito.COD_ITEM == 28 ? values.inputTextoQuesito_28 :
+																			quesito.COD_ITEM == 29 ? values.inputTextoQuesito_29 :
+																			quesito.COD_ITEM == 30 ? values.inputTextoQuesito_30 :
+																			quesito.COD_ITEM == 31 ? values.inputTextoQuesito_31 :
+																			quesito.COD_ITEM == 32 ? values.inputTextoQuesito_32 :
+																			quesito.COD_ITEM == 33 ? values.inputTextoQuesito_33 :
+																			quesito.COD_ITEM == 34 ? values.inputTextoQuesito_34 :
+																			quesito.COD_ITEM == 35 ? values.inputTextoQuesito_35 :
+																			quesito.COD_ITEM == 36 ? values.inputTextoQuesito_36 :
+																			quesito.COD_ITEM == 37 ? values.inputTextoQuesito_37 :
+																			quesito.COD_ITEM == 38 ? values.inputTextoQuesito_38 :
+																			quesito.COD_ITEM == 39 ? values.inputTextoQuesito_39 :
+																			quesito.COD_ITEM == 40 ? values.inputTextoQuesito_40 :
+																			quesito.COD_ITEM == 41 ? values.inputTextoQuesito_41 :
+																			quesito.COD_ITEM == 42 ? values.inputTextoQuesito_42 :
+																			quesito.COD_ITEM == 43 ? values.inputTextoQuesito_43 :
+																			quesito.COD_ITEM == 44 ? values.inputTextoQuesito_44 :
+																			quesito.COD_ITEM == 45 ? values.inputTextoQuesito_45 :
+																			quesito.COD_ITEM == 46 ? values.inputTextoQuesito_46 :
+																			quesito.COD_ITEM == 47 ? values.inputTextoQuesito_47 :
+																			quesito.COD_ITEM == 48 ? values.inputTextoQuesito_48 :
+																			quesito.COD_ITEM == 49 ? values.inputTextoQuesito_49 :
+																			quesito.COD_ITEM == 50 ? values.inputTextoQuesito_50 : 
 																			false
 																		}
 																	/>
@@ -3873,7 +3748,7 @@ export default function Checklist(props) {
 				<Button
 					buttonStyle={styles.botao}
 					title="REGISTRAR"
-					onPress={handleSubmit}
+					onPress={ () => registrar(values) }
 				/>
 				<Text></Text>
 				<Text></Text>
