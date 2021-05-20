@@ -65,6 +65,31 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     });
 }
 
+export const registrarChecklist = async function(dominio, quesitos, codEmitente, equipamento) {
+    
+    var dados = { 
+        'CHAVE': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1',
+        'COD_EMITENTE' : codEmitente,
+        'EQUIPAMENTO': equipamento,
+        'DATETIME': '2021-05-15 23:30:00',
+        'QUESITOS': quesitos
+    };
+
+    var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/postQuesitos';
+    if( dominio == 'intranet'){
+        endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/postQuesitos';
+    }
+
+    return await axios.post(endPoint, dados)
+    .then(function (response) {
+        return({status: true, resultado: response.data.resultado});
+    })
+    .catch(function (error) {
+        console.log(error);
+        return({status: false, mensagem: 'Não foi possível registrar o checklist.', erro: error});
+    });
+}
+
 
 
 
