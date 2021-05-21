@@ -65,16 +65,16 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     });
 }
 
-export const registrarChecklist = async function(dominio, quesitos, codEmitente, equipamento) {
+export const registrarChecklist = async function(dominio, quesitos, codEmitente, nomeEquipamento) {
     
     var dados = { 
         'CHAVE': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1',
         'COD_EMITENTE' : codEmitente,
-        'EQUIPAMENTO': equipamento,
-        'DATETIME': '2021-05-15 23:30:00',
+        'EQUIPAMENTO': nomeEquipamento,
+        'DATETIME': new Date(),
         'QUESITOS': quesitos
     };
-
+    
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/postQuesitos';
     if( dominio == 'intranet'){
         endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/postQuesitos';
@@ -82,7 +82,7 @@ export const registrarChecklist = async function(dominio, quesitos, codEmitente,
 
     return await axios.post(endPoint, dados)
     .then(function (response) {
-        return({status: true, resultado: response.data.resultado});
+        return({status: true, resultado: response.data});
     })
     .catch(function (error) {
         console.log(error);

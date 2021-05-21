@@ -35,8 +35,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 				if(respostaQuesitos.resultado == "Chave invalida."){
@@ -92,7 +92,7 @@ export default function Checklist(props) {
 					let pneu = item.substring(5,6);
 					let quesitoPneu = item.substring(item.indexOf("Q") + 1);
 					let respostaPneu = values[item];
-					quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA":"", "DES_RESPOSTA": respostaPneu });
+					quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu });
 				}
 
 				//LATARIA TRUE
@@ -100,14 +100,14 @@ export default function Checklist(props) {
 					let lataria = item.substring(8,9);
 					let quesitoLataria = item.substring(item.indexOf("Q") + 1);
 					let respostaLataria = values[item];
-					quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA":"", "DES_RESPOSTA": respostaLataria });
+					quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria });
 				}
 
 				//PNEU FALSE - LATARIA FALSE
 				if( (item.indexOf("Pneu") == -1) && (item.indexOf("Lataria") == -1) ){
 					let quesito = item.substring(item.indexOf("_") + 1);
 					let resposta = values[item];
-					quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA":"", "DES_RESPOSTA": resposta });
+					quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta });
 				}
 
 				indice++;
@@ -116,24 +116,21 @@ export default function Checklist(props) {
 
 		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento){
 			if(quesitos.length == 0 ){
-				Alert.alert('Aviso', 'Favor preencher o checklist.');
+				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
 			}
-			console.log(codEmitente);
-			console.log(nomeEquipamento);
-			console.log(quesitos);
-			/*setloading(true);
-			//BUSCA MOTORISTAS
-			let respostaChecklist = await registrarChecklist(dominio);
+			setloading(true);
+			//REGISTRA CHECKLIST
+			let respostaChecklist = await registrarChecklist(dominio, quesitos, codEmitente, nomeEquipamento);
 			if(respostaChecklist.status){
-				if(respostaChecklist.resultado == "ok"){
+				if(respostaChecklist.resultado == "OK"){
 					setloading(false);
-					Alert.alert('Aviso', 'Checklist registrado com sucesso.');
+					Alert.alert('Aviso', 'Checklist registrado com sucesso.', [ { text: "OK", onPress: () => props.navigation.navigate('Equipamento') } ]);
 				}
 				setloading(false);
 			}else{
 				setloading(false);
 				Alert.alert('Aviso', respostaChecklist.mensagem);
-			}*/
+			}
 		}
 
 		//VERIFICA CONEXAO COM A INTERNET
