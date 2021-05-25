@@ -35,8 +35,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 				if(respostaQuesitos.resultado == "Chave invalida."){
@@ -46,8 +46,10 @@ export default function Checklist(props) {
 				setloading(false);
 				setQuesitos(respostaQuesitos.resultado.data.draw);
 				let data = new Date(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
-				let dataFormatada = data.toLocaleString();
-				setUltimoCheckup(dataFormatada);
+				if( (data != '') && (data != undefined)){
+					let dataFormatada = data.toLocaleString();
+					setUltimoCheckup(dataFormatada);
+				}
 				let ultHorimetro = respostaQuesitos.resultado.data.draw.ULT_HORIMETRO;
 				setUltimoHorimetro( parseFloat(ultHorimetro).toFixed(1) );
 				setTipoEquipamento(respostaQuesitos.resultado.data.draw.TIPO_EQUIPAMENTO);
@@ -113,6 +115,10 @@ export default function Checklist(props) {
 				indice++;
 			}
 		});
+
+		console.log(values);
+		console.log(quesitos);
+		return;
 
 		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento){
 			if(quesitos.length == 0 ){
@@ -206,6 +212,44 @@ export default function Checklist(props) {
 											</Separator>
 										</CollapseHeader>
 										<CollapseBody>
+										{
+											//TABELA CALIBRAGEM PNEU
+											grupo.IND_PNEUS == true && grupo.CALIBRAGEM.length > 0 && (
+												<Collapse
+														isExpanded={false}
+														>
+														<CollapseHeader>
+															<Separator style={{ backgroundColor: '#C4C4C4', height: 45, marginTop: 3, marginLeft: 20, marginRight: 20  }} bordered >
+																<Text style={{ fontWeight: 'bold'}} > &nbsp;&nbsp;{'Tabela de Calibragem dos Pneus'} </Text>
+															</Separator>
+														</CollapseHeader>
+														<CollapseBody>
+															<View style={{flex: 1, flexDirection: 'row', marginLeft: 20, marginRight: 20, borderBottomWidth: 1 }}>
+																<View style={{ width: '55%'}}><Text style={{ padding: 5, fontWeight: 'bold', textAlign: 'center' }}>{'EQUIPAMENTO'}</Text></View>
+																<View style={{ width: '30%'}}><Text style={{ padding: 5, fontWeight: 'bold', textAlign: 'center' }}>{'MEDIDA'}</Text></View>
+																<View style={{ width: '15%'}}><Text style={{ padding: 5, fontWeight: 'bold', textAlign: 'center' }}>{'PSI'}</Text></View>
+															</View>
+														{
+															grupo.CALIBRAGEM.map((calibragem, q) => {
+																return(
+																	<View key={calibragem.COD_MEDIDA} style={{flex: 1, flexDirection: 'row', marginLeft: 20, marginRight: 20, borderBottomWidth: 1, marginBottom: 5 }}>
+																		<View style={{ width: '55%'}}>
+																			<Text style={{padding: 5, textAlign: 'center'}}>{calibragem.DES_EQUIPAMENTO}</Text>
+																		</View>
+																		<View style={{ width: '30%'}}>
+																			<Text style={{padding: 5, textAlign: 'center'}}>{calibragem.DES_MEDIDA}</Text>
+																		</View>
+																		<View style={{ width: '15%'}}>
+																			<Text style={{padding: 5, textAlign: 'center'}}>{calibragem.PSI}</Text>
+																		</View>
+																	</View>
+																)
+															})
+														}
+														</CollapseBody>
+												</Collapse>
+											)
+										}
 										{
 											//PNEU TRUE
 											grupo.IND_PNEUS == true && (
