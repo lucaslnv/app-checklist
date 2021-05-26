@@ -94,7 +94,32 @@ export default function Checklist(props) {
 					let pneu = item.substring(5,6);
 					let quesitoPneu = item.substring(item.indexOf("Q") + 1);
 					let respostaPneu = values[item];
-					quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu });
+
+					//LIST BOX
+					if(item.indexOf("lb") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//RADIO BUTTON
+					if(item.indexOf("rb") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//CHECKBOX
+					if(item.indexOf("cb") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//TEXTO
+					if(item.indexOf("Texto") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu });
+					}
+					//DECIMAL
+					if(item.indexOf("Decimal") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "" });
+					}
+					//INTEIRO
+					if(item.indexOf("Inteiro") != -1){
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "" });
+					}
+					
 				}
 
 				//LATARIA TRUE
@@ -102,14 +127,64 @@ export default function Checklist(props) {
 					let lataria = item.substring(8,9);
 					let quesitoLataria = item.substring(item.indexOf("Q") + 1);
 					let respostaLataria = values[item];
-					quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria });
+
+					//LIST BOX
+					if(item.indexOf("lb") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//RADIO BUTTON
+					if(item.indexOf("rb") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//CHECKBOX
+					if(item.indexOf("cb") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//TEXTO
+					if(item.indexOf("Texto") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria });
+					}
+					//DECIMAL
+					if(item.indexOf("Decimal") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "" });
+					}
+					//INTEIRO
+					if(item.indexOf("Inteiro") != -1){
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "" });
+					}
+
 				}
 
 				//PNEU FALSE - LATARIA FALSE
 				if( (item.indexOf("Pneu") == -1) && (item.indexOf("Lataria") == -1) ){
 					let quesito = item.substring(item.indexOf("_") + 1);
 					let resposta = values[item];
-					quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA":"", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta });
+					
+					//LIST BOX
+					if(item.indexOf("lb") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//RADIO BUTTON
+					if(item.indexOf("rb") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//CHECKBOX
+					if(item.indexOf("cb") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+					}
+					//TEXTO
+					if(item.indexOf("Texto") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta });
+					}
+					//DECIMAL
+					if(item.indexOf("Decimal") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "" });
+					}
+					//INTEIRO
+					if(item.indexOf("Inteiro") != -1){
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "" });
+					}
+					
 				}
 
 				indice++;

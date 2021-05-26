@@ -53,7 +53,8 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     
     return await axios.get(endPoint, {
         params: {
-            QrCode: qrCode
+            'QrCode': qrCode,
+            'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1'
         }
       })
     .then(function (response) {
@@ -72,6 +73,7 @@ export const registrarChecklist = async function(dominio, quesitos, codEmitente,
         'COD_EMITENTE' : codEmitente,
         'EQUIPAMENTO': nomeEquipamento,
         'DATETIME': new Date(),
+        'DES_FOTO': '',
         'QUESITOS': quesitos
     };
     
