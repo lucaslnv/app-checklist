@@ -73,7 +73,6 @@ export const registrarChecklist = async function(dominio, quesitos, codEmitente,
         'COD_EMITENTE' : codEmitente,
         'EQUIPAMENTO': nomeEquipamento,
         'DATETIME': new Date(),
-        'DES_FOTO': '',
         'QUESITOS': quesitos
     };
     

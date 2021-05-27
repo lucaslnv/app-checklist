@@ -35,21 +35,31 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
+
+				//VERIFICA SE A INPEÇÃO FOI REALIZADA NO DIA INSPECT_ALREADY_DONE_TODAY 
+				if(respostaQuesitos.resultado.status == 409){
+					setloading(false);
+					Alert.alert('Aviso', 'Inspeção já realizada para este equipamento hoje.', [ { text: "OK", onPress: () => props.navigation.navigate('Equipamento') } ]);
+				}
+				
+				//VERIFICA AUTENTICAÇÃO
 				if(respostaQuesitos.resultado == "Chave invalida."){
 					setloading(false);
 					Alert.alert('Aviso', 'Chave de autenticação inválida.');
 				}
+				
 				setloading(false);
 				setQuesitos(respostaQuesitos.resultado.data.draw);
 				let data = new Date(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
-				if( (data != '') && (data != undefined)){
+				/*if( (data != '') && (data != undefined)){
 					let dataFormatada = data.toLocaleString();
 					setUltimoCheckup(dataFormatada);
-				}
+				}*/
+				setUltimoCheckup(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
 				let ultHorimetro = respostaQuesitos.resultado.data.draw.ULT_HORIMETRO;
 				setUltimoHorimetro( parseFloat(ultHorimetro).toFixed(1) );
 				setTipoEquipamento(respostaQuesitos.resultado.data.draw.TIPO_EQUIPAMENTO);
@@ -97,27 +107,27 @@ export default function Checklist(props) {
 
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					
 				}
@@ -130,27 +140,27 @@ export default function Checklist(props) {
 
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 
 				}
@@ -162,27 +172,27 @@ export default function Checklist(props) {
 					
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "" });
+						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					
 				}
@@ -190,11 +200,7 @@ export default function Checklist(props) {
 				indice++;
 			}
 		});
-
-		console.log(values);
-		console.log(quesitos);
-		return;
-
+		
 		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento){
 			if(quesitos.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
