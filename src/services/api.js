@@ -66,14 +66,14 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     });
 }
 
-export const registrarChecklist = async function(dominio, quesitos, codEmitente, nomeEquipamento) {
+export const registrarChecklist = async function(dominio, quesitosJson, codEmitente, nomeEquipamento) {
     
     var dados = { 
         'CHAVE': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1',
         'COD_EMITENTE' : codEmitente,
         'EQUIPAMENTO': nomeEquipamento,
         'DATETIME': new Date(),
-        'QUESITOS': quesitos
+        'QUESITOS': quesitosJson
     };
     
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/postQuesitos';

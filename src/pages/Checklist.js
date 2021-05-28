@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker } from 'react-native';
 import {buscarQuesitos} from '../services/api';
-import { Separator, Radio, Right, Left, Center, ListItem } from 'native-base';
-import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
+import { Separator, Radio, ListItem } from 'native-base';
+import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import LoadingItem from '../components/LoadingItem';
 import { Button, Text, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -35,8 +34,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -94,10 +93,12 @@ export default function Checklist(props) {
 	}, []);
 
 	function registrar(values){
-		var quesitos = [];
+		var quesitosJson = [];
 		var indice = 0;
 		Object.keys(values).forEach(function(item){
 			if( item.indexOf("icon") == -1 ){
+
+				let quesitoObrigatorio = true;
 
 				//PNEU TRUE
 				if(  item.indexOf("Pneu") != -1 ){
@@ -105,29 +106,38 @@ export default function Checklist(props) {
 					let quesitoPneu = item.substring(item.indexOf("Q") + 1);
 					let respostaPneu = values[item];
 
+					//VERIFICA QUESITO OBRIGATORIO (DESABILITADO)
+					quesitos.GRUPO.forEach(function(grupos, g){
+						grupos.QUESITOS.forEach(function(quesitos, q){
+							if( (quesitoPneu == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
+								quesitoObrigatorio = false;
+							}
+						});
+					});
+
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					
 				}
@@ -138,76 +148,99 @@ export default function Checklist(props) {
 					let quesitoLataria = item.substring(item.indexOf("Q") + 1);
 					let respostaLataria = values[item];
 
+					//VERIFICA QUESITO OBRIGATORIO
+					quesitos.GRUPO.forEach(function(grupos, g){
+						grupos.QUESITOS.forEach(function(quesitos, q){
+							if( (quesitoLataria == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
+								quesitoObrigatorio = false;
+							}
+						});
+					});
+
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 
 				}
 
 				//PNEU FALSE - LATARIA FALSE
 				if( (item.indexOf("Pneu") == -1) && (item.indexOf("Lataria") == -1) ){
+					
 					let quesito = item.substring(item.indexOf("_") + 1);
 					let resposta = values[item];
 					
+					//VERIFICA QUESITO OBRIGATORIO
+					quesitos.GRUPO.forEach(function(grupos, g){
+						grupos.QUESITOS.forEach(function(quesitos, q){
+							if( (quesito == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
+								quesitoObrigatorio = false;
+							}
+						});
+					});
+
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitos[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
 					
 				}
 
-				indice++;
+				if( quesitoObrigatorio == true ){
+					indice++;
+				}
 			}
 		});
 		
 		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento){
-			if(quesitos.length == 0 ){
+			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
 			}
 			setloading(true);
 			//REGISTRA CHECKLIST
-			let respostaChecklist = await registrarChecklist(dominio, quesitos, codEmitente, nomeEquipamento);
+			let respostaChecklist = await registrarChecklist(dominio, quesitosJson, codEmitente, nomeEquipamento);
 			if(respostaChecklist.status){
 				if(respostaChecklist.resultado == "OK"){
 					setloading(false);
@@ -232,7 +265,7 @@ export default function Checklist(props) {
 			}
 
 			if(state.isConnected){
-				registrar(dominio, quesitos, codEmitente, nomeEquipamento);
+				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento);
 			}else{
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
 			}
@@ -360,6 +393,7 @@ export default function Checklist(props) {
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																					(
 																						<Picker
+																								enabled={quesito.IND_OBRIGATORIO}
 																								selectedValue={
 																									//PNEU 1
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Pneu_1_lbQ1 :
@@ -703,10 +737,12 @@ export default function Checklist(props) {
 																						quesito.componentes.radio.OPCOES.map((radio, i) => {
 																							return (
 																								<ListItem 
+																									disabled={!quesito.IND_OBRIGATORIO}
 																									key={radio.DES_OPCAO}
 																									onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																									>
 																									<Radio
+																										disabled={!quesito.IND_OBRIGATORIO}
 																										onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
 																										selectedColor={"#5cb85c"}
@@ -891,7 +927,7 @@ export default function Checklist(props) {
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 20  ? values.Pneu_4_rbQ20 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 21  ? values.Pneu_4_rbQ21 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 22  ? values.Pneu_4_rbQ22 == radio.COD_OPCAO ? true : false :
-																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Pneu_4_rbQ24 == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 23  ? values.Pneu_4_rbQ23 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 24  ? values.Pneu_4_rbQ24 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 25  ? values.Pneu_4_rbQ25 == radio.COD_OPCAO ? true : false :
 																											listbox.COD_OPCAO == 4 && quesito.COD_ITEM == 26  ? values.Pneu_4_rbQ26 == radio.COD_OPCAO ? true : false :
@@ -1027,7 +1063,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									<Text>{radio.DES_OPCAO}</Text>
+																									<Text>{' '+radio.DES_OPCAO}</Text>
 																								</ListItem>
 																							);
 																						})
@@ -1039,6 +1075,7 @@ export default function Checklist(props) {
 																					(
 																						<ListItem>
 																							<Switch
+																								disabled={!quesito.IND_OBRIGATORIO}
 																								trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																								thumbColor={ "#fff"}
 																								ios_backgroundColor="#fff"
@@ -1370,6 +1407,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -1698,6 +1736,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -2026,6 +2065,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							placeholder='Observação'
@@ -2389,6 +2429,7 @@ export default function Checklist(props) {
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																					(
 																						<Picker
+																								enabled={quesito.IND_OBRIGATORIO}
 																								selectedValue={
 																									//Lataria 1
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_lbQ1 :
@@ -2680,10 +2721,12 @@ export default function Checklist(props) {
 																						quesito.componentes.radio.OPCOES.map((radio, i) => {
 																							return (
 																								<ListItem 
+																									disabled={!quesito.IND_OBRIGATORIO}
 																									key={radio.DES_OPCAO}
 																									onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																									>
 																									<Radio
+																										disabled={!quesito.IND_OBRIGATORIO}
 																										onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
 																										selectedColor={"#5cb85c"}
@@ -2952,7 +2995,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									<Text>{radio.DES_OPCAO}</Text>
+																									<Text>{' '+radio.DES_OPCAO}</Text>
 																								</ListItem>
 																							);
 																						})
@@ -2964,6 +3007,7 @@ export default function Checklist(props) {
 																					(
 																						<ListItem>
 																							<Switch
+																								disabled={!quesito.IND_OBRIGATORIO}
 																								trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																								thumbColor={ "#fff"}
 																								ios_backgroundColor="#fff"
@@ -3241,6 +3285,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -3517,6 +3562,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -3794,6 +3840,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
+																							editable={quesito.IND_OBRIGATORIO}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							placeholder='Observação'
@@ -4092,8 +4139,8 @@ export default function Checklist(props) {
 																//LIST BOX
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																(
-																	
 																		<Picker
+																			enabled={quesito.IND_OBRIGATORIO}
 																			selectedValue={
 																				quesito.COD_ITEM == 1 ? values.lbQuesito_1 :
 																				quesito.COD_ITEM == 2 ? values.lbQuesito_2 :
@@ -4176,11 +4223,13 @@ export default function Checklist(props) {
 																(
 																	quesito.componentes.radio.OPCOES.map((radio, i) => {
 																		return (
-																			<ListItem 
+																			<ListItem
+																				disabled={!quesito.IND_OBRIGATORIO}
 																				key={radio.DES_OPCAO}
 																				onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																				>
 																					<Radio
+																						disabled={!quesito.IND_OBRIGATORIO}
 																						onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																						color={"#f0ad4e"}
 																						selectedColor={"#5cb85c"}
@@ -4250,6 +4299,7 @@ export default function Checklist(props) {
 																(
 																	<ListItem>
 																		<Switch
+																			disabled={!quesito.IND_OBRIGATORIO}
 																			trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																			thumbColor={ "#fff"}
 																			ios_backgroundColor="#fff"
@@ -4371,6 +4421,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
+																		editable={quesito.IND_OBRIGATORIO}
 																		onChangeText={handleChange('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
@@ -4435,6 +4486,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_DECIMAL == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
+																		editable={quesito.IND_OBRIGATORIO}
 																		onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
@@ -4499,6 +4551,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
+																		editable={quesito.IND_OBRIGATORIO}
 																		onChangeText={handleChange('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Observação'
