@@ -66,12 +66,13 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     });
 }
 
-export const registrarChecklist = async function(dominio, quesitosJson, codEmitente, nomeEquipamento) {
+export const registrarChecklist = async function(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador) {
     
     var dados = { 
         'CHAVE': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1',
         'COD_EMITENTE' : codEmitente,
         'EQUIPAMENTO': nomeEquipamento,
+        'codOperador' : '9999' ,
         'DATETIME': new Date(),
         'QUESITOS': quesitosJson
     };

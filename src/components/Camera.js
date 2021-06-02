@@ -54,7 +54,7 @@ export default class Camera extends Component {
                         flashMode = {this.state.cameraFlash}
                         androidCameraPermissionOptions={{
                             title: 'Permissão para utilizar a câmera',
-                            message: 'Precisamos da sua permissão para utilizar a câmera',
+                            message: 'Precisamos da sua permissão para utilizar a câmera.',
                             buttonPositive: 'Ok',
                             buttonNegative: 'Cancelar',
                         }}

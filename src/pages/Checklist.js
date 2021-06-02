@@ -20,7 +20,9 @@ export default function Checklist(props) {
 	const [tipoEquipamento, setTipoEquipamento] = useState('');
 	const [cliente, setCliente] = useState('');
 	const [codEmitente, setCodEmitente] = useState('');
+	const [codOperador, setCodOperador] = useState('');
 	const [quesitos, setQuesitos] = useState([]);
+	const [imgEquipamento, setImgEquipamento] = useState(false);
 	
 	//EQUIPAMENTO
 	useEffect(() => { 
@@ -34,8 +36,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -64,6 +66,9 @@ export default function Checklist(props) {
 				setTipoEquipamento(respostaQuesitos.resultado.data.draw.TIPO_EQUIPAMENTO);
 				setCliente(respostaQuesitos.resultado.data.draw.CLIENTE);
 				setCodEmitente(respostaQuesitos.resultado.data.draw.COD_EMITENTE);
+				if( respostaQuesitos.resultado.data.draw.IMAGEM != null ){
+					setImgEquipamento(respostaQuesitos.resultado.data.draw.IMAGEM);
+				}
 			}else{
 				setloading(false);
 				Alert.alert('Aviso', respostaQuesitos.mensagem);
@@ -234,13 +239,13 @@ export default function Checklist(props) {
 			}
 		});
 		
-		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento){
+		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
 			}
 			setloading(true);
 			//REGISTRA CHECKLIST
-			let respostaChecklist = await registrarChecklist(dominio, quesitosJson, codEmitente, nomeEquipamento);
+			let respostaChecklist = await registrarChecklist(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador);
 			if(respostaChecklist.status){
 				if(respostaChecklist.resultado == "OK"){
 					setloading(false);
@@ -271,6 +276,10 @@ export default function Checklist(props) {
 			}
 		});
 	}
+
+	function abreFechaMenu(){
+		console.log('abreFechaMenu');
+	}
 	
   return (
     	<ScrollView style={styles.container}>
@@ -285,7 +294,12 @@ export default function Checklist(props) {
 			</View>
 			<View style={{ width: '30%'}}>
 				<View style={styles.containerImg}>
-					<Image style={styles.img} source={require('../assets/foto.png')} />
+					{ 
+					imgEquipamento 
+					? <Image style={styles.img} source={{uri: imgEquipamento}}  />
+					: <Image style={styles.img} source={require('../assets/foto.png')}  />
+					}
+					
 				</View >
 			</View>
 		</View>
@@ -300,7 +314,9 @@ export default function Checklist(props) {
 						quesitos.GRUPO.map((grupo, g) => {
 							return (
 								<View key={grupo.COD_GRUPO}>
-									<Collapse onToggle={ (isExpanded) => setFieldValue('icon_'+grupo.COD_GRUPO, isExpanded ) } >
+									<Collapse 
+										isExpanded={ false }
+										onToggle={ (isExpanded) => setFieldValue('icon_'+grupo.COD_GRUPO, isExpanded ) } >
 										<CollapseHeader>
 											<Separator style={{ backgroundColor: '#fdb700', height: 45, marginTop: 3 }} bordered >
 											<Text style={{ fontWeight: 'bold', fontSize: 16 }}>
@@ -4677,9 +4693,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	img:{
-		height: 70,
-		width: 70,
-		resizeMode: 'cover',
+		height: '100%',
+		width: '100%',
+		resizeMode: 'stretch',
 	},
 	botao: {
 		marginTop: 20,

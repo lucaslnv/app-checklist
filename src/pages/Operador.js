@@ -103,6 +103,11 @@ export default function Login(props) {
 			title="OPERADOR"
 			onPress={ ()=> props.navigation.navigate('Camera', { rota: 'Operador', operacao: 'operador'})}
 		/>
+		<Button
+			buttonStyle={styles.botaoOperador}
+			title="Teste QR Code"
+			onPress={ ()=> props.navigation.navigate('QRCode', { rota: 'Operador', operacao: 'operador'})}
+		/>
         { 
             operadorValido == true
 			? 
