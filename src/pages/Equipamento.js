@@ -14,7 +14,7 @@ export default function Equipamento(props) {
 	const [nomeEquipamento, setNomeEquipamento] = useState('');
 	const [qrCodeEquipamento, setQrCodeEquipamento] = useState('');
 	const [equipamentoValido, setEquipamentoValido] = useState(false);
-
+	  
 	//OPERADOR
 	useEffect(() => { 
 		setCodeMotorista(props.navigation.getParam('codMotorista'));

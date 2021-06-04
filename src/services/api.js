@@ -78,11 +78,12 @@ export const registrarChecklist = async function(dominio, quesitosJson, codEmite
         'CHAVE': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1',
         'COD_EMITENTE' : codEmitente,
         'EQUIPAMENTO': nomeEquipamento,
-        'codOperador' : '9999' ,
+        'codOperador' : codOperador ,
         'DATETIME': new Date(),
         'QUESITOS': quesitosJson
     };
-    
+    console.log(dados);
+
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/postQuesitos';
     if( dominio == 'intranet'){
         endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/postQuesitos';

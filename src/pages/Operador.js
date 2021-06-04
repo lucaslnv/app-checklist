@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, ScrollView, Image, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NetInfo from "@react-native-community/netinfo";
 
@@ -19,6 +20,14 @@ export default function Login(props) {
 	const [operadorValido, setOperadorValido] = useState(false);
 	const [loading, setloading] = useState(false);
 	
+	const storeOperador = async (value) => {
+		try {
+			await AsyncStorage.setItem('codOperador', value)
+		} catch (e) {
+			Alert.alert('Aviso', 'Não foi possível salvar o operador.');
+		}
+	}
+	
 	function autenticarOperador(operador){
 
 		async function autenticar(dominio, operador){
@@ -30,8 +39,9 @@ export default function Login(props) {
 				setCodMotorista(respostaMotoristas.resultado.QrCode);
 				setQrCodeMotorista(respostaMotoristas.resultado.QrCode);
 				setNomeMotorista(respostaMotoristas.resultado.Name);
+				storeOperador(respostaMotoristas.resultado.QrCode);
 				setOperadorValido(true);
-			  	props.navigation.navigate('Equipamento', { codMotorista: respostaMotoristas.resultado.QrCode, nomeMotorista: respostaMotoristas.resultado.Name})
+				props.navigation.navigate('Equipamento', { codMotorista: respostaMotoristas.resultado.QrCode, nomeMotorista: respostaMotoristas.resultado.Name})
 			}else{
 				setloading(false);
 				setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));

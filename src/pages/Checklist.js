@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import NetInfo from "@react-native-community/netinfo";
 import { Formik } from 'formik';
 import {registrarChecklist} from '../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Checklist(props) {
 
@@ -24,8 +25,23 @@ export default function Checklist(props) {
 	const [quesitos, setQuesitos] = useState([]);
 	const [imgEquipamento, setImgEquipamento] = useState(false);
 	
+	//OPERADOR
+	const getOperador = async () => {
+		try {
+			const value = await AsyncStorage.getItem('codOperador')
+			if(value !== null) {
+				setCodOperador(value);
+			}else{
+				setCodOperador(9999);
+			}
+		} catch(e) {
+			Alert.alert('Aviso', 'Não foi possível recuperar o operador.');
+		}
+	}
+
 	//EQUIPAMENTO
 	useEffect(() => { 
+		getOperador();
 		setQrCodeEquipamento(props.navigation.getParam('qrCodeEquipamento'));
 		setNomeEquipamento(props.navigation.getParam('nomeEquipamento'));
 	}, []);
@@ -239,7 +255,7 @@ export default function Checklist(props) {
 			}
 		});
 		
-		async function registrar(dominio, quesitos, codEmitente, nomeEquipamento, codOperador){
+		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
 			}
@@ -270,7 +286,7 @@ export default function Checklist(props) {
 			}
 
 			if(state.isConnected){
-				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento);
+				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador);
 			}else{
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
 			}
