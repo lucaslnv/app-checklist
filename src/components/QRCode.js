@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Linking
+  Linking,
+  Alert
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -34,7 +35,7 @@ export default class QRCode extends Component {
     }
 
   onSuccess = e => {
-    alert(e.data);
+    Alert.alert('Aviso', e.data, [ { text: "OK", onPress: () => this.props.navigation.navigate('Operador') } ]);
     console.log(e);
     /*Linking.openURL(e.data).catch(err =>
         console.error('An error occured', err)
@@ -46,12 +47,11 @@ export default class QRCode extends Component {
       <QRCodeScanner
         onRead={this.onSuccess}
         flashMode = {this.state.cameraFlash}
-        topContent={''
-        }
+        topContent={''}
         bottomContent={
-        <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ () => this.ligarDesligarFlash() }>
-            <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
-        </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ () => this.ligarDesligarFlash() }>
+              <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
+          </TouchableOpacity>
         }
       />
     );

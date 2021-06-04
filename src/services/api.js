@@ -5,23 +5,29 @@ const url = axios.create({
     headers: {'Content-Type' : 'application/json' }
 });
 
-export const buscarMotoristas = async function(dominio) {
+export const buscarMotoristas = async function(dominio, operador) {
     
-    var dados = { 'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' };
-
-    var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/buscarMotoristasOrm';
+    var dados = { 
+        'chave': '095d0754-9ed5-4da9-aa16-cdd3b2dc42b1' ,
+        'operator': operador
+    };
+    
+    var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/getOperator';
     
     if( dominio == 'intranet'){
-        endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/buscarMotoristasOrm';
+        endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/getOperator';
     }
     
     return await axios.post(endPoint, dados)
     .then(function (response) {
-        return({status: true, resultado: response.data.resultado});
+        return({status: true, resultado: response.data});
     })
     .catch(function (error) {
-        console.log(error);
-        return({status: false, mensagem: 'Não foi possível carregar os motoristas.', erro: error});
+        var mensagem = 'Não foi possível autenticar o operador.';
+        if(error.response.status == 403 ){ mensagem = 'Chave inválida ou operador inativo.'; }
+        if(error.response.status == 404 ){ mensagem = 'Operador não existe.'; }
+
+        return({status: false, mensagem: mensagem, erro: error});
     });
 }
 

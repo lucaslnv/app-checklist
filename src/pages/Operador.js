@@ -18,25 +18,25 @@ export default function Login(props) {
 	const [qrCodeMotorista, setQrCodeMotorista] = useState('');
 	const [operadorValido, setOperadorValido] = useState(false);
 	const [loading, setloading] = useState(false);
-  
-	//CARREGAR MOTORISTAS
-	useEffect(() => { 
+	
+	function autenticarOperador(operador){
 
-		console.log('Checklist rodando...');
-
-		async function carregarMotoristas(dominio){
+		async function autenticar(dominio, operador){
 			setloading(true);
 			//BUSCA MOTORISTAS
-			let respostaMotoristas = await buscarMotoristas(dominio);
+			let respostaMotoristas = await buscarMotoristas(dominio, operador);
 			if(respostaMotoristas.status){
-				if(respostaMotoristas.resultado == "Chave invalida."){
 				setloading(false);
-				Alert.alert('Aviso', 'Chave de autenticação inválida.');
-				}
-				setloading(false);
-				setMotoristas(respostaMotoristas.resultado);
+				setCodMotorista(respostaMotoristas.resultado.QrCode);
+				setQrCodeMotorista(respostaMotoristas.resultado.QrCode);
+				setNomeMotorista(respostaMotoristas.resultado.Name);
+				setOperadorValido(true);
+			  	props.navigation.navigate('Equipamento', { codMotorista: respostaMotoristas.resultado.QrCode, nomeMotorista: respostaMotoristas.resultado.Name})
 			}else{
 				setloading(false);
+				setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
+			  	setNomeMotorista('OPERADOR NÃO ENCONTRADO');
+			  	setOperadorValido(false);
 				Alert.alert('Aviso', respostaMotoristas.mensagem);
 			}
 		}
@@ -54,29 +54,24 @@ export default function Login(props) {
 			}
 
 			if(state.isConnected){
-				carregarMotoristas(dominio);
+				autenticar(dominio, operador);
 			}else{
-			  setloading(false);
-			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
+			setloading(false);
+			Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
 			}
 		});
-		
+	}
+
+	//CARREGAR MOTORISTAS
+	useEffect(() => { 
+		console.log('Checklist rodando...');
 	}, []);
 	
 	//BUSCA OPERADOR NO ARRAY MOTORISTAS
 	useEffect(() => { 
 		if(props.navigation.getParam('operacao') == 'operador'){
-			let resposta = motoristas.find( motorista => motorista.codMotorista == props.navigation.getParam('qrCode'));
-			if(resposta != undefined){
-			  setCodMotorista(resposta.codMotorista);
-			  setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
-			  setNomeMotorista(resposta.desMotorista);
-			  setOperadorValido(true);
-			  props.navigation.navigate('Equipamento', { codMotorista: resposta.codMotorista, nomeMotorista: resposta.desMotorista})
-			}else{
-			  setQrCodeMotorista('QR Code: '+props.navigation.getParam('qrCode'));
-			  setNomeMotorista('OPERADOR NÃO ENCONTRADO');
-			  setOperadorValido(false);
+			if (props.navigation.getParam('qrCode') != undefined ){
+				autenticarOperador(props.navigation.getParam('qrCode'));
 			}
 		  }
 	}, [props.navigation.getParam('operacao'), props.navigation.getParam('qrCode')]);
