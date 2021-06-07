@@ -23,6 +23,7 @@ export default class QRCode extends Component {
         }
 
         this.ligarDesligarFlash = this.ligarDesligarFlash.bind(this);
+        this.lerBarCode = this.lerBarCode.bind(this);
     }
 
     ligarDesligarFlash(){
@@ -32,6 +33,15 @@ export default class QRCode extends Component {
             this.setState({cameraFlash: RNCamera.Constants.FlashMode.off, cameraFlashText: 'Flash On'});
         }
        
+    }
+
+    lerBarCode(obj){
+      if( obj.type != null ){
+          let state = this.state;
+          state.barCodeData = obj.data;
+          this.setState(state);
+          this.props.navigation.navigate(this.props.navigation.getParam('rota'), {qrCode: obj.data, operacao: this.props.navigation.getParam('operacao')} );
+      }
     }
 
   onSuccess = e => {
@@ -45,9 +55,12 @@ export default class QRCode extends Component {
   render() {
     return (
       <QRCodeScanner
-        onRead={this.onSuccess}
+        onRead={this.lerBarCode}
         flashMode = {this.state.cameraFlash}
         topContent={''}
+        showMarker={true}
+        permissionDialogTitle={'Aviso'}
+        permissionDialogMessage={'Precisamos da sua permissão para utilizar a câmera.'}
         bottomContent={
           <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ () => this.ligarDesligarFlash() }>
               <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>

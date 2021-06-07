@@ -52,8 +52,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -2420,12 +2420,24 @@ export default function Checklist(props) {
 																						</>
 																					)
 																				}
+																				{
+																					//BOTAO FOTO
+																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
+																					(	
+																						<Button
+																							disabled={true}
+																							buttonStyle={styles.botaoFoto}
+																							title="FOTO"
+																							//onPress={ () => registrar(values) }
+																						/>
+																					)
+																				}
 																				</View>
 																			)
-																			
 																		})
 																	)
 																}
+																
 															</CollapseBody>
 														</Collapse>
 													);
@@ -4143,6 +4155,18 @@ export default function Checklist(props) {
 																						</>
 																					)
 																				}
+																				{
+																					//BOTAO FOTO
+																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
+																					(	
+																						<Button
+																							disabled={true}
+																							buttonStyle={styles.botaoFoto}
+																							title="FOTO"
+																							//onPress={ () => registrar(values) }
+																						/>
+																					)
+																				}
 																				</View>
 																			)
 																		})
@@ -4643,6 +4667,18 @@ export default function Checklist(props) {
 																	/>
 																)
 															}
+															{ 	
+																//BOTAO FOTO
+																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
+																(	
+																	<Button
+																		disabled={true}
+																		buttonStyle={styles.botaoFoto}
+																		title="FOTO"
+																		//onPress={ () => registrar(values) }
+																	/>
+																)
+															}
 															</View>
 														)
 													})
@@ -4717,5 +4753,8 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		marginBottom:30,
 		backgroundColor: 'rgb(0,86,112)',
+	},
+	botaoFoto: {
+		margin: 10
 	},
 });
