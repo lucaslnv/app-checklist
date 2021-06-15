@@ -103,7 +103,7 @@ export default function Equipamento(props) {
 			<Button
 				buttonStyle={styles.botaoEquipamento}
 				title="EQUIPAMENTO"
-				onPress={ ()=> props.navigation.navigate('Camera', { rota: 'Equipamento', operacao: 'equipamento'})}
+				onPress={ ()=> props.navigation.navigate('QRCode', { rota: 'Equipamento', operacao: 'equipamento'})}
 			/>
 			{ 
 				equipamentoValido == true

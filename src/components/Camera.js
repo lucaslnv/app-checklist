@@ -1,6 +1,7 @@
-import React, { Component, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, LogBox } from 'react-native';
+import React, { Component, useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet, LogBox, Image } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import { Overlay } from 'react-native-elements';
 import BarcodeMask from 'react-native-barcode-mask';
 
 export default class Camera extends Component {
@@ -11,6 +12,8 @@ export default class Camera extends Component {
             barCodeData:'',
             cameraFlash: RNCamera.Constants.FlashMode.off,
             cameraFlashText: "Flash On",
+            modalVisible: true,
+            fotoBase64: null
         }
 
         this.lerBarCode = this.lerBarCode.bind(this);
@@ -38,10 +41,33 @@ export default class Camera extends Component {
     componentDidMount() {
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
     }
+
+    takePicture = async () => {
+        if (this.camera) {
+            const options = { quality: 0.1, base64: true, width: 500 };
+            const data = await this.camera.takePictureAsync(options);
+            console.log(data);
+            this.setState({fotoBase64: 'data:image/png;base64, '+data.base64})
+            this.setState({modalVisible: true})
+        }
+    };
     
     render() {
         return (
             <View style={styles.container}>
+                <Overlay isVisible={this.state.modalVisible} fullScreen={true} onBackdropPress={() => console.log('fechou') }  >
+                    <Text>Hello from Overlay!</Text>
+                    <Text>Hello from Overlay!</Text>
+                    <Text>Hello from Overlay!</Text>
+                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.setState({modalVisible: false}) }>
+                        <Text style={styles.textoBotao}>Fechar</Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.containerImg}>
+                        <Image style={styles.img} source={{uri: this.state.fotoBase64}} />
+                    </View > 
+                </Overlay>
+                
                 <View style={styles.containerCamera}>
                     <RNCamera 
                         style={ styles.camera }
@@ -59,9 +85,13 @@ export default class Camera extends Component {
                             buttonNegative: 'Cancelar',
                         }}
                     >
-                        <BarcodeMask width={330} height={450} edgeColor={'#CCC'} showAnimatedLine={true}/>
                     </RNCamera>
                 </View>
+                
+                <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={this.takePicture.bind(this)} >
+                    <Text style={styles.textoBotao}> {'Foto'} </Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.ligarDesligarFlash() }>
                     <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
                 </TouchableOpacity>
@@ -71,7 +101,7 @@ export default class Camera extends Component {
 }
 
 Camera.navigationOptions = {
-    title: 'QR Code'
+    title: 'Câmera'
   }
 
 const styles = StyleSheet.create({
@@ -96,5 +126,17 @@ const styles = StyleSheet.create({
         color: '#1B5AA0',
         fontSize: 15,
         fontWeight: 'bold',
-    }
+    },
+    containerImg: {
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        resizeMode: 'stretch',
+    },
+    img:{
+        height: 230,
+        width: 230,
+        resizeMode: 'cover',
+    },
 });
