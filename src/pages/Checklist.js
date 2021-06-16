@@ -52,8 +52,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -332,7 +332,8 @@ export default function Checklist(props) {
 								<View key={grupo.COD_GRUPO}>
 									<Collapse 
 										isExpanded={ false }
-										onToggle={ (isExpanded) => setFieldValue('icon_'+grupo.COD_GRUPO, isExpanded ) } >
+										onToggle={ (isExpanded) => setFieldValue('icon_'+grupo.COD_GRUPO, isExpanded ) } 
+										>
 										<CollapseHeader>
 											<Separator style={{ backgroundColor: '#fdb700', height: 45, marginTop: 3 }} bordered >
 											<Text style={{ fontWeight: 'bold', fontSize: 16 }}>
@@ -4672,10 +4673,10 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Button
-																		disabled={true}
+																		disabled={false}
 																		buttonStyle={styles.botaoFoto}
 																		title="FOTO"
-																		//onPress={ () => registrar(values) }
+																		onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM})  }
 																	/>
 																)
 															}

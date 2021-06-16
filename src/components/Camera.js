@@ -12,12 +12,13 @@ export default class Camera extends Component {
             barCodeData:'',
             cameraFlash: RNCamera.Constants.FlashMode.off,
             cameraFlashText: "Flash On",
-            modalVisible: true,
+            modalVisible: false,
             fotoBase64: null
         }
 
         this.lerBarCode = this.lerBarCode.bind(this);
         this.ligarDesligarFlash = this.ligarDesligarFlash.bind(this);
+        this.selecionarFoto = this.selecionarFoto.bind(this);
     }
     
     lerBarCode(obj){
@@ -44,28 +45,37 @@ export default class Camera extends Component {
 
     takePicture = async () => {
         if (this.camera) {
-            const options = { quality: 0.1, base64: true, width: 500 };
+            const options = { quality: 0.5, base64: true, width: 70 };
             const data = await this.camera.takePictureAsync(options);
-            console.log(data);
             this.setState({fotoBase64: 'data:image/png;base64, '+data.base64})
             this.setState({modalVisible: true})
         }
     };
+
+    selecionarFoto(){
+        console.log(this.state.fotoBase64);
+        console.log(this.props.navigation.getParam('quesito'))
+        this.props.navigation.goBack();
+    }
     
     render() {
         return (
             <View style={styles.container}>
                 <Overlay isVisible={this.state.modalVisible} fullScreen={true} onBackdropPress={() => console.log('fechou') }  >
-                    <Text>Hello from Overlay!</Text>
-                    <Text>Hello from Overlay!</Text>
-                    <Text>Hello from Overlay!</Text>
+                    
+                    <View style={styles.containerImg}>
+                        <Image style={styles.img} source={{uri: this.state.fotoBase64}} />
+                    </View > 
+
+                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.selecionarFoto() }>
+                        <Text style={styles.textoBotao}>Selecionar</Text>
+                    </TouchableOpacity>
+                    <Text>''</Text>
                     <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.setState({modalVisible: false}) }>
                         <Text style={styles.textoBotao}>Fechar</Text>
                     </TouchableOpacity>
 
-                    <View style={styles.containerImg}>
-                        <Image style={styles.img} source={{uri: this.state.fotoBase64}} />
-                    </View > 
+                   
                 </Overlay>
                 
                 <View style={styles.containerCamera}>
@@ -75,7 +85,7 @@ export default class Camera extends Component {
                             this.camera = camera;
                         }}
                         type={ RNCamera.Constants.Type.back }
-                        onBarCodeRead={ this.lerBarCode }
+                        //onBarCodeRead={ this.lerBarCode }
                         captureAudio={ false }
                         flashMode = {this.state.cameraFlash}
                         androidCameraPermissionOptions={{
@@ -89,7 +99,7 @@ export default class Camera extends Component {
                 </View>
                 
                 <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={this.takePicture.bind(this)} >
-                    <Text style={styles.textoBotao}> {'Foto'} </Text>
+                    <Text style={styles.textoBotao}> {'Capturar'} </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.ligarDesligarFlash() }>

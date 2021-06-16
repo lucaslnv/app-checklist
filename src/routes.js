@@ -34,7 +34,7 @@ const Routes = createAppContainer(
                 backgroundColor: '#DDDDDD',
             },
         },
-        initialRouteName: 'Camera'
+        initialRouteName: 'Checklist'
     },
     ));
 
