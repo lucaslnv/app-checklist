@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, LogBox, Image } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import { Overlay } from 'react-native-elements';
 import BarcodeMask from 'react-native-barcode-mask';
 
 export default class Camera extends Component {
@@ -12,13 +11,14 @@ export default class Camera extends Component {
             barCodeData:'',
             cameraFlash: RNCamera.Constants.FlashMode.off,
             cameraFlashText: "Flash On",
-            modalVisible: false,
-            fotoBase64: null
+            fotoBase64: null,
+            pausePreview: false
         }
 
         this.lerBarCode = this.lerBarCode.bind(this);
         this.ligarDesligarFlash = this.ligarDesligarFlash.bind(this);
         this.selecionarFoto = this.selecionarFoto.bind(this);
+        this.resumePicture = this.resumePicture.bind(this);
     }
     
     lerBarCode(obj){
@@ -45,38 +45,30 @@ export default class Camera extends Component {
 
     takePicture = async () => {
         if (this.camera) {
-            const options = { quality: 0.5, base64: true, width: 70 };
+            const options = { quality: 0.5, base64: true, width: 100 };
             const data = await this.camera.takePictureAsync(options);
+            this.camera.pausePreview();
+            this.setState({ pausePreview: true })
             this.setState({fotoBase64: 'data:image/png;base64, '+data.base64})
-            this.setState({modalVisible: true})
         }
     };
 
+    resumePicture(){
+        if (this.camera) {
+            this.camera.resumePreview();
+            this.setState({pausePreview:false})
+        }
+    }
+
     selecionarFoto(){
-        console.log(this.state.fotoBase64);
-        console.log(this.props.navigation.getParam('quesito'))
-        this.props.navigation.goBack();
+        this.setState({ pausePreview: false })
+        this.camera.resumePreview();
+        this.props.navigation.navigate('Checklist', {quesito: this.props.navigation.getParam('quesito'), fotoBase64: this.state.fotoBase64})
     }
     
     render() {
         return (
             <View style={styles.container}>
-                <Overlay isVisible={this.state.modalVisible} fullScreen={true} onBackdropPress={() => console.log('fechou') }  >
-                    
-                    <View style={styles.containerImg}>
-                        <Image style={styles.img} source={{uri: this.state.fotoBase64}} />
-                    </View > 
-
-                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.selecionarFoto() }>
-                        <Text style={styles.textoBotao}>Selecionar</Text>
-                    </TouchableOpacity>
-                    <Text>''</Text>
-                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.setState({modalVisible: false}) }>
-                        <Text style={styles.textoBotao}>Fechar</Text>
-                    </TouchableOpacity>
-
-                   
-                </Overlay>
                 
                 <View style={styles.containerCamera}>
                     <RNCamera 
@@ -95,6 +87,18 @@ export default class Camera extends Component {
                             buttonNegative: 'Cancelar',
                         }}
                     >
+                        { this.state.pausePreview && 
+                            (   
+                                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.selecionarFoto() }>
+                                        <Text style={styles.textoBotao}>Selecionar</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.resumePicture(this) }>
+                                        <Text style={styles.textoBotao}>Cancelar</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                        }
                     </RNCamera>
                 </View>
                 

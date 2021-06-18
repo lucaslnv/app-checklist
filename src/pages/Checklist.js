@@ -10,6 +10,7 @@ import NetInfo from "@react-native-community/netinfo";
 import { Formik } from 'formik';
 import {registrarChecklist} from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationEvents  } from 'react-navigation';
 
 export default function Checklist(props) {
 
@@ -24,7 +25,8 @@ export default function Checklist(props) {
 	const [codOperador, setCodOperador] = useState('');
 	const [quesitos, setQuesitos] = useState([]);
 	const [imgEquipamento, setImgEquipamento] = useState(false);
-	
+
+
 	//OPERADOR
 	const getOperador = async () => {
 		try {
@@ -246,6 +248,10 @@ export default function Checklist(props) {
 					if(item.indexOf("Inteiro") != -1){
 						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 					}
+					//FOTO
+					if(item.indexOf("ft") != -1){
+						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
+					}
 					
 				}
 
@@ -255,6 +261,7 @@ export default function Checklist(props) {
 			}
 		});
 		
+		console.log(quesitosJson);return;
 		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
@@ -315,7 +322,6 @@ export default function Checklist(props) {
 					? <Image style={styles.img} source={{uri: imgEquipamento}}  />
 					: <Image style={styles.img} source={require('../assets/foto.png')}  />
 					}
-					
 				</View >
 			</View>
 		</View>
@@ -4671,13 +4677,33 @@ export default function Checklist(props) {
 															{ 	
 																//BOTAO FOTO
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
-																(	
+																(	<>
 																	<Button
 																		disabled={false}
 																		buttonStyle={styles.botaoFoto}
 																		title="FOTO"
 																		onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM})  }
 																	/>
+																	<View>
+																		<NavigationEvents
+																		//onWillFocus={payload => console.log('will focus', payload)}
+																		onDidFocus={payload => setFieldValue('ftQuesito_'+payload.state.params.quesito, payload.state.params.fotoBase64 ) }
+																		//onWillBlur={payload => console.log('will blur', payload)}
+																		//onDidBlur={payload => console.log('did blur', payload)}
+																		/>
+																		{/*
+																		Your view code
+																		*/}
+																	</View>
+																	<View style={styles.containerImgQuesito}>
+																		<Image style={styles.imgQuesito} source={{uri: 
+																			quesito.COD_ITEM == 1 ? values.ftQuesito_1 :
+																			quesito.COD_ITEM == 6 ? values.ftQuesito_6
+																			:
+																			''
+																			}} />
+																	</View>  
+																	</>
 																)
 															}
 															</View>
@@ -4745,9 +4771,19 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	containerImgQuesito: {
+		padding: 10,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	img:{
-		height: '100%',
-		width: '100%',
+		height: 100,
+		width: 100,
+		resizeMode: 'stretch',
+	},
+	imgQuesito:{
+		height: 50,
+		width: 50,
 		resizeMode: 'stretch',
 	},
 	botao: {
