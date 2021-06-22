@@ -25,6 +25,7 @@ export default function Checklist(props) {
 	const [codOperador, setCodOperador] = useState('');
 	const [quesitos, setQuesitos] = useState([]);
 	const [imgEquipamento, setImgEquipamento] = useState(false);
+	const [contadorQuesito, setContadorQuesito] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]);
 
 
 	//OPERADOR
@@ -140,27 +141,39 @@ export default function Checklist(props) {
 
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
+						}
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					
 				}
@@ -182,27 +195,39 @@ export default function Checklist(props) {
 
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
+						}
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 
 				}
@@ -224,7 +249,9 @@ export default function Checklist(props) {
 
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
@@ -234,23 +261,33 @@ export default function Checklist(props) {
 					}
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
+						}
 					}
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
 					}
 					//FOTO
 					if(item.indexOf("ft") != -1){
-						quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
+						if( quesitoObrigatorio == true ){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
+						}
 					}
 					
 				}
@@ -2427,16 +2464,57 @@ export default function Checklist(props) {
 																						</>
 																					)
 																				}
+																				<NavigationEvents 
+																					onWillFocus={payload => console.log(payload) } 
+																					onDidFocus={payload => 
+																						{
+																							payload.state.params != undefined 
+																							&& (
+																								listbox.COD_OPCAO == 1 ?
+																								setFieldValue('Pneu_1_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								: 
+																								listbox.COD_OPCAO == 2 ?
+																								setFieldValue('Pneu_2_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 3 ?
+																								setFieldValue('Pneu_3_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 4 ?
+																								setFieldValue('Pneu_4_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 5 ?
+																								setFieldValue('Pneu_5_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 6 ?
+																								setFieldValue('Pneu_6_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								''
+																							)
+																						}
+																					}
+																				/>
 																				{
 																					//BOTAO FOTO
 																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
 																					(	
-																						<Button
-																							disabled={true}
-																							buttonStyle={styles.botaoFoto}
-																							title="FOTO"
-																							//onPress={ () => registrar(values) }
-																						/>
+																						<>
+																						<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, pneu: 1 }) } />
+																						<View style={styles.containerImgQuesito}>
+																							{	
+																								contadorQuesito.map((contador, i) => {
+																									return (
+																										listbox.COD_OPCAO == i && quesito.COD_ITEM == i && values['Pneu_'+i+'_ftQ'+i] != undefined &&
+																										(
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_'+i+'_ftQ'+i] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_'+i+'_ftQ'+i, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																							}
+																						</View>
+																						</>
 																					)
 																				}
 																				</View>
@@ -4674,35 +4752,41 @@ export default function Checklist(props) {
 																	/>
 																)
 															}
+															{
+																console.log(values)
+															}
 															{ 	
-																//BOTAO FOTO
+																//FOTO
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
-																(	<>
-																	<Button
-																		disabled={false}
-																		buttonStyle={styles.botaoFoto}
-																		title="FOTO"
-																		onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM})  }
-																	/>
-																	<View>
-																		<NavigationEvents
-																		//onWillFocus={payload => console.log('will focus', payload)}
-																		onDidFocus={payload => setFieldValue('ftQuesito_'+payload.state.params.quesito, payload.state.params.fotoBase64 ) }
-																		//onWillBlur={payload => console.log('will blur', payload)}
-																		//onDidBlur={payload => console.log('did blur', payload)}
+																(	
+																	<>
+																		<NavigationEvents 
+																			onWillFocus={payload => console.log(payload) } 
+																			onDidFocus={payload => 
+																				{
+																					payload.state.params != undefined 
+																					&& (
+																						setFieldValue('ftQuesito_'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																					)
+																				}
+																			}
 																		/>
-																		{/*
-																		Your view code
-																		*/}
-																	</View>
-																	<View style={styles.containerImgQuesito}>
-																		<Image style={styles.imgQuesito} source={{uri: 
-																			quesito.COD_ITEM == 1 ? values.ftQuesito_1 :
-																			quesito.COD_ITEM == 6 ? values.ftQuesito_6
-																			:
-																			''
-																			}} />
-																	</View>  
+																		<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
+																		<View style={styles.containerImgQuesito}>
+																			{	
+																				contadorQuesito.map((contador, i) => {
+																					return (
+																						quesito.COD_ITEM == i && values['ftQuesito_'+i] != undefined &&
+																						(
+																							<View key={i}>
+																								<Image style={styles.imgQuesito} source={{uri: values['ftQuesito_'+i] }} />
+																								<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('ftQuesito_'+quesito.COD_ITEM, null ) } />
+																							</View>
+																						)
+																					)
+																				})
+																			}
+																		</View>
 																	</>
 																)
 															}
@@ -4772,18 +4856,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	containerImgQuesito: {
-		padding: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	img:{
+	img: {
 		height: 100,
 		width: 100,
 		resizeMode: 'stretch',
 	},
-	imgQuesito:{
-		height: 50,
-		width: 50,
+	imgQuesito: {
+		height: 180,
+		width: 150,
 		resizeMode: 'stretch',
 	},
 	botao: {
@@ -4793,5 +4876,9 @@ const styles = StyleSheet.create({
 	},
 	botaoFoto: {
 		margin: 10
+	},
+	botaoExcluirFoto: {
+		marginTop: 10,
+		backgroundColor: 'red'
 	},
 });

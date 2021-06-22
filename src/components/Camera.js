@@ -45,7 +45,7 @@ export default class Camera extends Component {
 
     takePicture = async () => {
         if (this.camera) {
-            const options = { quality: 0.5, base64: true, width: 100 };
+            const options = { quality: 0.8, base64: true, width: 150 };
             const data = await this.camera.takePictureAsync(options);
             this.camera.pausePreview();
             this.setState({ pausePreview: true })
@@ -89,7 +89,7 @@ export default class Camera extends Component {
                     >
                         { this.state.pausePreview && 
                             (   
-                                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+                                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
                                     <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.selecionarFoto() }>
                                         <Text style={styles.textoBotao}>Selecionar</Text>
                                     </TouchableOpacity>
