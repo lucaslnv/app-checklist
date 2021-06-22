@@ -63,7 +63,7 @@ export default class Camera extends Component {
     selecionarFoto(){
         this.setState({ pausePreview: false })
         this.camera.resumePreview();
-        this.props.navigation.navigate('Checklist', {quesito: this.props.navigation.getParam('quesito'), fotoBase64: this.state.fotoBase64})
+        this.props.navigation.navigate('Checklist', {quesito: this.props.navigation.getParam('quesito'), fotoBase64: this.state.fotoBase64, tipo: this.props.navigation.getParam('tipo'), numero: this.props.navigation.getParam('numero')})
     }
     
     render() {

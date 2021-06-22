@@ -122,6 +122,7 @@ export default function Checklist(props) {
 		Object.keys(values).forEach(function(item){
 			if( item.indexOf("icon") == -1 ){
 
+				let respostaQuesito = values[item];
 				let quesitoObrigatorio = true;
 
 				//PNEU TRUE
@@ -173,6 +174,12 @@ export default function Checklist(props) {
 					if(item.indexOf("Inteiro") != -1){
 						if( quesitoObrigatorio == true ){
 							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
+					}
+					//FOTO
+					if(item.indexOf("ft") != -1){
+						if( quesitoObrigatorio == true && respostaPneu != null ){
+							quesitosJson[indice] = ({ "COD_LADO":pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
 						}
 					}
 					
@@ -227,6 +234,12 @@ export default function Checklist(props) {
 					if(item.indexOf("Inteiro") != -1){
 						if( quesitoObrigatorio == true ){
 							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+						}
+					}
+					//FOTO
+					if(item.indexOf("ft") != -1){
+						if( quesitoObrigatorio == true && resposta != null){
+							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
 						}
 					}
 
@@ -285,14 +298,14 @@ export default function Checklist(props) {
 					}
 					//FOTO
 					if(item.indexOf("ft") != -1){
-						if( quesitoObrigatorio == true ){
+						if( quesitoObrigatorio == true && resposta != null){
 							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
 						}
 					}
 					
 				}
 
-				if( quesitoObrigatorio == true ){
+				if( quesitoObrigatorio == true && respostaQuesito != null){
 					indice++;
 				}
 			}
@@ -2465,27 +2478,27 @@ export default function Checklist(props) {
 																					)
 																				}
 																				<NavigationEvents 
-																					onWillFocus={payload => console.log(payload) } 
+																					//onWillFocus={payload => console.log(payload) } 
 																					onDidFocus={payload => 
 																						{
-																							payload.state.params != undefined 
-																							&& (
-																								listbox.COD_OPCAO == 1 ?
+																							payload.state.params != undefined && payload.state.params.tipo == 'pneu' &&
+																							 (
+																								listbox.COD_OPCAO == 1 && payload.state.params.numero == 1 ?
 																								setFieldValue('Pneu_1_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								: 
-																								listbox.COD_OPCAO == 2 ?
+																								listbox.COD_OPCAO == 2 && payload.state.params.numero == 2 ?
 																								setFieldValue('Pneu_2_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								:
-																								listbox.COD_OPCAO == 3 ?
+																								listbox.COD_OPCAO == 3 && payload.state.params.numero == 3 ?
 																								setFieldValue('Pneu_3_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								:
-																								listbox.COD_OPCAO == 4 ?
+																								listbox.COD_OPCAO == 4 && payload.state.params.numero == 4 ?
 																								setFieldValue('Pneu_4_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								:
-																								listbox.COD_OPCAO == 5 ?
+																								listbox.COD_OPCAO == 5 && payload.state.params.numero == 5 ?
 																								setFieldValue('Pneu_5_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								:
-																								listbox.COD_OPCAO == 6 ?
+																								listbox.COD_OPCAO == 6 && payload.state.params.numero == 6 ?
 																								setFieldValue('Pneu_6_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
 																								:
 																								''
@@ -2494,24 +2507,95 @@ export default function Checklist(props) {
 																					}
 																				/>
 																				{
-																					//BOTAO FOTO
+																					//FOTO
 																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
 																					(	
 																						<>
-																						<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, pneu: 1 }) } />
+																						<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
 																						<View style={styles.containerImgQuesito}>
 																							{	
+																								//PNEU 1
 																								contadorQuesito.map((contador, i) => {
-																									return (
-																										listbox.COD_OPCAO == i && quesito.COD_ITEM == i && values['Pneu_'+i+'_ftQ'+i] != undefined &&
-																										(
+																									return(
+																										listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Pneu_1_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
-																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_'+i+'_ftQ'+i] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_'+i+'_ftQ'+i, null ) } />
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_1_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_1_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
 																								})
+																								
+																							}
+																							{	
+																								//PNEU 2
+																								contadorQuesito.map((contador, i) => {
+																									return(
+																										listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Pneu_2_ftQ'+quesito.COD_ITEM] != undefined && (
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_2_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_2_ftQ'+quesito.COD_ITEM, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																								
+																							}
+																							{	
+																								//PNEU 3
+																								contadorQuesito.map((contador, i) => {
+																									return(
+																										listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Pneu_3_ftQ'+quesito.COD_ITEM] != undefined && (
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_3_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_3_ftQ'+quesito.COD_ITEM, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																								
+																							}
+																							{	
+																								//PNEU 4
+																								contadorQuesito.map((contador, i) => {
+																									return(
+																										listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Pneu_4_ftQ'+quesito.COD_ITEM] != undefined && (
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_4_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_4_ftQ'+quesito.COD_ITEM, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																								
+																							}
+																							{	
+																								//PNEU 5
+																								contadorQuesito.map((contador, i) => {
+																									return(
+																										listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Pneu_5_ftQ'+quesito.COD_ITEM] != undefined && (
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_5_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_5_ftQ'+quesito.COD_ITEM, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																								
+																							}
+																							{	
+																								//PNEU 6
+																								contadorQuesito.map((contador, i) => {
+																									return(
+																										listbox.COD_OPCAO == 6 && quesito.COD_ITEM == contador && values['Pneu_6_ftQ'+quesito.COD_ITEM] != undefined && (
+																											<View key={i}>
+																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_6_ftQ'+quesito.COD_ITEM] }} />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_6_ftQ'+quesito.COD_ITEM, null ) } />
+																											</View>
+																										)
+																									)
+																								})
+																								
 																							}
 																						</View>
 																						</>
@@ -4240,18 +4324,113 @@ export default function Checklist(props) {
 																						</>
 																					)
 																				}
+																				<NavigationEvents 
+																					//onWillFocus={payload => console.log(payload) } 
+																					onDidFocus={payload => 
+																						{
+																							payload.state.params != undefined && payload.state.params.tipo == 'lataria'
+																							&& (
+																								listbox.COD_OPCAO == 1 && payload.state.params.numero == 1 ?
+																								setFieldValue('Lataria_1_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								: 
+																								listbox.COD_OPCAO == 2 && payload.state.params.numero == 2 ?
+																								setFieldValue('Lataria_2_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 3 && payload.state.params.numero == 3 ?
+																								setFieldValue('Lataria_3_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 4 && payload.state.params.numero == 4 ?
+																								setFieldValue('Lataria_4_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								listbox.COD_OPCAO == 5 && payload.state.params.numero == 5 ?
+																								setFieldValue('Lataria_5_ftQ'+payload.state.params.quesito, payload.state.params.fotoBase64 )
+																								:
+																								''
+																							)
+																						}
+																					}
+																				/>
 																				{
-																					//BOTAO FOTO
-																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
-																					(	
-																						<Button
-																							disabled={true}
-																							buttonStyle={styles.botaoFoto}
-																							title="FOTO"
-																							//onPress={ () => registrar(values) }
-																						/>
-																					)
-																				}
+																				//FOTO
+																				quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
+																				(	
+																					<>
+																					<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
+																					<View style={styles.containerImgQuesito}>
+																						{	
+																							//LATARIA 1
+																							contadorQuesito.map((contador, i) => {
+																								return(
+																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Lataria_1_ftQ'+quesito.COD_ITEM] != undefined && (
+																										<View key={i}>
+																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_1_ftQ'+quesito.COD_ITEM] }} />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_1_ftQ'+quesito.COD_ITEM, null ) } />
+																										</View>
+																									)
+																								)
+																							})
+																							
+																						}
+																						{	
+																							//Lataria 2
+																							contadorQuesito.map((contador, i) => {
+																								return(
+																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Lataria_2_ftQ'+quesito.COD_ITEM] != undefined && (
+																										<View key={i}>
+																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_2_ftQ'+quesito.COD_ITEM] }} />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_2_ftQ'+quesito.COD_ITEM, null ) } />
+																										</View>
+																									)
+																								)
+																							})
+																							
+																						}
+																						{	
+																							//Lataria 3
+																							contadorQuesito.map((contador, i) => {
+																								return(
+																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Lataria_3_ftQ'+quesito.COD_ITEM] != undefined && (
+																										<View key={i}>
+																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_3_ftQ'+quesito.COD_ITEM] }} />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_3_ftQ'+quesito.COD_ITEM, null ) } />
+																										</View>
+																									)
+																								)
+																							})
+																							
+																						}
+																						{	
+																							//Lataria 4
+																							contadorQuesito.map((contador, i) => {
+																								return(
+																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Lataria_4_ftQ'+quesito.COD_ITEM] != undefined && (
+																										<View key={i}>
+																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_4_ftQ'+quesito.COD_ITEM] }} />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_4_ftQ'+quesito.COD_ITEM, null ) } />
+																										</View>
+																									)
+																								)
+																							})
+																							
+																						}
+																						{	
+																							//Lataria 5
+																							contadorQuesito.map((contador, i) => {
+																								return(
+																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Lataria_5_ftQ'+quesito.COD_ITEM] != undefined && (
+																										<View key={i}>
+																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_5_ftQ'+quesito.COD_ITEM] }} />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_5_ftQ'+quesito.COD_ITEM, null ) } />
+																										</View>
+																									)
+																								)
+																							})
+																							
+																						}
+																					</View>
+																					</>
+																				)
+																			}
 																				</View>
 																			)
 																		})
@@ -4753,7 +4932,7 @@ export default function Checklist(props) {
 																)
 															}
 															{
-																console.log(values)
+																//console.log(values)
 															}
 															{ 	
 																//FOTO
