@@ -83,9 +83,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 15,
-    borderRadius: 50
+    borderRadius: 50,
+    width: '100%'
   },
   textoBotao:{
-    color: 'black'
+    color: 'black',
+    fontWeight: 'bold'
   }
 });

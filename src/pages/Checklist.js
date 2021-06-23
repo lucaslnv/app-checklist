@@ -55,8 +55,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -238,7 +238,7 @@ export default function Checklist(props) {
 					}
 					//FOTO
 					if(item.indexOf("ft") != -1){
-						if( quesitoObrigatorio == true && resposta != null){
+						if( quesitoObrigatorio == true && respostaLataria != null){
 							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
 						}
 					}
@@ -311,7 +311,7 @@ export default function Checklist(props) {
 			}
 		});
 		
-		console.log(quesitosJson);return;
+		console.log(quesitosJson);
 		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
@@ -2511,7 +2511,12 @@ export default function Checklist(props) {
 																					quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
 																					(	
 																						<>
-																						<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
+																						{
+																							values['Pneu_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
+																								<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
+																							)
+																						}
+																						
 																						<View style={styles.containerImgQuesito}>
 																							{	
 																								//PNEU 1
@@ -4355,7 +4360,11 @@ export default function Checklist(props) {
 																				quesito.IND_FOTO == true && quesito.IND_ATIVO == true && 
 																				(	
 																					<>
-																					<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
+																					{
+																						values['Lataria_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
+																							<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
+																						)
+																					}
 																					<View style={styles.containerImgQuesito}>
 																						{	
 																							//LATARIA 1
@@ -4940,7 +4949,7 @@ export default function Checklist(props) {
 																(	
 																	<>
 																		<NavigationEvents 
-																			onWillFocus={payload => console.log(payload) } 
+																			//onWillFocus={payload => console.log(payload) } 
 																			onDidFocus={payload => 
 																				{
 																					payload.state.params != undefined 
@@ -4950,7 +4959,12 @@ export default function Checklist(props) {
 																				}
 																			}
 																		/>
-																		<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
+																		{
+																			values['ftQuesito_'+quesito.COD_ITEM] == undefined &&(
+																				<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
+																			)
+																		}
+																		
 																		<View style={styles.containerImgQuesito}>
 																			{	
 																				contadorQuesito.map((contador, i) => {
@@ -5044,6 +5058,7 @@ const styles = StyleSheet.create({
 		resizeMode: 'stretch',
 	},
 	imgQuesito: {
+		marginTop:10,
 		height: 180,
 		width: 150,
 		resizeMode: 'stretch',

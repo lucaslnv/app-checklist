@@ -45,11 +45,10 @@ export default class Camera extends Component {
 
     takePicture = async () => {
         if (this.camera) {
-            const options = { quality: 0.8, base64: true, width: 150 };
+            const options = { quality: 0.8, base64: true, fixOrientation: true, pauseAfterCapture: true, width : 300};
             const data = await this.camera.takePictureAsync(options);
-            this.camera.pausePreview();
-            this.setState({ pausePreview: true })
-            this.setState({fotoBase64: 'data:image/png;base64, '+data.base64})
+            this.setState({ pausePreview: true });
+            this.setState({fotoBase64: 'data:image/png;base64, '+data.base64});
         }
     };
 
@@ -89,26 +88,28 @@ export default class Camera extends Component {
                     >
                         { this.state.pausePreview && 
                             (   
-                                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
-                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.selecionarFoto() }>
-                                        <Text style={styles.textoBotao}>Selecionar</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.resumePicture(this) }>
+                                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
+                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoSelecionarCancelar} onPress={ ()=> this.resumePicture(this) }>
                                         <Text style={styles.textoBotao}>Cancelar</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoSelecionarCancelar} onPress={ ()=> this.selecionarFoto() }>
+                                        <Text style={styles.textoBotao}>Selecionar</Text>
                                     </TouchableOpacity>
                                 </View>
                             )
                         }
                     </RNCamera>
                 </View>
-                
-                <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={this.takePicture.bind(this)} >
-                    <Text style={styles.textoBotao}> {'Capturar'} </Text>
-                </TouchableOpacity>
+                <View style={styles.containerBotao}>
+                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={this.takePicture.bind(this)} >
+                        <Text style={styles.textoBotao}> {'Capturar'} </Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.ligarDesligarFlash() }>
-                    <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
-                </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ ()=> this.ligarDesligarFlash() }>
+                        <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
+                    </TouchableOpacity>
+                </View>
+                
             </View>
         );
     }
@@ -121,36 +122,41 @@ Camera.navigationOptions = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: 'black',
     },
     containerCamera: {
         flex: 1,
-        backgroundColor: '#FFF'
+        backgroundColor: 'black'
     },
     camera: {
         height: '100%',
         width: '100%' 
     },
     botaoLogin: {
+        margin: 5,
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
         padding: 15,
+        borderRadius: 50,
+        width: '100%',
+    },
+    botaoSelecionarCancelar: {
+        margin: 5,
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 15,
+        borderRadius: 50,
+        width: '30%',
     },
     textoBotao: {
-        color: '#1B5AA0',
+        color: 'black',
         fontSize: 15,
         fontWeight: 'bold',
     },
-    containerImg: {
-        marginTop: 20,
+    containerBotao: {
+        marginTop: 60,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 10,
-        resizeMode: 'stretch',
-    },
-    img:{
-        height: 230,
-        width: 230,
-        resizeMode: 'cover',
-    },
+    }
 });
