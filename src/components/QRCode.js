@@ -42,7 +42,8 @@ export default class QRCode extends Component {
   render() {
     return (
 		<QRCodeScanner
-			onRead={this.lerBarCode}
+      cameraProps={{}}
+      onRead={this.lerBarCode}
 			flashMode = {this.state.cameraFlash}
 			topContent={''}
       showMarker={true}

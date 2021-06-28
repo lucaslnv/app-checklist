@@ -4471,6 +4471,9 @@ export default function Checklist(props) {
 																		<Picker
 																			enabled={quesito.IND_OBRIGATORIO}
 																			selectedValue={
+																				values['lbQuesito_'+quesito.COD_ITEM]
+																			}
+																			/*selectedValue={
 																				quesito.COD_ITEM == 1 ? values.lbQuesito_1 :
 																				quesito.COD_ITEM == 2 ? values.lbQuesito_2 :
 																				quesito.COD_ITEM == 3 ? values.lbQuesito_3 :
@@ -4522,7 +4525,7 @@ export default function Checklist(props) {
 																				quesito.COD_ITEM == 49 ? values.lbQuesito_49 : 
 																				quesito.COD_ITEM == 50 ? values.lbQuesito_50 : 
 																				false
-																			}
+																			}*/
 																			style={{ height: 50, margin:5, width: '100%'}}
 																			onValueChange={(itemValue, itemIndex) => setFieldValue('lbQuesito_'+quesito.COD_ITEM, itemValue )}
 																		>
@@ -4562,7 +4565,10 @@ export default function Checklist(props) {
 																						onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																						color={"#f0ad4e"}
 																						selectedColor={"#5cb85c"}
-																						selected={ 
+																						selected={
+																							values['rbQuesito_'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false
+																						}
+																						/*selected={ 
 																							quesito.COD_ITEM == 1 ? values.rbQuesito_1 == radio.COD_OPCAO ? true : false :
 																							quesito.COD_ITEM == 2 ? values.rbQuesito_2 == radio.COD_OPCAO ? true : false :
 																							quesito.COD_ITEM == 3 ? values.rbQuesito_3 == radio.COD_OPCAO ? true : false :
@@ -4614,7 +4620,7 @@ export default function Checklist(props) {
 																							quesito.COD_ITEM == 49 ? values.rbQuesito_49 == radio.COD_OPCAO ? true : false :
 																							quesito.COD_ITEM == 50 ? values.rbQuesito_50 == radio.COD_OPCAO ? true : false :
 																							false
-																						}
+																						}*/
 																					/>
 																				<Text>{'  '+radio.DES_OPCAO}</Text>
 																			</ListItem>
@@ -4634,6 +4640,9 @@ export default function Checklist(props) {
 																			ios_backgroundColor="#fff"
 																			onValueChange={ (previousState) => setFieldValue('cbQuesito_'+quesito.COD_ITEM, previousState ) }
 																			value={
+																				values['cbQuesito_'+quesito.COD_ITEM]
+																			}
+																			/*value={
 																				quesito.COD_ITEM == 1 ? values.cbQuesito_1 :
 																				quesito.COD_ITEM == 2 ? values.cbQuesito_2 :
 																				quesito.COD_ITEM == 3 ? values.cbQuesito_3 :
@@ -4685,61 +4694,11 @@ export default function Checklist(props) {
 																				quesito.COD_ITEM == 49 ? values.cbQuesito_49 :
 																				quesito.COD_ITEM == 50 ? values.cbQuesito_50 :
 																				false
-																			}
+																			}*/
 																		/>
 																		<Text style={{fontWeight: 'bold'}}>
 																		{
-																			/*quesito.COD_ITEM == 1 ? values.cbQuesito_1 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 2 ? values.cbQuesito_2 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 3 ? values.cbQuesito_3 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 4 ? values.cbQuesito_4 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 5 ? values.cbQuesito_5 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 6 ? values.cbQuesito_6 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 7 ? values.cbQuesito_7 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 8 ? values.cbQuesito_8 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 9 ? values.cbQuesito_9 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 10 ? values.cbQuesito_10 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 11 ? values.cbQuesito_11 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 12 ? values.cbQuesito_12 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 13 ? values.cbQuesito_13 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 14 ? values.cbQuesito_14 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 15 ? values.cbQuesito_15 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 16 ? values.cbQuesito_16 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 17 ? values.cbQuesito_17 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 18 ? values.cbQuesito_18 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 19 ? values.cbQuesito_19 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 20 ? values.cbQuesito_20 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 21 ? values.cbQuesito_21 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 22 ? values.cbQuesito_22 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 23 ? values.cbQuesito_23 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 24 ? values.cbQuesito_24 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 25 ? values.cbQuesito_25 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 26 ? values.cbQuesito_26 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 27 ? values.cbQuesito_27 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 28 ? values.cbQuesito_28 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 29 ? values.cbQuesito_29 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 30 ? values.cbQuesito_30 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 31 ? values.cbQuesito_31 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 32 ? values.cbQuesito_32 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 33 ? values.cbQuesito_33 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 34 ? values.cbQuesito_34 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 35 ? values.cbQuesito_35 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 36 ? values.cbQuesito_36 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 37 ? values.cbQuesito_37 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 38 ? values.cbQuesito_38 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 39 ? values.cbQuesito_39 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 40 ? values.cbQuesito_40 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 41 ? values.cbQuesito_41 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 42 ? values.cbQuesito_42 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 43 ? values.cbQuesito_43 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 44 ? values.cbQuesito_44 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 45 ? values.cbQuesito_45 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 46 ? values.cbQuesito_46 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 47 ? values.cbQuesito_47 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 48 ? values.cbQuesito_48 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 49 ? values.cbQuesito_49 == true ? 'Sim' : 'Não' :
-																			quesito.COD_ITEM == 50 ? values.cbQuesito_50 == true ? 'Sim' : 'Não' :
-																			false*/
+																			values['cbQuesito_'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' 
 																		}
 																		</Text>
 																	</ListItem>	
@@ -4755,6 +4714,9 @@ export default function Checklist(props) {
 																		onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
 																		value={
+																			values['inputInteiroQuesito_'+quesito.COD_ITEM]
+																		}
+																		/*value={
 																			quesito.COD_ITEM == 1 ? values.inputInteiroQuesito_1 :
 																			quesito.COD_ITEM == 2 ? values.inputInteiroQuesito_2 :
 																			quesito.COD_ITEM == 3 ? values.inputInteiroQuesito_3 :
@@ -4806,7 +4768,7 @@ export default function Checklist(props) {
 																			quesito.COD_ITEM == 49 ? values.inputInteiroQuesito_49 :
 																			quesito.COD_ITEM == 50 ? values.inputInteiroQuesito_50 :
 																			false
-																		}
+																		}*/
 																	/>
 																)
 															}
@@ -4820,6 +4782,9 @@ export default function Checklist(props) {
 																		onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
 																		value={
+																			values['inputDecimalQuesito_'+quesito.COD_ITEM]
+																		}
+																		/*value={
 																			quesito.COD_ITEM == 1 ? values.inputDecimalQuesito_1 :
 																			quesito.COD_ITEM == 2 ? values.inputDecimalQuesito_2 :
 																			quesito.COD_ITEM == 3 ? values.inputDecimalQuesito_3 :
@@ -4871,7 +4836,7 @@ export default function Checklist(props) {
 																			quesito.COD_ITEM == 49 ? values.inputDecimalQuesito_49 :
 																			quesito.COD_ITEM == 50 ? values.inputDecimalQuesito_50 : 
 																			false
-																		}
+																		}*/
 																	/>
 																)
 															}
@@ -4884,7 +4849,10 @@ export default function Checklist(props) {
 																		onChangeText={handleChange('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Observação'
-																		value={ 
+																		value={
+																			values['inputTextoQuesito_'+quesito.COD_ITEM]
+																		}
+																		/*value={ 
 																			quesito.COD_ITEM == 1 ? values.inputTextoQuesito_1 :
 																			quesito.COD_ITEM == 2 ? values.inputTextoQuesito_2 :
 																			quesito.COD_ITEM == 3 ? values.inputTextoQuesito_3 :
@@ -4936,12 +4904,9 @@ export default function Checklist(props) {
 																			quesito.COD_ITEM == 49 ? values.inputTextoQuesito_49 :
 																			quesito.COD_ITEM == 50 ? values.inputTextoQuesito_50 : 
 																			false
-																		}
+																		}*/
 																	/>
 																)
-															}
-															{
-																//console.log(values)
 															}
 															{ 	
 																//FOTO
