@@ -179,7 +179,7 @@ export default function Checklist(props) {
 					//FOTO
 					if(item.indexOf("ft") != -1){
 						if( quesitoObrigatorio == true && respostaPneu != null ){
-							quesitosJson[indice] = ({ "COD_LADO":pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
+							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
 						}
 					}
 					
@@ -239,7 +239,7 @@ export default function Checklist(props) {
 					//FOTO
 					if(item.indexOf("ft") != -1){
 						if( quesitoObrigatorio == true && respostaLataria != null){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
+							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
 						}
 					}
 
@@ -394,19 +394,7 @@ export default function Checklist(props) {
 											<Separator style={{ backgroundColor: '#fdb700', height: 45, marginTop: 3 }} bordered >
 											<Text style={{ fontWeight: 'bold', fontSize: 16 }}>
 											<Icon
-												name = { 
-													grupo.COD_GRUPO == 1 ? values.icon_1 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 2 ? values.icon_2 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 3 ? values.icon_3 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 4 ? values.icon_4 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 5 ? values.icon_5 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 6 ? values.icon_6 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 7 ? values.icon_7 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 8 ? values.icon_8 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 9 ? values.icon_9 == true ? 'angle-up' : 'angle-down' :
-													grupo.COD_GRUPO == 10 ? values.icon_10 == true ? 'angle-up' : 'angle-down' :
-													false
-												}
+												name={ values['icon_'+grupo.COD_GRUPO] == true ? 'angle-up' : 'angle-down' }
 												size={15}
 												color="black"
 											/>
@@ -835,7 +823,16 @@ export default function Checklist(props) {
 																										onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
 																										selectedColor={"#5cb85c"}
-																										selected={ 
+																										selected={
+																											listbox.COD_OPCAO == 1 ? values['Pneu_1_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 2 ? values['Pneu_2_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 3 ? values['Pneu_3_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 4 ? values['Pneu_4_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 5 ? values['Pneu_5_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											listbox.COD_OPCAO == 6 ? values['Pneu_6_rbQ'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false :
+																											false
+																										}
+																										/*selected={ 
 																											
 																											//PNEU 1
 																											listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Pneu_1_rbQ1 == radio.COD_OPCAO ? true : false :
@@ -1150,7 +1147,7 @@ export default function Checklist(props) {
 																											listbox.COD_OPCAO == 6 && quesito.COD_ITEM == 50  ? values.Pneu_6_rbQ50 == radio.COD_OPCAO ? true : false :
 
 																											false
-																										}
+																										}*/
 																									/>
 																									<Text>{' '+radio.DES_OPCAO}</Text>
 																								</ListItem>
@@ -1170,6 +1167,15 @@ export default function Checklist(props) {
 																								ios_backgroundColor="#fff"
 																								onValueChange={ (previousState) => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_cbQ'+quesito.COD_ITEM, previousState ) }
 																								value={
+																									listbox.COD_OPCAO == 1 ? values['Pneu_1_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 2 ? values['Pneu_2_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 3 ? values['Pneu_3_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 4 ? values['Pneu_4_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 5 ? values['Pneu_5_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 6 ? values['Pneu_6_cbQ'+quesito.COD_ITEM] : 
+																									false
+																								}
+																								/*value={
 																									//PNEU 1
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Pneu_1_cbQ1 :
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Pneu_1_cbQ2 :
@@ -1485,8 +1491,19 @@ export default function Checklist(props) {
 
 
 																									false
-																								}
+																								}*/
 																							/>
+																							<Text style={{fontWeight: 'bold'}}>
+																							{
+																								listbox.COD_OPCAO == 1 ? values['Pneu_1_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 2 ? values['Pneu_2_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 3 ? values['Pneu_3_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 4 ? values['Pneu_4_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 5 ? values['Pneu_5_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 6 ? values['Pneu_6_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								false
+																							}
+																							</Text>
 																						</ListItem>	
 																					)
 																				}
@@ -3231,6 +3248,14 @@ export default function Checklist(props) {
 																								ios_backgroundColor="#fff"
 																								onValueChange={ (previousState) => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_cbQ'+quesito.COD_ITEM, previousState ) }
 																								value={
+																									listbox.COD_OPCAO == 1 ? values['Lataria_1_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 2 ? values['Lataria_2_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 3 ? values['Lataria_3_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 4 ? values['Lataria_4_cbQ'+quesito.COD_ITEM] : 
+																									listbox.COD_OPCAO == 5 ? values['Lataria_5_cbQ'+quesito.COD_ITEM] :
+																									false
+																								}
+																								/*value={
 																									//Lataria 1
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 1 ? values.Lataria_1_cbQ1 :
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == 2 ? values.Lataria_1_cbQ2 :
@@ -3492,8 +3517,18 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == 50  ? values.Lataria_5_cbQ50 :
 
 																									false
-																								}
+																								}*/
 																							/>
+																							<Text style={{fontWeight: 'bold'}}>
+																							{
+																								listbox.COD_OPCAO == 1 ? values['Lataria_1_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 2 ? values['Lataria_2_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 3 ? values['Lataria_3_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 4 ? values['Lataria_4_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								listbox.COD_OPCAO == 5 ? values['Lataria_5_cbQ'+quesito.COD_ITEM]  == true ? 'Sim' : 'Não' : 
+																								false
+																							}
+																							</Text>
 																						</ListItem>	
 																					)
 																				}
