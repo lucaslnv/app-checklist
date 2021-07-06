@@ -36,8 +36,7 @@ export default class QRCode extends Component {
           state.barCodeData = obj.data;
           this.setState(state);
           Vibration.vibrate(200, true);
-          alert(obj.data);
-          //this.props.navigation.navigate(this.props.navigation.getParam('rota'), {qrCode: obj.data, operacao: this.props.navigation.getParam('operacao')} );
+          this.props.navigation.navigate(this.props.navigation.getParam('rota'), {qrCode: obj.data, operacao: this.props.navigation.getParam('operacao')} );
       }
     }
 

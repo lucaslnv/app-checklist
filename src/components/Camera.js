@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, LogBox, Image } from 'react-native';
+import React, { Component } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet, LogBox } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import BarcodeMask from 'react-native-barcode-mask';
 
 export default class Camera extends Component {
     
@@ -76,7 +75,6 @@ export default class Camera extends Component {
                             this.camera = camera;
                         }}
                         type={ RNCamera.Constants.Type.back }
-                        //onBarCodeRead={ this.lerBarCode }
                         captureAudio={ false }
                         flashMode = {this.state.cameraFlash}
                         androidCameraPermissionOptions={{
