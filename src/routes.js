@@ -23,8 +23,7 @@ const Routes = createAppContainer(
         },
         QRCode: {
             screen: QRCode
-        },
-        
+        }
     },
     {   
         defaultNavigationOptions: {
