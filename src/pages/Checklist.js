@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker } from 'react-native';
 import {buscarQuesitos} from '../services/api';
-import { Separator, Radio, ListItem } from 'native-base';
+import { Separator, Radio, ListItem, Item } from 'native-base';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import LoadingItem from '../components/LoadingItem';
 import { Button, Text, Input } from 'react-native-elements';
@@ -124,6 +124,7 @@ export default function Checklist(props) {
 
 				let respostaQuesito = values[item];
 				let quesitoObrigatorio = true;
+				let quesitoIgual = false;
 
 				//PNEU TRUE
 				if(  item.indexOf("Pneu") != -1 ){
@@ -143,46 +144,114 @@ export default function Checklist(props) {
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": respostaPneu, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": respostaPneu, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaPneu, "DES_FOTO": "" });
 						}
 					}
+
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaPneu, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//FOTO
 					if(item.indexOf("ft") != -1){
 						if( quesitoObrigatorio == true && respostaPneu != null ){
-							quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoPneu) && (item.COD_LADO == pneu) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": respostaPneu });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": pneu, "COD_ITEM": quesitoPneu, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaPneu });
 						}
 					}
-					
 				}
 
 				//LATARIA TRUE
@@ -203,43 +272,112 @@ export default function Checklist(props) {
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": respostaLataria, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": respostaLataria, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": respostaLataria, "DES_FOTO": "" });
 						}
 					}
+
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": respostaLataria, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//FOTO
 					if(item.indexOf("ft") != -1){
 						if( quesitoObrigatorio == true && respostaLataria != null){
-							quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
+							quesitosJson.forEach(function(item, i){
+								if( (item.COD_ITEM == quesitoLataria) && (item.COD_LADO == lataria) ){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": respostaLataria });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO": lataria, "COD_ITEM": quesitoLataria, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": respostaLataria });
 						}
 					}
 
@@ -263,53 +401,130 @@ export default function Checklist(props) {
 					//LIST BOX
 					if(item.indexOf("lb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if(item.COD_ITEM == quesito){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//RADIO BUTTON
 					if(item.indexOf("rb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							
+							if( quesitoObrigatorio == true && resposta != null){
+								quesitosJson.forEach(function(item, i){
+									if(item.COD_ITEM == quesito){
+										quesitoIgual = true;
+										quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+									}
+								});
+								if(quesitoIgual == false){
+									quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+								}
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//CHECKBOX
 					if(item.indexOf("cb") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if(item.COD_ITEM == quesito){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": resposta, "NUM_ALTERNATIVO":"", "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//TEXTO
 					if(item.indexOf("Texto") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
+							
+							if( quesitoObrigatorio == true ){
+								quesitosJson.forEach(function(item, i){
+									if(item.COD_ITEM == quesito){
+										quesitoIgual = true;
+										quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": resposta, "DES_FOTO": item.DES_FOTO });
+									}
+								});
+								if(quesitoIgual == false){
+									quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
+								}
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO":"", "DES_RESPOSTA": resposta, "DES_FOTO": "" });
 						}
 					}
+
 					//DECIMAL
 					if(item.indexOf("Decimal") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if(item.COD_ITEM == quesito){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//INTEIRO
 					if(item.indexOf("Inteiro") != -1){
 						if( quesitoObrigatorio == true ){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							quesitosJson.forEach(function(item, i){
+								if(item.COD_ITEM == quesito){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": item.DES_FOTO });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
+							}
+							//quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": resposta, "DES_RESPOSTA": "", "DES_FOTO": "" });
 						}
 					}
+
 					//FOTO
 					if(item.indexOf("ft") != -1){
+						
 						if( quesitoObrigatorio == true && resposta != null){
-							quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
+							quesitosJson.forEach(function(item, i){
+								if(item.COD_ITEM == quesito){
+									quesitoIgual = true;
+									quesitosJson[i] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": item.NUM_RESPOSTA, "NUM_ALTERNATIVO": item.NUM_ALTERNATIVO, "DES_RESPOSTA": item.DES_RESPOSTA, "DES_FOTO": resposta });
+								}
+							});
+							if(quesitoIgual == false){
+								quesitosJson[indice] = ({ "COD_LADO":"", "COD_ITEM": quesito, "NUM_RESPOSTA": "", "NUM_ALTERNATIVO": "", "DES_RESPOSTA": "", "DES_FOTO": resposta });
+							}
 						}
 					}
-					
 				}
 
-				if( quesitoObrigatorio == true && respostaQuesito != null){
+				if( quesitoObrigatorio == true && respostaQuesito != null && quesitoIgual == false){
 					indice++;
 				}
 			}
 		});
+		
+		console.log(quesitosJson);
+		//return;
 		
 		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
@@ -672,7 +887,7 @@ export default function Checklist(props) {
 																						<>
 																						{
 																							values['Pneu_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
-																								<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
+																								<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
 																							)
 																						}
 																						
@@ -684,7 +899,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Pneu_1_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_1_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_1_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_1_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -697,7 +912,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Pneu_2_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_2_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_2_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_2_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -710,7 +925,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Pneu_3_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_3_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_3_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_3_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -723,7 +938,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Pneu_4_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_4_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_4_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_4_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -736,7 +951,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Pneu_5_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_5_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_5_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_5_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -749,7 +964,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 6 && quesito.COD_ITEM == contador && values['Pneu_6_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_6_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_6_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_6_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -998,7 +1213,7 @@ export default function Checklist(props) {
 																					<>
 																					{
 																						values['Lataria_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
-																							<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
+																							<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
 																						)
 																					}
 																					<View style={styles.containerImgQuesito}>
@@ -1009,7 +1224,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Lataria_1_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_1_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_1_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_1_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1022,7 +1237,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Lataria_2_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_2_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_2_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_2_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1035,7 +1250,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Lataria_3_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_3_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_3_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_3_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1048,7 +1263,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Lataria_4_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_4_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_4_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_4_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1061,7 +1276,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Lataria_5_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_5_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_5_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_5_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1238,7 +1453,7 @@ export default function Checklist(props) {
 																		/>
 																		{
 																			values['ftQuesito_'+quesito.COD_ITEM] == undefined &&(
-																				<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
+																				<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
 																			)
 																		}
 																		
@@ -1250,7 +1465,7 @@ export default function Checklist(props) {
 																						(
 																							<View key={i}>
 																								<Image style={styles.imgQuesito} source={{uri: values['ftQuesito_'+i] }} />
-																								<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('ftQuesito_'+quesito.COD_ITEM, null ) } />
+																								<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('ftQuesito_'+quesito.COD_ITEM, null ) } />
 																							</View>
 																						)
 																					)
