@@ -121,6 +121,7 @@ export default function Login(props) {
         }
       </View>  
     	<LoadingItem visible={loading} />
+		<Text style={{marginTop: 30}}>V. A. 14</Text>
     </ScrollView>
   );
 }

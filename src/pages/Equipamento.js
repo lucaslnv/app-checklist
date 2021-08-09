@@ -67,7 +67,7 @@ export default function Equipamento(props) {
 	useEffect(() => { 
 		
 		if(props.navigation.getParam('operacao') == 'equipamento'){
-			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode'));
+			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode') && equipamento.COD_EMITENTE == 3526);
 			if(resposta != undefined){
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento(resposta.EQUIPAMENTO);
