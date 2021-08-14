@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, ScrollView, Image, Alert } from 'react-native';
-import { Button, Text } from 'react-native-elements';
+import { StyleSheet, View, ScrollView, Image, Alert, Switch } from 'react-native';
+import { Button, Text, Input } from 'react-native-elements';
 import LoadingItem from '../components/LoadingItem';
 import {buscarEquipamentos} from '../services/api';
 import NetInfo from "@react-native-community/netinfo";
@@ -14,6 +14,8 @@ export default function Equipamento(props) {
 	const [nomeEquipamento, setNomeEquipamento] = useState('');
 	const [qrCodeEquipamento, setQrCodeEquipamento] = useState('');
 	const [equipamentoValido, setEquipamentoValido] = useState(false);
+	const [inputEquipamento, setInputEquipamento] = useState('');
+	const [qrCodeIlegivel, setQrCodeIlegivel] = useState(false);
 	  
 	//OPERADOR
 	useEffect(() => { 
@@ -28,6 +30,7 @@ export default function Equipamento(props) {
 			setloading(true);
 			//BUSCA EQUIPAMENTOS
 			let respostaEquipamentos = await buscarEquipamentos(dominio);
+			console.log(respostaEquipamentos);
 			if(respostaEquipamentos.status){
 				if(respostaEquipamentos.resultado == "Chave invalida."){
 					setloading(false);
@@ -63,9 +66,13 @@ export default function Equipamento(props) {
 		
 	}, []);
 
-	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS
+	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS - PESQUISA
+	function pesquisarEquipamento(){
+		console.log(inputEquipamento);
+	}
+
+	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS QR CODE
 	useEffect(() => { 
-		
 		if(props.navigation.getParam('operacao') == 'equipamento'){
 			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode') && equipamento.COD_EMITENTE == 3526);
 			if(resposta != undefined){
@@ -102,9 +109,39 @@ export default function Equipamento(props) {
 			
 			<Button
 				buttonStyle={styles.botaoEquipamento}
-				title="EQUIPAMENTO"
+				title="QR CODE EQUIPAMENTO"
 				onPress={ ()=> props.navigation.navigate('QRCode', { rota: 'Equipamento', operacao: 'equipamento'})}
 			/>
+
+			
+			<View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 30}}>
+				<Text style={{fontWeight: 'bold'}}>QR Code ilegivel?</Text>
+				<Switch
+					trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
+					thumbColor={ "#fff" }
+					ios_backgroundColor="#fff"
+					onValueChange={ (previousState) => setQrCodeIlegivel(previousState) }
+					value={qrCodeIlegivel}
+				/>
+			</View>
+			{
+			qrCodeIlegivel && (
+				<>
+					<Input 
+						editable={true}
+						onChangeText={ value => setInputEquipamento(value)}
+						placeholder='Informe o equipamento'
+						value={inputEquipamento}
+					/>
+					<Button
+						disabled={!inputEquipamento}
+						buttonStyle={styles.botaoPesquisar}
+						title="PESQUISAR"
+						onPress={ pesquisarEquipamento }
+					/>
+				</>
+			)
+			}
 			{ 
 				equipamentoValido == true
 				? 
@@ -152,6 +189,9 @@ const styles = StyleSheet.create({
 	},
 	botaoAvancar: {
 		marginTop: 20,
+		backgroundColor: 'rgb(0,86,112)',
+	},
+	botaoPesquisar: {
 		backgroundColor: 'rgb(0,86,112)',
 	},
 	img:{
