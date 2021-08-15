@@ -33,7 +33,7 @@ const Routes = createAppContainer(
                 backgroundColor: '#DDDDDD',
             },
         },
-        initialRouteName: 'Equipamento'
+        initialRouteName: 'Operador'
     },
     ));
 

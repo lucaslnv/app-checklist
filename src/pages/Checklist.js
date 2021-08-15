@@ -43,7 +43,7 @@ export default function Checklist(props) {
 	}
 
 	//EQUIPAMENTO
-	useEffect(() => { 
+	useEffect(() => {
 		getOperador();
 		setQrCodeEquipamento(props.navigation.getParam('qrCodeEquipamento'));
 		setNomeEquipamento(props.navigation.getParam('nomeEquipamento'));
@@ -55,8 +55,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2121);
 			
 			if(respostaQuesitos.status){
 
