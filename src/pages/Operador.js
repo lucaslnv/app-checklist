@@ -24,7 +24,7 @@ export default function Login(props) {
 		try {
 			await AsyncStorage.setItem('codOperador', value)
 		} catch (e) {
-			Alert.alert('Aviso', 'Não foi possível salvar o operador.');
+			Alert.alert('Aviso', 'NÃ£o foi possÃ­vel salvar o operador.');
 		}
 	}
 	
@@ -121,7 +121,7 @@ export default function Login(props) {
         }
       </View>  
     	<LoadingItem visible={loading} />
-		<Text style={{marginTop: 30}}>V. A. 14</Text>
+		<Text style={{marginTop: 30}}>Versão Alpha 15</Text>
     </ScrollView>
   );
 }

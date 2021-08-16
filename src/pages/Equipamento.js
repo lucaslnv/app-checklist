@@ -4,7 +4,6 @@ import { Button, Text, Input } from 'react-native-elements';
 import LoadingItem from '../components/LoadingItem';
 import {buscarEquipamentos} from '../services/api';
 import NetInfo from "@react-native-community/netinfo";
-import { setIn } from 'formik';
 
 export default function Equipamento(props) {
 
@@ -31,7 +30,7 @@ export default function Equipamento(props) {
 			setloading(true);
 			//BUSCA EQUIPAMENTOS
 			let respostaEquipamentos = await buscarEquipamentos(dominio);
-			console.log(respostaEquipamentos);
+
 			if(respostaEquipamentos.status){
 				if(respostaEquipamentos.resultado == "Chave invalida."){
 					setloading(false);
@@ -77,7 +76,7 @@ export default function Equipamento(props) {
 			props.navigation.navigate('Checklist', { qrCodeEquipamento: resposta.COD_SOL, nomeEquipamento: resposta.EQUIPAMENTO})
 		}else{
 			setQrCodeEquipamento('-');
-			setNomeEquipamento('EQUIPAMENTO '+inputEquipamento.toUpperCase()+' N√O ENCONTRADO');
+			setNomeEquipamento('EQUIPAMENTO '+inputEquipamento.toUpperCase()+' N√ÉO ENCONTRADO');
 			setEquipamentoValido(false);
 		}
 	}
@@ -95,7 +94,7 @@ export default function Equipamento(props) {
 			}else{
 				setInputEquipamento('');
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
-				setNomeEquipamento('EQUIPAMENTO N√O ENCONTRADO');
+				setNomeEquipamento('EQUIPAMENTO N√ÉO ENCONTRADO');
 				setEquipamentoValido(false);
 			}
 			
@@ -137,7 +136,7 @@ export default function Equipamento(props) {
 				<Text></Text>
 			}
 			<View style={{ flexDirection: "row", justifyContent: "space-between"}}>
-				<Text style={{fontWeight: 'bold'}}>QR Code ilegivel?</Text>
+				<Text style={{fontWeight: 'bold'}}>QR Code ileg√≠vel?</Text>
 				<Switch
 					trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 					thumbColor={ "#fff" }
