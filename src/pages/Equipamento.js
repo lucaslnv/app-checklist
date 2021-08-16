@@ -4,6 +4,7 @@ import { Button, Text, Input } from 'react-native-elements';
 import LoadingItem from '../components/LoadingItem';
 import {buscarEquipamentos} from '../services/api';
 import NetInfo from "@react-native-community/netinfo";
+import { setIn } from 'formik';
 
 export default function Equipamento(props) {
 
@@ -30,6 +31,7 @@ export default function Equipamento(props) {
 			setloading(true);
 			//BUSCA EQUIPAMENTOS
 			let respostaEquipamentos = await buscarEquipamentos(dominio);
+			console.log(respostaEquipamentos);
 			if(respostaEquipamentos.status){
 				if(respostaEquipamentos.resultado == "Chave invalida."){
 					setloading(false);
@@ -67,7 +69,17 @@ export default function Equipamento(props) {
 
 	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS - PESQUISA
 	function pesquisarEquipamento(){
-		console.log(inputEquipamento);
+		let resposta = equipamentos.find( equipamento => equipamento.EQUIPAMENTO == inputEquipamento.toUpperCase() /*&& equipamento.COD_EMITENTE == 3526*/);
+		if(resposta != undefined){
+			setQrCodeEquipamento(resposta.COD_SOL);
+			setNomeEquipamento(resposta.EQUIPAMENTO);
+			setEquipamentoValido(true);
+			props.navigation.navigate('Checklist', { qrCodeEquipamento: resposta.COD_SOL, nomeEquipamento: resposta.EQUIPAMENTO})
+		}else{
+			setQrCodeEquipamento('-');
+			setNomeEquipamento('EQUIPAMENTO '+inputEquipamento.toUpperCase()+' NÃO ENCONTRADO');
+			setEquipamentoValido(false);
+		}
 	}
 
 	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS QR CODE
@@ -75,13 +87,15 @@ export default function Equipamento(props) {
 		if(props.navigation.getParam('operacao') == 'equipamento'){
 			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode') /*&& equipamento.COD_EMITENTE == 3526*/);
 			if(resposta != undefined){
+				setInputEquipamento('');
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
 				setNomeEquipamento(resposta.EQUIPAMENTO);
 				setEquipamentoValido(true);
 				props.navigation.navigate('Checklist', { qrCodeEquipamento: props.navigation.getParam('qrCode'), nomeEquipamento: resposta.EQUIPAMENTO})
 			}else{
+				setInputEquipamento('');
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));
-				setNomeEquipamento('EQUIPAMENTO NÃƒO ENCONTRADO');
+				setNomeEquipamento('EQUIPAMENTO NÃO ENCONTRADO');
 				setEquipamentoValido(false);
 			}
 			
@@ -111,9 +125,18 @@ export default function Equipamento(props) {
 				title="QR CODE EQUIPAMENTO"
 				onPress={ ()=> props.navigation.navigate('QRCode', { rota: 'Equipamento', operacao: 'equipamento'})}
 			/>
-
-			
-			<View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 30}}>
+			{ 
+				equipamentoValido == true
+				? 
+				<Button
+					buttonStyle={styles.botaoAvancar}
+					title="AVANÃ‡AR"
+					onPress={ () => props.navigation.navigate('Checklist', { qrCodeEquipamento: qrCodeEquipamento, nomeEquipamento: nomeEquipamento, codOperador: codMotorista})}
+				/>
+				: 
+				<Text></Text>
+			}
+			<View style={{ flexDirection: "row", justifyContent: "space-between"}}>
 				<Text style={{fontWeight: 'bold'}}>QR Code ilegivel?</Text>
 				<Switch
 					trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
@@ -140,17 +163,6 @@ export default function Equipamento(props) {
 					/>
 				</>
 			)
-			}
-			{ 
-				equipamentoValido == true
-				? 
-				<Button
-					buttonStyle={styles.botaoAvancar}
-					title="AVANÃ‡AR"
-					onPress={ () => props.navigation.navigate('Checklist', { qrCodeEquipamento: qrCodeEquipamento, nomeEquipamento: nomeEquipamento, codOperador: codMotorista})}
-				/>
-				: 
-				<Text></Text>
 			}
 			<LoadingItem visible={loading} />
 		</ScrollView>
@@ -192,6 +204,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgb(0,86,112)',
 	},
 	botaoPesquisar: {
+		marginBottom: 40,
 		backgroundColor: 'rgb(0,86,112)',
 	},
 	img:{
