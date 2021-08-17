@@ -30,7 +30,6 @@ export default function Equipamento(props) {
 			setloading(true);
 			//BUSCA EQUIPAMENTOS
 			let respostaEquipamentos = await buscarEquipamentos(dominio);
-
 			if(respostaEquipamentos.status){
 				if(respostaEquipamentos.resultado == "Chave invalida."){
 					setloading(false);
@@ -84,7 +83,7 @@ export default function Equipamento(props) {
 	//BUSCA EQUIPAMENTO NO ARRAY EQUIPAMENTOS QR CODE
 	useEffect(() => { 
 		if(props.navigation.getParam('operacao') == 'equipamento'){
-			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == props.navigation.getParam('qrCode') /*&& equipamento.COD_EMITENTE == 3526*/);
+			let resposta = equipamentos.find( equipamento => equipamento.COD_SOL == parseInt(props.navigation.getParam('qrCode')) /*&& equipamento.COD_EMITENTE == 3526*/);
 			if(resposta != undefined){
 				setInputEquipamento('');
 				setQrCodeEquipamento(props.navigation.getParam('qrCode'));

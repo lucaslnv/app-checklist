@@ -121,7 +121,7 @@ export default function Login(props) {
         }
       </View>  
     	<LoadingItem visible={loading} />
-		<Text style={{marginTop: 30}}>Versão Alpha 15</Text>
+		<Text style={{marginTop: 30}}>Versão Alpha 16</Text>
     </ScrollView>
   );
 }
