@@ -55,8 +55,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2121);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -589,7 +589,7 @@ export default function Checklist(props) {
 										>
 										<CollapseHeader>
 											<Separator style={{ backgroundColor: '#fdb700', height: 45, marginTop: 3 }} bordered >
-											<Text style={{ fontWeight: 'bold', fontSize: 16 }}>
+											<Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000000' }}>
 											<Icon
 												name={ values['icon_'+grupo.COD_GRUPO] == true ? 'angle-up' : 'angle-down' }
 												size={15}
@@ -662,6 +662,7 @@ export default function Checklist(props) {
 																				<View key={quesito.QUESITO}>
 																				
 																				<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																				{ quesito.IND_OBRIGATORIO == false && (<Text style={{ marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#1A237C' }}>Não programado para hoje</Text>) }
 																				{
 																					//LIST BOX
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
@@ -724,7 +725,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									<Text>{' '+radio.DES_OPCAO}</Text>
+																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
 																								</ListItem>
 																							);
 																						})
@@ -993,6 +994,7 @@ export default function Checklist(props) {
 																				<View key={quesito.QUESITO}>
 																				
 																				<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																				{ quesito.IND_OBRIGATORIO == false && (<Text style={{ marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#1A237C' }}>Não programado para hoje</Text>) }
 																				{
 																					//LIST BOX
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
@@ -1055,7 +1057,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									<Text>{' '+radio.DES_OPCAO}</Text>
+																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
 																								</ListItem>
 																							);
 																						})
@@ -1290,7 +1292,17 @@ export default function Checklist(props) {
 															{	
 																//NOME QUESITO
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && (
-																	<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#1A237C' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																	<>
+																	{
+																		quesito.IND_OBRIGATORIO == true ?
+																		<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#000000' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																		:
+																		<> 
+																		<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#C4C4C4' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																		<Text style={{ marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#C4C4C4' }}>Não programado para hoje</Text>
+																		</>
+																	}
+																	</>
 																)
 															}
 															{
@@ -1345,7 +1357,8 @@ export default function Checklist(props) {
 																							values['rbQuesito_'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false
 																						}
 																					/>
-																				<Text>{'  '+radio.DES_OPCAO}</Text>
+																					{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
+																				
 																			</ListItem>
 																		);
 																	})
