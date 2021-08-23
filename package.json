@@ -27,6 +27,7 @@
     "react-native-camera": "^3.43.2",
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "~1.8.0",
+    "react-native-light": "^1.0.8",
     "react-native-paper": "^4.8.1",
     "react-native-permissions": "^3.0.4",
     "react-native-qrcode-scanner": "^1.5.4",

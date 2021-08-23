@@ -1,15 +1,18 @@
 import React, { Component, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Alert, Vibration, LogBox } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Vibration, LogBox, Button } from 'react-native';
 import BarcodeMask from 'react-native-barcode-mask';
 import { RNCamera } from 'react-native-camera';
 import BarcodeScanner, { TorchMode, FocusMode } from 'react-native-barcode-scanner-google';
+import { turnLightOn, turnLightOff } from "react-native-light";
+
+
 export default class QRCode extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             barCodeData:'',
-            cameraFlash: RNCamera.Constants.FlashMode.off,
+            cameraFlash: false,
             cameraFlashText: "Flash On",
         }
         
@@ -22,12 +25,13 @@ export default class QRCode extends Component {
     }
 
     ligarDesligarFlash(){
-        if (this.state.cameraFlash == RNCamera.Constants.FlashMode.off){
-            this.setState({cameraFlash: RNCamera.Constants.FlashMode.torch, cameraFlashText: 'Flash Off'});
+        if (this.state.cameraFlash == false){
+          this.setState({cameraFlash: true, cameraFlashText: 'Flash Off'});
+          turnLightOn();
         } else {
-            this.setState({cameraFlash: RNCamera.Constants.FlashMode.off, cameraFlashText: 'Flash On'});
+          this.setState({cameraFlash: false, cameraFlashText: 'Flash On'});
+          turnLightOff();
         }
-       
     }
 
     lerBarCode(obj){
@@ -50,10 +54,14 @@ export default class QRCode extends Component {
           <BarcodeScanner
               style={{flex: 1}}
               focusMode={FocusMode.AUTO}
-              torchMode={TorchMode.ON}
+              torchMode={RNCamera.Constants.FlashMode.on}
               onBarcodeRead={(obj) => this.lerBarCode(obj)}
           />
           <BarcodeMask width={350} height={400} showAnimatedLine={true} />
+
+          <TouchableOpacity activeOpacity={0.2} style={styles.botaoFlash} onPress={ ()=> this.ligarDesligarFlash() }>
+              <Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
+          </TouchableOpacity>
       </View>
     );
   }
@@ -78,7 +86,8 @@ const styles = StyleSheet.create({
   textBold: {
     color: '#DDDDDD'
   },
-  botaoLogin: {
+  botaoFlash: {
+    marginBottom: 10,
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 15,
@@ -88,5 +97,5 @@ const styles = StyleSheet.create({
   textoBotao:{
     color: 'black',
     fontWeight: 'bold'
-  }
+  },
 });
