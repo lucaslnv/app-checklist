@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
-import QRCodeScanner from 'react-native-qrcode-scanner';
+import React, { Component, useEffect } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Alert, Vibration, LogBox } from 'react-native';
+import BarcodeMask from 'react-native-barcode-mask';
 import { RNCamera } from 'react-native-camera';
-
+import BarcodeScanner, { TorchMode, FocusMode } from 'react-native-barcode-scanner-google';
 export default class QRCode extends Component {
 
     constructor(props) {
@@ -12,9 +12,13 @@ export default class QRCode extends Component {
             cameraFlash: RNCamera.Constants.FlashMode.off,
             cameraFlashText: "Flash On",
         }
-
+        
         this.ligarDesligarFlash = this.ligarDesligarFlash.bind(this);
         this.lerBarCode = this.lerBarCode.bind(this);
+    }
+    
+    componentDidMount(){
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
     }
 
     ligarDesligarFlash(){
@@ -31,6 +35,7 @@ export default class QRCode extends Component {
           let state = this.state;
           state.barCodeData = obj.data;
           this.setState(state);
+          Vibration.vibrate(200, true);
           this.props.navigation.navigate(this.props.navigation.getParam('rota'), {qrCode: obj.data, operacao: this.props.navigation.getParam('operacao')} );
       }
     }
@@ -38,25 +43,18 @@ export default class QRCode extends Component {
   onSuccess = e => {
     Alert.alert('Aviso', e.data, [ { text: "OK", onPress: () => this.props.navigation.navigate('Operador') } ]);
   };
-
+  
   render() {
     return (
-		<QRCodeScanner
-      cameraProps={{zoom: 0, defaultVideoQuality: 'RNCamera.Constants.VideoQuality.480p'}}
-      onRead={this.lerBarCode}
-			flashMode = {this.state.cameraFlash}
-      topContent={''}
-      showMarker={true}
-			containerStyle={{backgroundColor: 'black'}}
-			cameraStyle={{ height: '50%', width: '100%', backgroundColor: 'black'}}
-			permissionDialogTitle={'Aviso'}
-			permissionDialogMessage={'Precisamos da sua permissão para utilizar a câmera.'}
-			bottomContent={
-				<TouchableOpacity activeOpacity={0.2} style={styles.botaoLogin} onPress={ () => this.ligarDesligarFlash() }>
-					<Text style={styles.textoBotao}> {this.state.cameraFlashText} </Text>
-				</TouchableOpacity>
-			}
-		/>
+      <View style={{flex: 1}}>
+          <BarcodeScanner
+              style={{flex: 1}}
+              focusMode={FocusMode.AUTO}
+              torchMode={TorchMode.ON}
+              onBarcodeRead={(obj) => this.lerBarCode(obj)}
+          />
+          <BarcodeMask width={350} height={400} showAnimatedLine={true} />
+      </View>
     );
   }
 }
