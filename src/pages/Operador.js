@@ -2,23 +2,20 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, ScrollView, Image, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import NetInfo from "@react-native-community/netinfo";
-
 import { Button, Text } from 'react-native-elements';
-
 import LoadingItem from '../components/LoadingItem';
-
 import {buscarMotoristas} from '../services/api';
 
 export default function Login(props) {
-
+	
 	const [motoristas, setMotoristas] = useState([]);
 	const [codMotorista, setCodMotorista] = useState('');
 	const [nomeMotorista, setNomeMotorista] = useState('');
 	const [qrCodeMotorista, setQrCodeMotorista] = useState('');
 	const [operadorValido, setOperadorValido] = useState(false);
 	const [loading, setloading] = useState(false);
+	const [versaoApp, setVersaoApp] = useState('');
 	
 	const storeOperador = async (value) => {
 		try {
@@ -74,6 +71,8 @@ export default function Login(props) {
 
 	//CARREGAR MOTORISTAS
 	useEffect(() => { 
+		const appJson = require('../../app.json');
+		setVersaoApp(appJson.expo.version);
 		console.log('Checklist rodando...');
 	}, []);
 	
@@ -121,7 +120,7 @@ export default function Login(props) {
         }
       </View>  
     	<LoadingItem visible={loading} />
-		<Text style={{marginTop: 30}}>Versão Alpha 17</Text>
+		<Text style={{marginTop: 30}}>Versão Alpha {versaoApp}</Text>
     </ScrollView>
   );
 }

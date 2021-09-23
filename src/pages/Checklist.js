@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker } from 'react-native';
 import {buscarQuesitos} from '../services/api';
 import { Separator, Radio, ListItem, Item } from 'native-base';
@@ -11,9 +11,12 @@ import { Formik } from 'formik';
 import {registrarChecklist} from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationEvents  } from 'react-navigation';
+import Agenda from '../components/Agenda';
+import { Context } from '../context/Index';
 
 export default function Checklist(props) {
 
+	const {obj, setObj} = useContext(Context);
 	const [nomeEquipamento, setNomeEquipamento] = useState('');
 	const [qrCodeEquipamento, setQrCodeEquipamento] = useState('');
 	const [loading, setloading] = useState(false);
@@ -27,7 +30,8 @@ export default function Checklist(props) {
 	const [imgEquipamento, setImgEquipamento] = useState(false);
 	const [contadorQuesito, setContadorQuesito] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]);
 
-
+	// INSERIR AGENDA CONTEXT API
+	
 	//OPERADOR
 	const getOperador = async () => {
 		try {
@@ -55,17 +59,11 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
-				//VERIFICA SE A INPEÇÃO FOI REALIZADA NO DIA INSPECT_ALREADY_DONE_TODAY 
-				if(respostaQuesitos.resultado.status == 409){
-					setloading(false);
-					Alert.alert('Aviso', 'Inspeção já realizada para este equipamento hoje.', [ { text: "OK", onPress: () => props.navigation.navigate('Equipamento') } ]);
-				}
-				
 				//VERIFICA AUTENTICAÇÃO
 				if(respostaQuesitos.resultado == "Chave invalida."){
 					setloading(false);
@@ -74,6 +72,7 @@ export default function Checklist(props) {
 				
 				setloading(false);
 				setQuesitos(respostaQuesitos.resultado.data.draw);
+				setObj({agenda: respostaQuesitos.resultado.data.draw.AGENDA})
 				let data = new Date(respostaQuesitos.resultado.data.draw.ULT_CHECKUP);
 				/*if( (data != '') && (data != undefined)){
 					let dataFormatada = data.toLocaleString();
@@ -90,7 +89,12 @@ export default function Checklist(props) {
 				}
 			}else{
 				setloading(false);
-				Alert.alert('Aviso', respostaQuesitos.mensagem);
+				//VERIFICA SE A INPEÇÃO FOI REALIZADA NO DIA INSPECT_ALREADY_DONE_TODAY 
+				if(respostaQuesitos.statusCode == 409){
+					Alert.alert('Aviso', 'Inspeção já realizada para este equipamento hoje.', [ { text: "OK", onPress: () => props.navigation.navigate('Equipamento') } ]);
+				}else{
+					Alert.alert('Aviso', respostaQuesitos.mensagem);
+				}
 			}
 		}
 
@@ -509,6 +513,90 @@ export default function Checklist(props) {
 			}
 		});
 		
+		// VERIFICA SE OS QUESITOS OBRIGATORIOS FORAM PREENCHIDOS
+		let quesitosObrigatoriosNaoPreenchidos = [];
+		quesitos.GRUPO.forEach(function(grupos, g){
+			grupos.QUESITOS.forEach(function(quesito, q){
+				if(quesito.IND_OBRIGATORIO == true){
+					if(quesito.IND_CHECKBOX == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}
+					}
+					if(quesito.IND_DECIMAL == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.NUM_ALTERNATIVO == '' || resposta.NUM_ALTERNATIVO == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+					if(quesito.IND_FOTO == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.DES_FOTO == '' || resposta.DES_FOTO == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+					if(quesito.IND_INTEIRO == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.NUM_ALTERNATIVO == '' || resposta.NUM_ALTERNATIVO == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+					if(quesito.IND_LISTA == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.NUM_RESPOSTA == '' || resposta.NUM_ALTERNATIVO == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+					if(quesito.IND_RADIO == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.NUM_RESPOSTA == '' || resposta.NUM_ALTERNATIVO == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+					if(quesito.IND_TEXTO == true){
+						let resposta = quesitosJson.find( quesitoJson => quesitoJson.COD_ITEM == quesito.COD_ITEM );
+						if( resposta == undefined ){
+							quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+						}else{
+							if(resposta.DES_RESPOSTA == '' || resposta.DES_RESPOSTA == null ){
+								quesitosObrigatoriosNaoPreenchidos.push(quesito.COD_ITEM);
+							}
+						}
+					}
+				}
+			});
+		});
+
+		//SE HOUVEREM QUESITOS NAO PREENCHIDOS, EXIBE MENSAGEM
+		if(quesitosObrigatoriosNaoPreenchidos.length > 0 ){
+			var quesitosNaoPreenchidos = quesitosObrigatoriosNaoPreenchidos.map(function(quesito, i) {
+				return ' '+quesito;
+			});
+
+			Alert.alert('Aviso', 'Os quesitos '+quesitosNaoPreenchidos+', não foram preenchidos e são obrigatórios para a data de hoje.'); return;
+		}
+		
 		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
@@ -725,7 +813,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
+																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#7d7d7d'}}>{'  '+radio.DES_OPCAO}</Text> }
 																								</ListItem>
 																							);
 																						})
@@ -1057,7 +1145,7 @@ export default function Checklist(props) {
 																											false
 																										}
 																									/>
-																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
+																									{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#7d7d7d'}}>{'  '+radio.DES_OPCAO}</Text> }
 																								</ListItem>
 																							);
 																						})
@@ -1298,8 +1386,8 @@ export default function Checklist(props) {
 																		<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#000000' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
 																		:
 																		<> 
-																		<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#C4C4C4' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
-																		<Text style={{ marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#C4C4C4' }}>Não programado para hoje</Text>
+																		<Text style={{fontSize: 20, marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#7d7d7d' }}>{quesito.COD_ITEM+'. '+quesito.QUESITO}</Text>
+																		<Text style={{ marginLeft: 10, marginTop: 10, fontWeight: 'bold', color: '#7d7d7d' }}>Não programado para hoje</Text>
 																		</>
 																	}
 																	</>
@@ -1357,7 +1445,7 @@ export default function Checklist(props) {
 																							values['rbQuesito_'+quesito.COD_ITEM] == radio.COD_OPCAO ? true : false
 																						}
 																					/>
-																					{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#C4C4C4'}}>{'  '+radio.DES_OPCAO}</Text> }
+																					{ quesito.IND_OBRIGATORIO == true ? <Text style={{color: '#000000'}}>{'  '+radio.DES_OPCAO}</Text> : <Text style={{color: '#7d7d7d'}}>{'  '+radio.DES_OPCAO}</Text> }
 																				
 																			</ListItem>
 																		);
@@ -1500,7 +1588,17 @@ export default function Checklist(props) {
 }
 
 Checklist.navigationOptions = {
-	title: 'Checklist'
+	title: 'Checklist',
+	/*headerRight: () => (
+		<Agenda />
+	)*/
+}
+
+const array = [1,2,3];
+
+
+function teste(props) {
+	return alert('teste')
 }
 
 const styles = StyleSheet.create({

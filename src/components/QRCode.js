@@ -35,7 +35,6 @@ export default class QRCode extends Component {
             if (qrCode.length !== 0) {
                 Vibration.vibrate(200, true);
                 this.setState({isBarcodeRead: true});
-                console.log(qrCode[0].data);
                 this.props.navigation.navigate(this.props.navigation.getParam('rota'), {qrCode: qrCode[0].data, operacao: this.props.navigation.getParam('operacao')} );
             }
         }

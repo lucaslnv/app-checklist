@@ -68,7 +68,7 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     })
     .catch(function (error) {
         console.log(error);
-        return({status: false, mensagem: 'Não foi possível carregar os quesitos.', erro: error});
+        return({status: false, mensagem: 'Não foi possível carregar os quesitos.', erro: error, statusCode: error.response.status});
     });
 }
 
