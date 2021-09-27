@@ -29,8 +29,6 @@ export default function Checklist(props) {
 	const [quesitos, setQuesitos] = useState([]);
 	const [imgEquipamento, setImgEquipamento] = useState(false);
 	const [contadorQuesito, setContadorQuesito] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]);
-
-	// INSERIR AGENDA CONTEXT API
 	
 	//OPERADOR
 	const getOperador = async () => {
@@ -59,8 +57,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			let respostaQuesitos = await buscarQuesitos(dominio, 613);
 			
 			if(respostaQuesitos.status){
 
@@ -589,13 +587,13 @@ export default function Checklist(props) {
 		});
 
 		//SE HOUVEREM QUESITOS NAO PREENCHIDOS, EXIBE MENSAGEM
-		if(quesitosObrigatoriosNaoPreenchidos.length > 0 ){
+		/*if(quesitosObrigatoriosNaoPreenchidos.length > 0 ){
 			var quesitosNaoPreenchidos = quesitosObrigatoriosNaoPreenchidos.map(function(quesito, i) {
 				return ' '+quesito;
 			});
 
 			Alert.alert('Aviso', 'Os quesitos '+quesitosNaoPreenchidos+', não foram preenchidos e são obrigatórios para a data de hoje.'); return;
-		}
+		}*/
 		
 		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
 			if(quesitosJson.length == 0 ){
@@ -794,12 +792,12 @@ export default function Checklist(props) {
 																						quesito.componentes.radio.OPCOES.map((radio, i) => {
 																							return (
 																								<ListItem 
-																									disabled={!quesito.IND_OBRIGATORIO}
+																									disabled={false}
 																									key={radio.DES_OPCAO}
 																									onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																									>
 																									<Radio
-																										disabled={!quesito.IND_OBRIGATORIO}
+																										disabled={false}
 																										onPress={ () => setFieldValue('Pneu_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
 																										selectedColor={"#5cb85c"}
@@ -825,7 +823,7 @@ export default function Checklist(props) {
 																					(
 																						<ListItem>
 																							<Switch
-																								disabled={!quesito.IND_OBRIGATORIO}
+																								disabled={false}
 																								trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																								thumbColor={ "#fff"}
 																								ios_backgroundColor="#fff"
@@ -860,7 +858,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							placeholder='Valor inteiro'
@@ -884,7 +882,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							placeholder='Valor decimal'
@@ -907,7 +905,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							placeholder='Observação'
@@ -959,7 +957,7 @@ export default function Checklist(props) {
 																						<>
 																						{
 																							values['Pneu_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
-																								<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
+																								<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'pneu', numero: listbox.COD_OPCAO }) } />
 																							)
 																						}
 																						
@@ -971,7 +969,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Pneu_1_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_1_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_1_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_1_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -984,7 +982,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Pneu_2_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_2_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_2_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_2_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -997,7 +995,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Pneu_3_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_3_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_3_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_3_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -1010,7 +1008,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Pneu_4_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_4_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_4_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_4_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -1023,7 +1021,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Pneu_5_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_5_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_5_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_5_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -1036,7 +1034,7 @@ export default function Checklist(props) {
 																										listbox.COD_OPCAO == 6 && quesito.COD_ITEM == contador && values['Pneu_6_ftQ'+quesito.COD_ITEM] != undefined && (
 																											<View key={i}>
 																												<Image style={styles.imgQuesito} source={{uri: values['Pneu_6_ftQ'+quesito.COD_ITEM] }} />
-																												<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_6_ftQ'+quesito.COD_ITEM, null ) } />
+																												<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Pneu_6_ftQ'+quesito.COD_ITEM, null ) } />
 																											</View>
 																										)
 																									)
@@ -1126,12 +1124,12 @@ export default function Checklist(props) {
 																						quesito.componentes.radio.OPCOES.map((radio, i) => {
 																							return (
 																								<ListItem 
-																									disabled={!quesito.IND_OBRIGATORIO}
+																									disabled={false}
 																									key={radio.DES_OPCAO}
 																									onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																									>
 																									<Radio
-																										disabled={!quesito.IND_OBRIGATORIO}
+																										disabled={false}
 																										onPress={ () => setFieldValue('Lataria_'+listbox.COD_OPCAO+'_rbQ'+quesito.COD_ITEM, radio.COD_OPCAO) }
 																										color={"#f0ad4e"}
 																										selectedColor={"#5cb85c"}
@@ -1157,7 +1155,7 @@ export default function Checklist(props) {
 																					(
 																						<ListItem>
 																							<Switch
-																								disabled={!quesito.IND_OBRIGATORIO}
+																								disabled={false}
 																								trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																								thumbColor={ "#fff"}
 																								ios_backgroundColor="#fff"
@@ -1191,7 +1189,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -1214,7 +1212,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							placeholder='Valor'
@@ -1237,7 +1235,7 @@ export default function Checklist(props) {
 																					(	
 																						<>
 																						<Input 
-																							editable={quesito.IND_OBRIGATORIO}
+																							editable={true}
 																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputTextoQ'+quesito.COD_ITEM)}
 																							placeholder='Observação'
@@ -1286,7 +1284,7 @@ export default function Checklist(props) {
 																					<>
 																					{
 																						values['Lataria_'+listbox.COD_OPCAO+'_ftQ'+quesito.COD_ITEM] == undefined &&(
-																							<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
+																							<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM, tipo: 'lataria', numero: listbox.COD_OPCAO }) } />
 																						)
 																					}
 																					<View style={styles.containerImgQuesito}>
@@ -1297,7 +1295,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 1 && quesito.COD_ITEM == contador && values['Lataria_1_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_1_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_1_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_1_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1310,7 +1308,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 2 && quesito.COD_ITEM == contador && values['Lataria_2_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_2_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_2_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_2_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1323,7 +1321,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 3 && quesito.COD_ITEM == contador && values['Lataria_3_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_3_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_3_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_3_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1336,7 +1334,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 4 && quesito.COD_ITEM == contador && values['Lataria_4_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_4_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_4_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_4_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1349,7 +1347,7 @@ export default function Checklist(props) {
 																									listbox.COD_OPCAO == 5 && quesito.COD_ITEM == contador && values['Lataria_5_ftQ'+quesito.COD_ITEM] != undefined && (
 																										<View key={i}>
 																											<Image style={styles.imgQuesito} source={{uri: values['Lataria_5_ftQ'+quesito.COD_ITEM] }} />
-																											<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_5_ftQ'+quesito.COD_ITEM, null ) } />
+																											<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('Lataria_5_ftQ'+quesito.COD_ITEM, null ) } />
 																										</View>
 																									)
 																								)
@@ -1432,12 +1430,12 @@ export default function Checklist(props) {
 																	quesito.componentes.radio.OPCOES.map((radio, i) => {
 																		return (
 																			<ListItem
-																				disabled={!quesito.IND_OBRIGATORIO}
+																				disabled={false}
 																				key={radio.DES_OPCAO}
 																				onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																				>
 																					<Radio
-																						disabled={!quesito.IND_OBRIGATORIO}
+																						disabled={false}
 																						onPress={ () => setFieldValue('rbQuesito_'+quesito.COD_ITEM, radio.COD_OPCAO ) }
 																						color={"#f0ad4e"}
 																						selectedColor={"#5cb85c"}
@@ -1458,7 +1456,7 @@ export default function Checklist(props) {
 																(
 																	<ListItem>
 																		<Switch
-																			disabled={!quesito.IND_OBRIGATORIO}
+																			disabled={false}
 																			trackColor={{ false: "#C4C4C4", true: "#C5DB5F" }}
 																			thumbColor={ "#fff"}
 																			ios_backgroundColor="#fff"
@@ -1480,7 +1478,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_INTEIRO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
-																		editable={quesito.IND_OBRIGATORIO}
+																		editable={true}
 																		onChangeText={handleChange('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
@@ -1495,7 +1493,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_DECIMAL == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
-																		editable={quesito.IND_OBRIGATORIO}
+																		editable={true}
 																		onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Valor'
@@ -1510,7 +1508,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_TEXTO == true && quesito.IND_ATIVO == true && 
 																(	
 																	<Input 
-																		editable={quesito.IND_OBRIGATORIO}
+																		editable={true}
 																		onChangeText={handleChange('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		onBlur={handleBlur('inputTextoQuesito_'+quesito.COD_ITEM)}
 																		placeholder='Observação'
@@ -1537,7 +1535,7 @@ export default function Checklist(props) {
 																		/>
 																		{
 																			values['ftQuesito_'+quesito.COD_ITEM] == undefined &&(
-																				<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
+																				<Button disabled={false} buttonStyle={styles.botaoFoto} title="Capturar Foto" onPress={ () => props.navigation.navigate('Camera', { rota: 'Checklist', quesito: quesito.COD_ITEM}) } />
 																			)
 																		}
 																		
@@ -1549,7 +1547,7 @@ export default function Checklist(props) {
 																						(
 																							<View key={i}>
 																								<Image style={styles.imgQuesito} source={{uri: values['ftQuesito_'+i] }} />
-																								<Button disabled={!quesito.IND_OBRIGATORIO} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('ftQuesito_'+quesito.COD_ITEM, null ) } />
+																								<Button disabled={false} buttonStyle={styles.botaoExcluirFoto} title="Excluir Foto" onPress={ () => setFieldValue('ftQuesito_'+quesito.COD_ITEM, null ) } />
 																							</View>
 																						)
 																					)
@@ -1587,19 +1585,24 @@ export default function Checklist(props) {
   );
 }
 
-Checklist.navigationOptions = {
-	title: 'Checklist',
-	/*headerRight: () => (
-		<Agenda />
-	)*/
-}
-
-const array = [1,2,3];
-
-
-function teste(props) {
-	return alert('teste')
-}
+Checklist.navigationOptions = ({navigation}) => {
+	return {
+		title: 'Checklist',
+		headerRight: () =>
+			<Button
+				buttonStyle={styles.botaoMenu}
+				onPress={ () => navigation.navigate('Operador') }
+				color="#fff"
+				icon={
+					<Icon
+						name="bars"
+						color="white"
+						size={17}
+					/>
+				}
+			/>
+	};
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -1661,4 +1664,8 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		backgroundColor: 'red'
 	},
+	botaoMenu: {
+        marginRight: 15,
+		backgroundColor: 'rgb(0,86,112)',
+    }
 });

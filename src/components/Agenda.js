@@ -1,6 +1,7 @@
 import React, { Component, useState, useContext, useEffect } from 'react'
 import { View, Modal, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { Button, Text, Input } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Context } from '../context/Index';
 
 export default function Agenda(props) {
@@ -20,8 +21,14 @@ export default function Agenda(props) {
                 <Button
                     buttonStyle={styles.botao}
                     onPress={() => alert(JSON.stringify(obj)) }
-                    title="Agenda"
                     color="#fff"
+                    icon={
+                        <Icon
+                          name="bars"
+                          size={15}
+                          color="white"
+                        />
+                    }
                 />
             </View>
         </ScrollView>
@@ -30,6 +37,7 @@ export default function Agenda(props) {
 
 const styles = StyleSheet.create({
 	botao: {
-        margin: 10
+        marginRight: 15,
+        marginTop: 12,
     }
 });
