@@ -11,7 +11,6 @@ import { Formik } from 'formik';
 import {registrarChecklist} from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationEvents  } from 'react-navigation';
-import Agenda from '../components/Agenda';
 import { Context } from '../context/Index';
 
 export default function Checklist(props) {
@@ -57,8 +56,8 @@ export default function Checklist(props) {
 		async function carregarQuesitos(dominio){
 			setloading(true);
 			//BUSCA QUESITOS
-			//let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			let respostaQuesitos = await buscarQuesitos(dominio, 613);
+			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
+			//let respostaQuesitos = await buscarQuesitos(dominio, 613);
 			
 			if(respostaQuesitos.status){
 
@@ -1591,7 +1590,7 @@ Checklist.navigationOptions = ({navigation}) => {
 		headerRight: () =>
 			<Button
 				buttonStyle={styles.botaoMenu}
-				onPress={ () => navigation.navigate('Operador') }
+				onPress={ () => navigation.navigate('Menu') }
 				color="#fff"
 				icon={
 					<Icon

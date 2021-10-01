@@ -4,7 +4,7 @@ import { Button, Text, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Context } from '../context/Index';
 
-export default function Agenda(props) {
+export default function Menu(props) {
 
     const {obj} = useContext(Context);
     
@@ -16,28 +16,21 @@ export default function Agenda(props) {
 
     // RECUPERAR AGENDA CONTEXT API
     return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
             <View>
-                <Button
-                    buttonStyle={styles.botao}
-                    onPress={() => alert(JSON.stringify(obj)) }
-                    color="#fff"
-                    icon={
-                        <Icon
-                          name="bars"
-                          size={15}
-                          color="white"
-                        />
-                    }
-                />
             </View>
         </ScrollView>
     )
 }
 
+Menu.navigationOptions = {
+	title: 'Menu'
+  }
+
 const styles = StyleSheet.create({
-	botao: {
-        marginRight: 15,
-        marginTop: 12,
-    }
+	container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        padding: 10
+      },
 });

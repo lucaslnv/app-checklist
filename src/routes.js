@@ -3,6 +3,7 @@ import Equipamento from './pages/Equipamento';
 import Checklist from './pages/Checklist';
 import Camera from './components/Camera';
 import QRCode from './components/QRCode';
+import Menu from './pages/Menu';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -23,6 +24,9 @@ const Routes = createAppContainer(
         },
         QRCode: {
             screen: QRCode
+        },
+        Menu: {
+            screen: Menu
         }
     },
     {   
@@ -33,7 +37,7 @@ const Routes = createAppContainer(
                 backgroundColor: '#DDDDDD',
             },
         },
-        initialRouteName: 'Checklist'
+        initialRouteName: 'Operador'
     },
     ));
 
