@@ -72,7 +72,7 @@ export const buscarQuesitos = async function(dominio, qrCode) {
     });
 }
 
-export const registrarChecklist = async function(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador) {
+export const registrarChecklist = async function(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador, dataInicial, dataFinal) {
     
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -84,6 +84,8 @@ export const registrarChecklist = async function(dominio, quesitosJson, codEmite
         'EQUIPAMENTO': nomeEquipamento,
         'codOperador' : codOperador ,
         'DATETIME': date+' '+time,
+        'dataInicial': dataInicial,
+        'dataFinal': dataFinal,
         'QUESITOS': quesitosJson
     };
    

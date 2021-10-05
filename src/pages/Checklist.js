@@ -27,6 +27,8 @@ export default function Checklist(props) {
 	const [codOperador, setCodOperador] = useState('');
 	const [quesitos, setQuesitos] = useState([]);
 	const [imgEquipamento, setImgEquipamento] = useState(false);
+	const [dataInicial, setDataInicial] = useState('');
+	const [dataFinal, setDataFinal] = useState('');
 	const [contadorQuesito, setContadorQuesito] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]);
 	
 	//OPERADOR
@@ -45,6 +47,10 @@ export default function Checklist(props) {
 
 	//EQUIPAMENTO
 	useEffect(() => {
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+		setDataInicial(date+' '+time);
 		getOperador();
 		setQrCodeEquipamento(props.navigation.getParam('qrCodeEquipamento'));
 		setNomeEquipamento(props.navigation.getParam('nomeEquipamento'));
@@ -118,6 +124,10 @@ export default function Checklist(props) {
 	}, []);
 
 	function registrar(values){
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+		setDataFinal(date+' '+time);
 		var quesitosJson = [];
 		var indice = 0;
 		Object.keys(values).forEach(function(item){
@@ -137,7 +147,7 @@ export default function Checklist(props) {
 					quesitos.GRUPO.forEach(function(grupos, g){
 						grupos.QUESITOS.forEach(function(quesitos, q){
 							if( (quesitoPneu == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
-								quesitoObrigatorio = false;
+								//quesitoObrigatorio = false;
 							}
 						});
 					});
@@ -258,7 +268,7 @@ export default function Checklist(props) {
 					quesitos.GRUPO.forEach(function(grupos, g){
 						grupos.QUESITOS.forEach(function(quesitos, q){
 							if( (quesitoLataria == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
-								quesitoObrigatorio = false;
+								//quesitoObrigatorio = false;
 							}
 						});
 					});
@@ -380,7 +390,7 @@ export default function Checklist(props) {
 					quesitos.GRUPO.forEach(function(grupos, g){
 						grupos.QUESITOS.forEach(function(quesitos, q){
 							if( (quesito == quesitos.COD_ITEM) && (quesitos.IND_OBRIGATORIO == false) ){
-								quesitoObrigatorio = false;
+								//quesitoObrigatorio = false;
 							}
 						});
 					});
@@ -510,7 +520,7 @@ export default function Checklist(props) {
 			}
 		});
 		
-		// VERIFICA SE OS QUESITOS OBRIGATORIOS FORAM PREENCHIDOS
+		//VERIFICA SE OS QUESITOS OBRIGATORIOS FORAM PREENCHIDOS
 		let quesitosObrigatoriosNaoPreenchidos = [];
 		quesitos.GRUPO.forEach(function(grupos, g){
 			grupos.QUESITOS.forEach(function(quesito, q){
@@ -594,13 +604,13 @@ export default function Checklist(props) {
 			Alert.alert('Aviso', 'Os quesitos '+quesitosNaoPreenchidos+', não foram preenchidos e são obrigatórios para a data de hoje.'); return;
 		}*/
 		
-		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador){
+		async function registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador, dataInicial, dataFinal){
 			if(quesitosJson.length == 0 ){
 				Alert.alert('Aviso', 'Favor preencher o checklist.'); return;
 			}
 			setloading(true);
 			//REGISTRA CHECKLIST
-			let respostaChecklist = await registrarChecklist(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador);
+			let respostaChecklist = await registrarChecklist(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador, dataInicial, dataFinal);
 			if(respostaChecklist.status){
 				if(respostaChecklist.resultado == "OK"){
 					setloading(false);
@@ -625,7 +635,7 @@ export default function Checklist(props) {
 			}
 
 			if(state.isConnected){
-				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador);
+				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador, dataInicial, dataFinal);
 			}else{
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
 			}
@@ -753,7 +763,7 @@ export default function Checklist(props) {
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																					(
 																						<Picker
-																								enabled={quesito.IND_OBRIGATORIO}
+																								enabled={true}
 																								selectedValue={
 																									listbox.COD_OPCAO == 1 ? values['Pneu_1_lbQ'+quesito.COD_ITEM] : 
 																									listbox.COD_OPCAO == 2 ? values['Pneu_2_lbQ'+quesito.COD_ITEM] : 
@@ -1085,7 +1095,7 @@ export default function Checklist(props) {
 																					quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																					(
 																						<Picker
-																								enabled={quesito.IND_OBRIGATORIO}
+																								enabled={true}
 																								selectedValue={
 																									listbox.COD_OPCAO == 1 ? values['Lataria_1_lbQ'+quesito.COD_ITEM] : 
 																									listbox.COD_OPCAO == 2 ? values['Lataria_2_lbQ'+quesito.COD_ITEM] : 
@@ -1395,7 +1405,7 @@ export default function Checklist(props) {
 																quesito.IND_PNEU == false && quesito.IND_LATARIA == false && quesito.IND_LISTA == true && quesito.IND_ATIVO == true &&
 																(
 																		<Picker
-																			enabled={quesito.IND_OBRIGATORIO}
+																			enabled={true}
 																			selectedValue={
 																				values['lbQuesito_'+quesito.COD_ITEM]
 																			}
