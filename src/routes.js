@@ -3,7 +3,7 @@ import Equipamento from './pages/Equipamento';
 import Checklist from './pages/Checklist';
 import Camera from './components/Camera';
 import QRCode from './components/QRCode';
-import Menu from './pages/Menu';
+import Agenda from './pages/Agenda';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -25,8 +25,8 @@ const Routes = createAppContainer(
         QRCode: {
             screen: QRCode
         },
-        Menu: {
-            screen: Menu
+        Agenda: {
+            screen: Agenda
         }
     },
     {   

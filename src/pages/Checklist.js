@@ -1,9 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker } from 'react-native';
+import { StyleSheet, View, ScrollView, Switch, Alert, Image, Picker, Modal } from 'react-native';
 import {buscarQuesitos} from '../services/api';
 import { Separator, Radio, ListItem, Item } from 'native-base';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import LoadingItem from '../components/LoadingItem';
+import Menu from '../components/Menu';
 import { Button, Text, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NetInfo from "@react-native-community/netinfo";
@@ -1598,18 +1599,7 @@ Checklist.navigationOptions = ({navigation}) => {
 	return {
 		title: 'Checklist',
 		headerRight: () =>
-			<Button
-				buttonStyle={styles.botaoMenu}
-				onPress={ () => navigation.navigate('Menu') }
-				color="#fff"
-				icon={
-					<Icon
-						name="bars"
-						color="white"
-						size={17}
-					/>
-				}
-			/>
+			<Menu navigation={navigation} />
 	};
 };
 
@@ -1676,5 +1666,5 @@ const styles = StyleSheet.create({
 	botaoMenu: {
         marginRight: 15,
 		backgroundColor: 'rgb(0,86,112)',
-    }
+	}
 });
