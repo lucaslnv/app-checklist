@@ -636,6 +636,7 @@ export default function Checklist(props) {
 			}
 
 			if(state.isConnected){
+				let dataFinal = date+' '+time; 
 				registrar(dominio, quesitosJson, codEmitente, nomeEquipamento, codOperador, dataInicial, dataFinal);
 			}else{
 			  Alert.alert('Aviso', 'Dispositivo sem conexão com a internet.');
