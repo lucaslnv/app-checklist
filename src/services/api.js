@@ -88,7 +88,7 @@ export const registrarChecklist = async function(dominio, quesitosJson, codEmite
         'dataFinal': dataFinal,
         'QUESITOS': quesitosJson
     };
-   
+    
     var endPoint = 'https://web.gruposol.com.br/ws/abastecimento/api/postQuesitos';
     if( dominio == 'intranet'){
         endPoint = 'https://intranet.gruposol.com.br/ws/abastecimento/api/postQuesitos';

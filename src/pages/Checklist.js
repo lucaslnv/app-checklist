@@ -64,7 +64,7 @@ export default function Checklist(props) {
 			setloading(true);
 			//BUSCA QUESITOS
 			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 613);
+			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
 			
 			if(respostaQuesitos.status){
 
@@ -870,9 +870,15 @@ export default function Checklist(props) {
 																						<>
 																						<Input 
 																							editable={true}
-																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
-																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
-																							placeholder='Valor inteiro'
+																							//onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
+																							//onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
+																							onChangeText={e => {
+																								var validacao = /^$|[0-9]+$/;
+																								if( validacao.test(e) == true ){
+																									setFieldValue('Pneu_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM, e);
+																								}
+																							}}
+																							placeholder='Valor'
 																							keyboardType='number-pad'
 																							value={
 																								listbox.COD_OPCAO == 1 ? values['Pneu_1_inputInteiroQ'+quesito.COD_ITEM] : 
@@ -894,9 +900,16 @@ export default function Checklist(props) {
 																						<>
 																						<Input 
 																							editable={true}
-																							onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
-																							onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
-																							placeholder='Valor decimal'
+																							//onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
+																							//onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
+																							onChangeText={e => {
+																								var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																								if( validacao.test(e) == true ){
+																									setFieldValue('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM, e);
+																								}
+																							}}
+																							placeholder='Valor'
+																							keyboardType='number-pad'
 																							value={
 																								listbox.COD_OPCAO == 1 ? values['Pneu_1_inputDecimalQ'+quesito.COD_ITEM] : 
 																								listbox.COD_OPCAO == 2 ? values['Pneu_2_inputDecimalQ'+quesito.COD_ITEM] : 
@@ -1201,9 +1214,16 @@ export default function Checklist(props) {
 																						<>
 																						<Input 
 																							editable={true}
-																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
-																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
+																							//onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
+																							//onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM)}
+																							onChangeText={e => {
+																								var validacao = /^$|[0-9]+$/;
+																								if( validacao.test(e) == true ){
+																									setFieldValue('Lataria_'+listbox.COD_OPCAO+'_inputInteiroQ'+quesito.COD_ITEM, e);
+																								}
+																							}}
 																							placeholder='Valor'
+																							keyboardType='number-pad'
 																							value={
 																								listbox.COD_OPCAO == 1 ? values['Lataria_1_inputInteiroQ'+quesito.COD_ITEM] : 
 																								listbox.COD_OPCAO == 2 ? values['Lataria_2_inputInteiroQ'+quesito.COD_ITEM] : 
@@ -1224,9 +1244,16 @@ export default function Checklist(props) {
 																						<>
 																						<Input 
 																							editable={true}
-																							onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
-																							onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
+																							//onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
+																							//onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
+																							onChangeText={e => {
+																								var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																								if( validacao.test(e) == true ){
+																									setFieldValue('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM, e);
+																								}
+																							}}
 																							placeholder='Valor'
+																							keyboardType='number-pad'
 																							value={
 																								listbox.COD_OPCAO == 1 ? values['Lataria_1_inputDecimalQ'+quesito.COD_ITEM] : 
 																								listbox.COD_OPCAO == 2 ? values['Lataria_2_inputDecimalQ'+quesito.COD_ITEM] : 
@@ -1490,9 +1517,16 @@ export default function Checklist(props) {
 																(	
 																	<Input 
 																		editable={true}
-																		onChangeText={handleChange('inputInteiroQuesito_'+quesito.COD_ITEM)}
-																		onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
+																		//onChangeText={handleChange('inputInteiroQuesito_'+quesito.COD_ITEM)}
+																		//onBlur={handleBlur('inputInteiroQuesito_'+quesito.COD_ITEM)}
+																		onChangeText={e => {
+																			var validacao = /^$|[0-9]+$/;
+																			if( validacao.test(e) == true ){
+																				setFieldValue('inputInteiroQuesito_'+quesito.COD_ITEM, e);
+																			}
+																		}}
 																		placeholder='Valor'
+																		keyboardType='number-pad'
 																		value={
 																			values['inputInteiroQuesito_'+quesito.COD_ITEM]
 																		}
@@ -1505,9 +1539,16 @@ export default function Checklist(props) {
 																(	
 																	<Input 
 																		editable={true}
-																		onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
-																		onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
+																		//onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
+																		//onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
+																		onChangeText={e => {
+																			var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																			if( validacao.test(e) == true ){
+																				setFieldValue('inputDecimalQuesito_'+quesito.COD_ITEM, e);
+																			}
+																		}}
 																		placeholder='Valor'
+																		keyboardType='number-pad'
 																		value={
 																			values['inputDecimalQuesito_'+quesito.COD_ITEM]
 																		}
