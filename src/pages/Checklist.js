@@ -64,7 +64,7 @@ export default function Checklist(props) {
 			setloading(true);
 			//BUSCA QUESITOS
 			let respostaQuesitos = await buscarQuesitos(dominio, props.navigation.getParam('qrCodeEquipamento'));
-			//let respostaQuesitos = await buscarQuesitos(dominio, 2000);
+			//let respostaQuesitos = await buscarQuesitos(dominio, 613);
 			
 			if(respostaQuesitos.status){
 
@@ -903,8 +903,9 @@ export default function Checklist(props) {
 																							//onChangeText={handleChange('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							//onBlur={handleBlur('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onChangeText={e => {
-																								var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
-																								if( validacao.test(e) == true ){
+																								//var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																								var validacao = /^[0-9]+(\,|.([0-9]{0,1})?)?$/;
+																								if( (validacao.test(e) == true) || e == '' ){
 																									setFieldValue('Pneu_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM, e);
 																								}
 																							}}
@@ -1247,8 +1248,9 @@ export default function Checklist(props) {
 																							//onChangeText={handleChange('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							//onBlur={handleBlur('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM)}
 																							onChangeText={e => {
-																								var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
-																								if( validacao.test(e) == true ){
+																								//var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																								var validacao = /^[0-9]+(\,|.([0-9]{0,1})?)?$/;
+																								if( (validacao.test(e) == true) || e == '' ){
 																									setFieldValue('Lataria_'+listbox.COD_OPCAO+'_inputDecimalQ'+quesito.COD_ITEM, e);
 																								}
 																							}}
@@ -1542,8 +1544,10 @@ export default function Checklist(props) {
 																		//onChangeText={handleChange('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		//onBlur={handleBlur('inputDecimalQuesito_'+quesito.COD_ITEM)}
 																		onChangeText={e => {
-																			var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
-																			if( validacao.test(e) == true ){
+																			
+																			//var validacao = /^(?:0|[1-9]\d+|)?(?:.?\d{0,1})?$/;
+																			var validacao = /^[0-9]+(\,|.([0-9]{0,1})?)?$/;
+																			if( (validacao.test(e) == true) || e == '' ){
 																				setFieldValue('inputDecimalQuesito_'+quesito.COD_ITEM, e);
 																			}
 																		}}

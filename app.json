@@ -4,7 +4,7 @@
   "expo": {
     "name": "Checklist",
     "slug": "Checklist",
-    "version": "23",
+    "version": "24",
     "assetBundlePatterns": [
       "**/*"
     ]
