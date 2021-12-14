@@ -12,7 +12,7 @@ export default function Menu(props) {
         setModalVisible(false);
         props.navigation.navigate('Agenda')
     }
-    // RECUPERAR AGENDA CONTEXT API
+
     return (
             <View>
                 <Button
@@ -34,22 +34,21 @@ export default function Menu(props) {
                 >
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000000', textAlign: 'center' }}>Menu</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#000000', textAlign: 'center' }}>Menu</Text>
+                            
                             <Button
                                 buttonStyle={styles.botaoItemMenu}
                                 onPress={ () => abrirAgenda()}
                                 color="#fff"
                                 title="Agenda"
                             />
-
+                            
                             <Button
                                 buttonStyle={styles.botaoFechar}
                                 onPress={ () => setModalVisible(false)}
                                 color="#fff"
                                 title="Fechar"
                             />
-
-                            
                         </View>
                     </View>
                 </Modal>
@@ -69,11 +68,10 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     modalView: {
-        backgroundColor: '#fff',
-        padding: 10,
-        //alignItems: "center",
+        backgroundColor: '#ededed',
+        padding: 30,
         borderRadius: 5,
-        width: '50%'
+        width: '70%'
     },
     botaoMenu: {
         marginRight: 15,
